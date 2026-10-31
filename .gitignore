@@ -1,0 +1,13 @@
+# local tooling output
+temporary screenshots/
+node_modules/
+.DS_Store
+
+# private working materials (client brief, brand book, design reference, AI notes)
+Пригон авто бриф.txt
+Car Franko Import.pdf
+ref.png
+CLAUDE.md
+SKILL.md
+SKILL canvas.md
+GEMINI_IMAGE_GENERATION.md

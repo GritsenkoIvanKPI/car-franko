@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Car Franko Import — авто зі США та Литви під ключ</title>
+  <meta name="description" content="Car Franko Import: підбір, купівля на аукціонах США, доставка, розмитнення та постановка на облік. Доставка авто з Литви власними автовозами.">
+  <link rel="icon" type="image/png" href="brand_assets/logo-mark-green.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: { DEFAULT: '#141413', 900: '#0F0F0E', 800: '#1C1B1A', 700: '#232220', 600: '#2C2B29' },
+            brand: { DEFAULT: '#236859', 600: '#1C5549', 400: '#2E8571', 300: '#4DB89A', 200: '#8FD6C1' },
+            fog: { DEFAULT: '#F2F1EE', 300: '#C9C7C2', 400: '#9C9A95', 500: '#76746F' },
+          },
+          fontFamily: {
+            display: ['Jost', 'system-ui', 'sans-serif'],
+            sans: ['Manrope', 'system-ui', 'sans-serif'],
+          },
+          maxWidth: { shell: '1320px' },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root {
+      --bg: #141413;
+      --surface: #1C1B1A;
+      --elevated: #232220;
+      --line: rgba(242, 241, 238, 0.09);
+      --line-strong: rgba(242, 241, 238, 0.16);
+      --brand: #236859;
+      --brand-hi: #2E8571;
+      --brand-text: #4DB89A;
+      --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --spring-soft: cubic-bezier(0.3, 1.25, 0.5, 1);
+      --t-fast: .2s;
+      --t-mid: .45s;
+      --shadow-1: 0 1px 0 rgba(255,255,255,0.03) inset, 0 1px 2px rgba(0,0,0,0.35), 0 8px 24px -12px rgba(0,0,0,0.5);
+      --shadow-2: 0 1px 0 rgba(255,255,255,0.04) inset, 0 2px 4px rgba(0,0,0,0.3), 0 18px 40px -18px rgba(0,0,0,0.7), 0 30px 60px -30px rgba(35,104,89,0.25);
+      --shadow-3: 0 10px 30px -8px rgba(35,104,89,0.55), 0 4px 10px rgba(0,0,0,0.4);
+      --nav-h: 72px;
+    }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); }
+    body { background: var(--bg); color: #F2F1EE; font-family: 'Manrope', system-ui, sans-serif; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    * { scrollbar-width: thin; scrollbar-color: rgba(77,184,154,.45) transparent; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, rgba(46,133,113,.9), rgba(77,184,154,.6)); border-radius: 999px; }
+    ::selection { background: rgba(35,104,89,.6); color: #fff; }
+
+    /* grain + ambient light */
+    .grain::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60; opacity: .06; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .ambient {
+      background:
+        radial-gradient(60rem 30rem at 85% 0%, rgba(35,104,89,.10), transparent 60%),
+        radial-gradient(40rem 30rem at 0% 45%, rgba(35,104,89,.06), transparent 60%),
+        radial-gradient(50rem 40rem at 100% 80%, rgba(46,133,113,.05), transparent 60%);
+    }
+
+    /* icons: one set, one stroke */
+    .ico { flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+    .ico-fill { fill: currentColor; stroke: none; }
+    .font-display { letter-spacing: -0.02em; }
+    .hero-title { font-size: clamp(30px, 5.6vw, 80px); }
+    .hero-title > span, .hero-title .ln { white-space: nowrap; }
+    .h-hero { font-family: 'Jost', sans-serif; font-weight: 600; line-height: 1.04; letter-spacing: -0.03em; text-transform: uppercase; }
+    .h-sec { font-family: 'Jost', sans-serif; font-weight: 600; letter-spacing: -0.01em; text-transform: uppercase; }
+    .eyebrow { font-family: 'Jost', sans-serif; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; font-size: 11px; }
+    .tabular { font-variant-numeric: tabular-nums; }
+    p, li, dd, blockquote, figcaption, legend { text-wrap: pretty; }
+    h1, h2, h3 { text-wrap: balance; }
+
+    /* surfaces */
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow-1); }
+    .panel-elev { background: var(--elevated); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow-2); }
+
+    /* buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; font-family: 'Jost', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: .01em; border-radius: 6px; padding: .8rem 1.4rem; line-height: 1; cursor: pointer; position: relative; isolation: isolate; transition: transform var(--t-mid) var(--spring-soft), opacity var(--t-fast) ease; will-change: transform; }
+    .btn:active { transform: translateY(0) scale(.97); transition-duration: .12s; }
+    .btn:focus-visible, .lnk:focus-visible, .icon-btn:focus-visible, .faq-q:focus-visible, .field:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 3px; }
+    .btn-primary { background: var(--brand); color: #fff; box-shadow: var(--shadow-3); overflow: hidden; }
+    .btn-primary::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: linear-gradient(180deg, rgba(255,255,255,.16), transparent 55%); opacity: .6; transition: opacity var(--t-mid) ease; pointer-events: none; }
+    .btn-primary::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.22) 50%, transparent 70%); transform: translateX(-120%); pointer-events: none; }
+    .btn-ghost { background: rgba(20,20,19,.72); color: #F2F1EE; border: 1px solid var(--line-strong); backdrop-filter: blur(6px); }
+    .btn-ghost::after { content: ""; position: absolute; inset: -1px; z-index: -1; border-radius: inherit; border: 1px solid rgba(77,184,154,.55); background: rgba(77,184,154,.07); opacity: 0; transition: opacity var(--t-mid) ease; pointer-events: none; }
+    .btn .arrow, .lnk .arrow { transition: transform var(--t-mid) var(--spring-soft); }
+
+    /* text links */
+    .lnk { position: relative; transition: opacity var(--t-fast) ease, transform var(--t-mid) var(--spring-soft); }
+    .lnk:active { opacity: .6; }
+    .flink { display: inline-block; padding: 6px 0; opacity: .78; }
+    .nav-link { position: relative; color: #F2F1EE; opacity: .66; transition: opacity .3s ease; }
+    .nav-link.is-active { opacity: 1; }
+    .nav-link:active { opacity: .5; }
+    .nav-link:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 6px; border-radius: 2px; }
+
+    .icon-btn { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 8px; color: #E8E6E1; transition: transform var(--t-mid) var(--spring-soft), opacity var(--t-fast) ease; position: relative; }
+    .icon-btn::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: rgba(255,255,255,.07); opacity: 0; transition: opacity var(--t-fast) ease; }
+    .icon-btn:active { transform: scale(.9); transition-duration: .12s; }
+
+    @media (hover: hover) and (pointer: fine) {
+      .btn:hover { transform: translateY(-2px); }
+      .btn:active { transform: translateY(0) scale(.97); }
+      .btn-primary:hover::after { opacity: 1; }
+      .btn-primary:hover::before { transform: translateX(120%); transition: transform .9s var(--ease-out); }
+      .btn-ghost:hover::after { opacity: 1; }
+      .btn:hover .arrow, .lnk:hover .arrow { transform: translateX(4px); }
+      .lnk:hover { opacity: .85; }
+      .flink:hover { opacity: 1; transform: translateX(4px); }
+      .nav-link:hover { opacity: 1; }
+      .icon-btn:hover { transform: translateY(-2px); }
+      .icon-btn:hover::before { opacity: 1; }
+      .icon-btn:active { transform: scale(.9); }
+    }
+
+    /* header */
+    .site-header { transition: transform .5s var(--ease-out); }
+    .site-header::before { content: ""; position: absolute; inset: 0 0 -40px; background: linear-gradient(180deg, rgba(10,10,9,.6), rgba(10,10,9,0)); pointer-events: none; transition: opacity .4s ease; }
+    .site-header.is-scrolled::before { opacity: 0; }
+    .site-header .hdr-bg { position: absolute; inset: 0; background: rgba(15,15,14,.78); backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid var(--line); opacity: .0; transition: opacity .4s ease; }
+    .site-header.is-scrolled .hdr-bg { opacity: 1; }
+
+    /* mobile menu */
+    .mnav { opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+    .mnav.is-open { opacity: 1; pointer-events: auto; }
+    .mnav .mnav-item { opacity: 0; transform: translateY(14px); transition: transform .5s var(--ease-out), opacity .4s ease; }
+    .mnav.is-open .mnav-item { opacity: 1; transform: none; }
+    .mnav.is-open .mnav-item:nth-child(2) { transition-delay: .04s; }
+    .mnav.is-open .mnav-item:nth-child(3) { transition-delay: .08s; }
+    .mnav.is-open .mnav-item:nth-child(4) { transition-delay: .12s; }
+    .mnav.is-open .mnav-item:nth-child(5) { transition-delay: .16s; }
+    .mnav.is-open .mnav-item:nth-child(6) { transition-delay: .2s; }
+    .mnav.is-open .mnav-item:nth-child(7) { transition-delay: .26s; }
+    .burger i { display: block; width: 20px; height: 2px; border-radius: 2px; background: #F2F1EE; transition: transform .4s var(--spring), opacity .2s ease; }
+    .burger.is-open i:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .burger.is-open i:nth-child(2) { opacity: 0; }
+    .burger.is-open i:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* hero */
+    .slide { opacity: 0; transition: opacity 1.1s ease; pointer-events: none; }
+    .slide .media { transform: translate3d(0, var(--py, 0px), 0); will-change: transform; }
+    .hero-fade { opacity: var(--ho, 1); }
+    .slide.is-active { opacity: 1; pointer-events: auto; }
+    .slide .slide-img { transform: scale(1.06); transition: transform 7s linear; }
+    .slide.is-active .slide-img { transform: scale(1); }
+    .slide .s-in { opacity: 0; transform: translateY(18px); transition: transform .5s var(--ease-out), opacity .35s ease; }
+    .slide.is-active .s-in { transition-duration: 1s, .8s; }
+    .slide.is-active .s-in { opacity: 1; transform: none; }
+    .slide.is-active .s-in { transition-delay: .25s; }
+    .slide.is-active .s-in.d1 { transition-delay: .35s; }
+    .slide.is-active .s-in.d2 { transition-delay: .47s; }
+    .slide.is-active .s-in.d3 { transition-delay: .59s; }
+    .hero-shade { background:
+      linear-gradient(90deg, rgba(10,12,11,.88) 0%, rgba(10,12,11,.62) 34%, rgba(10,12,11,.12) 64%, rgba(10,12,11,.2) 100%),
+      linear-gradient(0deg, rgba(20,20,19,1) 0%, rgba(20,20,19,0) 28%); }
+    .dot { position: relative; width: 28px; height: 28px; border-radius: 999px; display: grid; place-items: center; }
+    .dot::before { content: ""; width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,.4); transition: transform .4s var(--spring), opacity .2s ease; }
+    .dot::after { content: ""; position: absolute; width: 8px; height: 8px; border-radius: 999px; background: var(--brand-text); opacity: 0; transition: transform .45s var(--spring), opacity .3s ease; }
+    .dot:hover::before { transform: scale(1.35); }
+    .dot:active::before, .dot:active::after { transform: scale(.85); }
+    .dot.is-active::before { opacity: 0; }
+    .dot.is-active::after { opacity: 1; transform: scale(1.4); }
+    .dot:focus:not(:focus-visible) { outline: none; }
+    .dot:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 2px; }
+
+    /* images */
+    .media { position: relative; overflow: hidden; isolation: isolate; }
+    .media img { transition: transform .9s var(--ease-out); }
+    .media .tint { position: absolute; inset: 0; background: #1d4a40; mix-blend-mode: multiply; opacity: .28; pointer-events: none; }
+    .media .fade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.6), transparent 55%); pointer-events: none; }
+
+    /* lift surfaces (cards, reviews, faq) */
+    .lift { position: relative; transition: transform .6s var(--spring-soft); }
+    .lift::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; box-shadow: 0 24px 50px -20px rgba(0,0,0,.8), 0 18px 40px -24px rgba(35,104,89,.55); opacity: 0; transition: opacity var(--t-mid) ease; pointer-events: none; }
+    .lift::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; border: 1px solid rgba(77,184,154,.42); opacity: 0; transition: opacity var(--t-mid) ease; pointer-events: none; }
+    .media img { transition: transform 1.2s var(--ease-out); }
+
+    /* icon badges */
+    .ring-ico { position: relative; background: radial-gradient(circle at 30% 25%, rgba(77,184,154,.16), rgba(35,104,89,.08) 70%); box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 6px 18px -8px rgba(35,104,89,.5); transition: transform .55s var(--spring-soft); }
+    .ring-ico::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; box-shadow: 0 0 0 6px rgba(77,184,154,.07), 0 12px 26px -8px rgba(46,133,113,.75); border: 1px solid rgba(77,184,154,.6); opacity: 0; transition: opacity var(--t-mid) ease; pointer-events: none; }
+    .ring-ico .ico { transition: transform .55s var(--spring-soft); }
+
+    /* faq */
+    .faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s var(--ease-out); }
+    .faq-a > div { overflow: hidden; }
+    .faq-a p { opacity: 0; transform: translateY(-6px); transition: opacity .25s ease, transform .4s var(--ease-out); }
+    .faq.is-open .faq-a { grid-template-rows: 1fr; }
+    .faq.is-open .faq-a p { opacity: 1; transform: none; transition-delay: .08s; }
+    .faq .plus { transition: transform .5s var(--spring-soft); }
+    .faq.is-open .plus { transform: rotate(45deg); }
+    .faq-q:active { opacity: .7; }
+
+    @media (hover: hover) and (pointer: fine) {
+      .lift:hover { transform: translateY(-5px); }
+      .lift:hover::before, .lift:hover::after { opacity: 1; }
+      .faq.lift:hover { transform: translateY(-2px); }
+      .car-card:hover .media img { transform: scale(1.05); }
+      .media-hover:hover img { transform: scale(1.035); }
+      .step:hover .ring-ico, .svc:hover .ring-ico, .stat:hover .ring-ico { transform: translateY(-3px); }
+      .step:hover .ring-ico::after, .svc:hover .ring-ico::after, .stat:hover .ring-ico::after { opacity: 1; }
+      .step:hover .ring-ico .ico, .svc:hover .ring-ico .ico, .stat:hover .ring-ico .ico { transform: scale(1.1); }
+      .faq-q:hover .plus { transform: scale(1.15); }
+      .faq.is-open .faq-q:hover .plus { transform: rotate(45deg) scale(1.15); }
+    }
+
+    /* reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(24px); transition: transform .9s var(--ease-out), opacity .7s ease; }
+    .reveal.is-in { opacity: 1; transform: none; }
+    .reveal[data-d="1"] { transition-delay: .06s; }
+    .reveal[data-d="2"] { transition-delay: .12s; }
+    .reveal[data-d="3"] { transition-delay: .18s; }
+    .reveal[data-d="4"] { transition-delay: .24s; }
+    .reveal[data-d="5"] { transition-delay: .3s; }
+
+    /* floating contact */
+    .fab-wrap { transition: opacity .3s ease, transform .4s var(--ease-out); }
+    body.menu-open .fab-wrap, body.modal-open .fab-wrap { opacity: 0; transform: translateY(12px); pointer-events: none; }
+    .fab { transition: transform .5s var(--spring-soft); }
+    @media (hover: hover) and (pointer: fine) { .fab:hover { transform: scale(1.07); } }
+    .fab:active { transform: scale(.94); }
+    .fab:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 4px; }
+    .fab .pulse { position: absolute; inset: 0; border-radius: 999px; background: var(--brand); animation: pulse 2.4s var(--ease-out) infinite; }
+    .fab .pulse.p2 { animation-delay: 1.2s; }
+    @keyframes pulse { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(1.9); opacity: 0; } }
+    .fab-ico { animation: ring 4s ease-in-out infinite; }
+    @keyframes ring { 0%, 84%, 100% { transform: rotate(0); } 86% { transform: rotate(-16deg); } 89% { transform: rotate(14deg); } 92% { transform: rotate(-10deg); } 95% { transform: rotate(6deg); } }
+    .bubble { opacity: 0; transform: translateY(10px) scale(.96); transform-origin: bottom right; transition: transform .5s var(--spring), opacity .3s ease; pointer-events: none; }
+    .bubble.is-on { opacity: 1; transform: none; pointer-events: auto; }
+
+    /* modal */
+    .modal { opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+    .modal.is-open { opacity: 1; pointer-events: auto; }
+    .modal .modal-card { transform: translateY(24px) scale(.97); transition: transform .55s var(--spring); }
+    .modal.is-open .modal-card { transform: none; }
+    .field { width: 100%; background: #0F0F0E; border: 1px solid var(--line-strong); border-radius: 6px; padding: .85rem 1rem; font-size: 15px; color: #F2F1EE; transition: opacity .2s ease; }
+    .field:focus { box-shadow: 0 0 0 4px rgba(77,184,154,.12); }
+    .field::placeholder { color: #76746F; }
+    .field:hover { opacity: .92; }
+    .field:focus { border-color: var(--brand-text); outline: none; }
+    .chip input { position: absolute; opacity: 0; }
+    .chip span { display: inline-flex; padding: .5rem .9rem; border-radius: 99px; border: 1px solid var(--line-strong); font-size: 13px; color: #C9C7C2; cursor: pointer; transition: transform .35s var(--spring), opacity .2s ease; }
+    .chip span:hover { transform: translateY(-1px); }
+    .chip span:active { transform: scale(.95); }
+    .chip input:checked + span { background: rgba(35,104,89,.25); border-color: var(--brand-text); color: #fff; }
+    .chip input:focus-visible + span { outline: 2px solid var(--brand-text); outline-offset: 2px; }
+
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+      .slide .media { transform: none; }
+    }
+  </style>
+</head>
+<body class="grain">
+<svg width="0" height="0" class="absolute" aria-hidden="true" focusable="false"><defs>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="5.5"/><circle cx="12" cy="12" r="4.25"/><circle cx="17.35" cy="6.65" r="1.15" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-telegram" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M20.67 3.39 2.97 10.21c-1.21.49-1.2 1.16-.22 1.46l4.54 1.42 10.51-6.63c.5-.3.95-.14.58.19l-8.52 7.69-.31 4.69c.46 0 .66-.21.92-.46l2.2-2.14 4.58 3.38c.84.47 1.45.23 1.66-.78l3.01-14.18c.31-1.24-.47-1.8-1.25-1.46Z"/></symbol>
+  <symbol id="i-viber" viewBox="0 0 24 24"><path d="M12 2.75c5.3 0 8.5 1.9 8.5 7.9s-3.2 7.9-8.5 7.9c-.85 0-1.65-.05-2.4-.17L6.25 21v-3.35C4.3 16.5 3.5 14.3 3.5 10.65c0-6 3.2-7.9 8.5-7.9Z"/><path fill="currentColor" stroke="none" transform="translate(7.1 7.4) scale(.36)" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/><path d="M13.1 5.9a4.4 4.4 0 0 1 3.9 3.9"/><path d="M13.1 8.05a2.25 2.25 0 0 1 1.85 1.85"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-timer" viewBox="0 0 24 24"><path d="M10 2h4"/><path d="m12 14 3-3"/><circle cx="12" cy="14" r="8"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-search-check" viewBox="0 0 24 24"><path d="m8 11 2 2 4-4"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-gavel" viewBox="0 0 24 24"><path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8"/><path d="m16 16 6-6"/><path d="m8 8 6-6"/><path d="m9 7 8 8"/><path d="m21 11-8-8"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+  <symbol id="i-ship" viewBox="0 0 24 24"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></symbol>
+  <symbol id="i-container" viewBox="0 0 24 24"><path d="M22 7.7c0-.6-.4-1.2-.8-1.5l-6.3-3.9a1.72 1.72 0 0 0-1.7 0l-10.3 6c-.5.2-.9.8-.9 1.4v6.6c0 .5.4 1.2.8 1.5l6.3 3.9a1.72 1.72 0 0 0 1.7 0l10.3-6c.5-.3.9-1 .9-1.5Z"/><path d="M10 21.9V14L2.1 9.1"/><path d="m10 14 11.9-6.9"/><path d="M14 19.8v-8.1"/><path d="M18 17.5V9.4"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+  <symbol id="i-file-check" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></symbol>
+  <symbol id="i-file-text" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+  <symbol id="i-badge-check" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+</defs></svg>
+
+<!-- ============ HEADER ============ -->
+<header id="top" class="site-header fixed inset-x-0 top-0 z-50">
+  <div class="hdr-bg"></div>
+  <div class="relative mx-auto flex h-[72px] max-w-shell items-center gap-6 px-4 sm:px-6 lg:px-8">
+    <a href="#top" class="lnk flex shrink-0 items-center gap-3" aria-label="Car Franko Import — на головну">
+      <img src="brand_assets/logo-mark-green.png" alt="" class="h-8 w-auto">
+      <span class="hidden leading-none sm:block">
+        <span class="block font-display text-[17px] font-semibold tracking-tight">Car Franko</span>
+        <span class="eyebrow mt-1 block text-[10px] text-fog-400">Import</span>
+      </span>
+    </a>
+
+    <nav class="ml-6 hidden items-center gap-7 text-[14px] lg:flex" aria-label="Головне меню">
+      <a href="#top" class="nav-link is-active">Головна</a>
+      <a href="#usa" class="nav-link">Авто зі США</a>
+      <a href="#lithuania" class="nav-link">Авто з Литви</a>
+      <a href="#cars" class="nav-link">Каталог</a>
+      <a href="#services" class="nav-link">Послуги</a>
+      <a href="#contacts" class="nav-link">Контакти</a>
+    </nav>
+
+    <div class="ml-auto flex items-center gap-1 sm:gap-2">
+      <a href="https://www.instagram.com/car_franko_import" target="_blank" rel="noopener" class="icon-btn hidden md:inline-grid" aria-label="Instagram">
+        <svg class="ico relative h-5 w-5" aria-hidden="true"><use href="#i-instagram"/></svg>
+      </a>
+      <a href="https://t.me/" target="_blank" rel="noopener" class="icon-btn hidden md:inline-grid" aria-label="Telegram">
+        <svg class="ico relative h-5 w-5" aria-hidden="true"><use href="#i-telegram"/></svg>
+      </a>
+      <a href="viber://chat?number=%2B380667668005" class="icon-btn hidden md:inline-grid" aria-label="Viber">
+        <svg class="ico relative h-5 w-5" aria-hidden="true"><use href="#i-viber"/></svg>
+      </a>
+      <button type="button" class="btn btn-primary ml-2 hidden !px-5 !py-[11px] sm:inline-flex" data-open-modal>Заявка</button>
+      <a href="tel:+380667668005" class="lnk ml-3 hidden font-display text-[15px] font-medium tabular xl:block">+38 (066) 76 68 005</a>
+      <button type="button" class="burger icon-btn ml-1 lg:hidden" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mnav">
+        <span class="relative flex flex-col gap-1"><i></i><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div id="mnav" class="mnav fixed inset-0 z-40 bg-ink-900/95 backdrop-blur-xl lg:hidden">
+  <nav class="flex h-full flex-col justify-center gap-2 px-6 pt-[72px]" aria-label="Мобільне меню">
+    <a href="#top" class="mnav-item lnk font-display text-3xl font-medium">Головна</a>
+    <a href="#usa" class="mnav-item lnk font-display text-3xl font-medium">Авто зі США</a>
+    <a href="#lithuania" class="mnav-item lnk font-display text-3xl font-medium">Авто з Литви</a>
+    <a href="#cars" class="mnav-item lnk font-display text-3xl font-medium">Каталог</a>
+    <a href="#services" class="mnav-item lnk font-display text-3xl font-medium">Послуги</a>
+    <a href="#contacts" class="mnav-item lnk font-display text-3xl font-medium">Контакти</a>
+    <div class="mnav-item mt-8 flex flex-col gap-3">
+      <a href="tel:+380667668005" class="lnk font-display text-lg tabular text-brand-300">+38 (066) 76 68 005</a>
+      <button type="button" class="btn btn-primary w-full" data-open-modal>Залишити заявку</button>
+    </div>
+  </nav>
+</div>
+
+<main class="ambient relative">
+
+  <!-- ============ HERO / KEY OFFER ============ -->
+  <section id="usa" class="relative pt-0" aria-label="Головна пропозиція">
+    <div class="relative h-[660px] overflow-hidden sm:h-[680px] lg:h-[720px]">
+      <!-- slide 1 -->
+      <div class="slide is-active absolute inset-0" data-slide>
+        <div class="media absolute inset-0">
+          <img src="images/hero.jpg" alt="Графітовий седан у морському порту серед контейнерів" class="slide-img h-full w-full object-cover object-[68%_50%]">
+          <div class="tint !opacity-20"></div>
+        </div>
+        <div class="hero-shade absolute inset-0"></div>
+        <div class="relative mx-auto flex h-full max-w-shell items-start px-4 pt-[100px] sm:items-center sm:px-6 sm:pt-0 lg:px-8">
+          <div class="hero-fade max-w-[900px] sm:pt-16">
+            <p class="s-in eyebrow mb-5 text-brand-300">Доставка з аукціонів США</p>
+            <h1 class="s-in d1 h-hero hero-title"><span class="ln">Авто зі США</span><br><span class="text-brand-300">під ключ</span></h1>
+            <p class="s-in d2 mt-6 max-w-[460px] text-[16px] text-fog-300 sm:text-[17px]">Зробимо все замість вас — від покупки на аукціоні до встановлення номерних знаків.</p>
+            <div class="s-in d3 mt-9 flex flex-wrap gap-3">
+              <button type="button" class="btn btn-primary" data-open-modal>Підібрати авто
+                <svg class="ico arrow h-4 w-4" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+              </button>
+              <a href="#cars" class="btn btn-ghost">Доставлені авто</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- slide 2 -->
+      <div class="slide absolute inset-0" data-slide>
+        <div class="media absolute inset-0">
+          <img src="images/lithuania.jpg" alt="Автовоз з авто на трасі в Литві" class="slide-img h-full w-full object-cover object-[60%_50%]">
+          <div class="tint !opacity-20"></div>
+        </div>
+        <div class="hero-shade absolute inset-0"></div>
+        <div class="relative mx-auto flex h-full max-w-shell items-start px-4 pt-[100px] sm:items-center sm:px-6 sm:pt-0 lg:px-8">
+          <div class="hero-fade max-w-[900px] sm:pt-16">
+            <p class="s-in eyebrow mb-5 text-brand-300">Новий напрям</p>
+            <h2 class="s-in d1 h-hero hero-title"><span class="ln">Авто з Литви</span><br><span class="text-brand-300">без посередників</span></h2>
+            <p class="s-in d2 mt-6 max-w-[460px] text-[16px] text-fog-300 sm:text-[17px]">Підберемо, перевіримо та доставимо авто з Європи власними автовозами.</p>
+            <div class="s-in d3 mt-9 flex flex-wrap gap-3">
+              <button type="button" class="btn btn-primary" data-open-modal>Залишити заявку
+                <svg class="ico arrow h-4 w-4" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+              </button>
+              <a href="#lithuania" class="btn btn-ghost">Детальніше</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- slide 3 -->
+      <div class="slide absolute inset-0" data-slide>
+        <div class="media absolute inset-0">
+          <img src="images/hero-stock.jpg" alt="Пригнані авто на майданчику Car Franko" class="slide-img h-full w-full object-cover object-[70%_50%]" loading="lazy">
+          <div class="tint !opacity-20"></div>
+        </div>
+        <div class="hero-shade absolute inset-0"></div>
+        <div class="relative mx-auto flex h-full max-w-shell items-start px-4 pt-[100px] sm:items-center sm:px-6 sm:pt-0 lg:px-8">
+          <div class="hero-fade max-w-[900px] sm:pt-16">
+            <p class="s-in eyebrow mb-5 text-brand-300">Власний майданчик</p>
+            <h2 class="s-in d1 h-hero hero-title"><span class="ln">Авто в наявності</span><br><span class="text-brand-300">вже в Україні</span></h2>
+            <p class="s-in d2 mt-6 max-w-[460px] text-[16px] text-fog-300 sm:text-[17px]">Пригнані та розмитнені авто на нашому майданчику — приїжджайте на огляд і забирайте без очікування.</p>
+            <div class="s-in d3 mt-9 flex flex-wrap gap-3">
+              <a href="#cars" class="btn btn-primary">Дивитись авто
+                <svg class="ico arrow h-4 w-4" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+              </a>
+              <a href="https://maps.app.goo.gl/Qz3usTykE7Fo6sNAA" target="_blank" rel="noopener" class="btn btn-ghost">Як доїхати</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- slider controls -->
+      <div class="absolute inset-x-0 bottom-28 z-10 flex items-center justify-center gap-4 sm:bottom-32">
+        <button type="button" class="icon-btn h-10 w-10" data-prev aria-label="Попередній слайд">
+          <svg class="ico relative h-4 w-4" aria-hidden="true"><use href="#i-chevron-left"/></svg>
+        </button>
+        <div class="flex items-center">
+          <button type="button" class="dot is-active" data-dot="0" aria-label="Слайд 1"></button>
+          <button type="button" class="dot" data-dot="1" aria-label="Слайд 2"></button>
+          <button type="button" class="dot" data-dot="2" aria-label="Слайд 3"></button>
+        </div>
+        <button type="button" class="icon-btn h-10 w-10" data-next aria-label="Наступний слайд">
+          <svg class="ico relative h-4 w-4" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- KEY FIGURES -->
+    <div class="relative z-10 mx-auto -mt-[92px] max-w-shell px-4 sm:px-6 lg:px-8">
+      <div class="panel-elev grid grid-cols-2 lg:grid-cols-4">
+        <div class="stat flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4 lg:flex-col lg:items-start xl:flex-row xl:items-center border-b border-r border-[var(--line)] p-4 sm:p-6 lg:border-b-0">
+          <span class="ring-ico grid h-10 w-10 shrink-0 place-items-center rounded-full border border-brand-300/30 text-brand-300 sm:h-12 sm:w-12"><svg class="ico h-5 w-5 sm:h-[22px] sm:w-[22px]" aria-hidden="true"><use href="#i-award"/></svg></span>
+          <div><p class="font-display text-[22px] font-semibold leading-none tabular min-[400px]:text-[26px] sm:text-[30px]"><span data-count="6">6</span> років</p><p class="mt-1.5 text-[12px] leading-snug text-fog-400 sm:text-[13px]">на ринку пригону авто</p></div>
+        </div>
+        <div class="stat flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4 lg:flex-col lg:items-start xl:flex-row xl:items-center border-b border-[var(--line)] p-4 sm:p-6 lg:border-b-0 lg:border-r">
+          <span class="ring-ico grid h-10 w-10 shrink-0 place-items-center rounded-full border border-brand-300/30 text-brand-300 sm:h-12 sm:w-12"><svg class="ico h-5 w-5 sm:h-[22px] sm:w-[22px]" aria-hidden="true"><use href="#i-car"/></svg></span>
+          <div><p class="font-display text-[22px] font-semibold leading-none tabular min-[400px]:text-[26px] sm:text-[30px]"><span data-count="1000">1000</span>+</p><p class="mt-1.5 text-[12px] leading-snug text-fog-400 sm:text-[13px]">доставлених авто</p></div>
+        </div>
+        <div class="stat flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4 lg:flex-col lg:items-start xl:flex-row xl:items-center border-r border-[var(--line)] p-4 sm:p-6">
+          <span class="ring-ico grid h-10 w-10 shrink-0 place-items-center rounded-full border border-brand-300/30 text-brand-300 sm:h-12 sm:w-12"><svg class="ico h-5 w-5 sm:h-[22px] sm:w-[22px]" aria-hidden="true"><use href="#i-users"/></svg></span>
+          <div><p class="font-display text-[22px] font-semibold leading-none tabular min-[400px]:text-[26px] sm:text-[30px]"><span data-count="1100">1100</span></p><p class="mt-1.5 text-[12px] leading-snug text-fog-400 sm:text-[13px]">задоволених клієнтів</p></div>
+        </div>
+        <div class="stat flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4 lg:flex-col lg:items-start xl:flex-row xl:items-center p-4 sm:p-6">
+          <span class="ring-ico grid h-10 w-10 shrink-0 place-items-center rounded-full border border-brand-300/30 text-brand-300 sm:h-12 sm:w-12"><svg class="ico h-5 w-5 sm:h-[22px] sm:w-[22px]" aria-hidden="true"><use href="#i-timer"/></svg></span>
+          <div><p class="font-display text-[22px] font-semibold leading-none tabular min-[400px]:text-[26px] sm:text-[30px]">~2 міс.</p><p class="mt-1.5 text-[12px] leading-snug text-fog-400 sm:text-[13px]">середній термін доставки</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STAGES ============ -->
+  <section id="process" class="mx-auto max-w-shell px-4 pt-16 sm:px-6 sm:pt-20 lg:px-8" aria-labelledby="process-h">
+    <div class="panel reveal p-6 sm:p-8 lg:p-10">
+      <div class="reveal mb-8 flex flex-wrap items-end justify-between gap-4 sm:mb-10">
+        <div>
+          <p class="eyebrow mb-3 text-brand-300">Етапи роботи</p>
+          <h2 id="process-h" class="h-sec text-[24px] sm:text-[30px]">Як ми працюємо</h2>
+        </div>
+        <p class="max-w-[420px] text-[14px] text-fog-400">Від пошуку бажаного авто до його доставки — ми допоможемо на кожному етапі.</p>
+      </div>
+      <ol class="grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+        <li class="step reveal flex gap-4" data-d="1">
+          <span class="step-ico ring-ico grid h-12 w-12 shrink-0 place-items-center rounded-full border border-brand-300/30 text-brand-300">
+            <svg class="ico h-5 w-5" aria-hidden="true"><use href="#i-search"/></svg>
+          </span>
+          <div><p class="font-display text-[12px] font-medium text-brand-300 tabular">01</p><h3 class="font-display text-[16px] font-semibold">Підбір авто</h3><p class="mt-1 text-[13px] leading-relaxed text-fog-400">Шукаємо найкращі варіанти під ваш бюджет і задачі</p></div>
+        </li>
+        <li class="step reveal flex gap-4" data-d="2">
+          <span class="step-ico ring-ico grid h-12 w-12 shrink-0 place-items-center rounded-full border border-brand-300/30 text-brand-300">
+            <svg class="ico h-5 w-5" aria-hidden="true"><use href="#i-shield-check"/></svg>
+          </span>
+          <div><p class="font-display text-[12px] font-medium text-brand-300 tabular">02</p><h3 class="font-display text-[16px] font-semibold">Перевірка</h3><p class="mt-1 text-[13px] leading-relaxed text-fog-400">Перевіряємо історію, VIN та стан авто ще до торгів</p></div>
+        </li>
+        <li class="step reveal flex gap-4" data-d="3">
+          <span class="step-ico ring-ico grid h-12 w-12 shrink-0 place-items-center rounded-full border border-brand-300/30 text-brand-300">
+            <svg class="ico h-5 w-5" aria-hidden="true"><use href="#i-gavel"/></svg>
+          </span>
+          <div><p class="font-display text-[12px] font-medium text-brand-300 tabular">03</p><h3 class="font-display text-[16px] font-semibold">Аукціон</h3><p class="mt-1 text-[13px] leading-relaxed text-fog-400">Беремо участь у торгах і викуповуємо авто за найкращою ціною</p></div>
+        </li>
+        <li class="step reveal flex gap-4" data-d="4">
+          <span class="step-ico ring-ico grid h-12 w-12 shrink-0 place-items-center rounded-full border border-brand-300/30 text-brand-300">
+            <svg class="ico h-5 w-5" aria-hidden="true"><use href="#i-camera"/></svg>
+          </span>
+          <div><p class="font-display text-[12px] font-medium text-brand-300 tabular">04</p><h3 class="font-display text-[16px] font-semibold">Фотозвіт і документи</h3><p class="mt-1 text-[13px] leading-relaxed text-fog-400">Готуємо фотозвіт та оформлюємо експортні документи</p></div>
+        </li>
+        <li class="step reveal flex gap-4" data-d="1">
+          <span class="step-ico ring-ico grid h-12 w-12 shrink-0 place-items-center rounded-full border border-brand-300/30 text-brand-300">
+            <svg class="ico h-5 w-5" aria-hidden="true"><use href="#i-ship"/></svg>
+          </span>
+          <div><p class="font-display text-[12px] font-medium text-brand-300 tabular">05</p><h3 class="font-display text-[16px] font-semibold">Морська доставка</h3><p class="mt-1 text-[13px] leading-relaxed text-fog-400">Відправляємо авто в контейнері до портів Європи</p></div>
+        </li>
+        <li class="step reveal flex gap-4" data-d="2">
+          <span class="step-ico ring-ico grid h-12 w-12 shrink-0 place-items-center rounded-full border border-brand-300/30 text-brand-300">
+            <svg class="ico h-5 w-5" aria-hidden="true"><use href="#i-container"/></svg>
+          </span>
+          <div><p class="font-display text-[12px] font-medium text-brand-300 tabular">06</p><h3 class="font-display text-[16px] font-semibold">Розвантаження в порту</h3><p class="mt-1 text-[13px] leading-relaxed text-fog-400">Розформовуємо контейнер одразу після прибуття авто</p></div>
+        </li>
+        <li class="step reveal flex gap-4" data-d="3">
+          <span class="step-ico ring-ico grid h-12 w-12 shrink-0 place-items-center rounded-full border border-brand-300/30 text-brand-300">
+            <svg class="ico h-5 w-5" aria-hidden="true"><use href="#i-truck"/></svg>
+          </span>
+          <div><p class="font-display text-[12px] font-medium text-brand-300 tabular">07</p><h3 class="font-display text-[16px] font-semibold">Доставка в Україну</h3><p class="mt-1 text-[13px] leading-relaxed text-fog-400">Перевозимо авто з європейського порту власними автовозами</p></div>
+        </li>
+        <li class="step reveal flex gap-4" data-d="4">
+          <span class="step-ico ring-ico grid h-12 w-12 shrink-0 place-items-center rounded-full border border-brand-300/30 text-brand-300">
+            <svg class="ico h-5 w-5" aria-hidden="true"><use href="#i-file-check"/></svg>
+          </span>
+          <div><p class="font-display text-[12px] font-medium text-brand-300 tabular">08</p><h3 class="font-display text-[16px] font-semibold">Розмитнення та облік</h3><p class="mt-1 text-[13px] leading-relaxed text-fog-400">Розмитнюємо, сертифікуємо й ставимо авто на облік</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CASES: DELIVERED CARS ============ -->
+  <section id="cars" class="mx-auto max-w-shell px-4 pt-16 sm:px-6 sm:pt-20 lg:px-8" aria-labelledby="cars-h">
+    <div class="reveal mb-6 flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
+      <div>
+        <p class="eyebrow mb-3 text-brand-300">Кейси</p>
+        <h2 id="cars-h" class="h-sec text-[24px] sm:text-[30px]">Доставлені авто</h2>
+      </div>
+      <a href="#cars" class="lnk group flex shrink-0 items-center gap-2 whitespace-nowrap font-display text-[14px] font-medium text-brand-300">Весь каталог
+        <svg class="ico arrow h-4 w-4" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+      </a>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <!-- card -->
+      <article class="car-card lift panel reveal relative flex flex-col" data-d="1">
+        <div class="media aspect-[16/10] rounded-t-[10px]">
+          <img src="images/car-1.jpg" alt="Toyota RAV4 Hybrid 2021" class="h-full w-full object-cover" loading="lazy">
+          <div class="tint"></div><div class="fade"></div>
+          <span class="absolute left-3 top-3 rounded-[5px] bg-ink-900/80 px-2.5 py-1 text-[11px] font-semibold text-brand-200 backdrop-blur">Доставлено за 54 дні</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-[17px] font-semibold">Toyota RAV4 Hybrid <span class="text-brand-300">2021</span></h3>
+          <p class="mt-0.5 text-[12px] text-fog-500 tabular">48 000 км</p>
+          <dl class="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-[13px] leading-snug">
+            <div><dt class="eyebrow text-[10px] text-fog-500">Двигун</dt><dd class="mt-0.5">Гібрид, 2.5 л</dd></div>
+            <div><dt class="eyebrow text-[10px] text-fog-500">Привід</dt><dd class="mt-0.5">Повний</dd></div>
+            <div><dt class="eyebrow text-[10px] text-fog-500">Коробка</dt><dd class="mt-0.5">Варіатор</dd></div>
+            <div><dt class="eyebrow text-[10px] text-fog-500">Кузов</dt><dd class="mt-0.5">Кросовер</dd></div>
+          </dl>
+          <p class="mt-5 flex items-center gap-1.5 border-t border-[var(--line)] pt-4 text-[12px] text-fog-400">
+            <svg class="ico h-3.5 w-3.5" aria-hidden="true"><use href="#i-map-pin"/></svg>Львів
+          </p>
+          <div class="mt-3 flex items-baseline justify-between"><span class="eyebrow text-[10px] text-fog-500">Під ключ</span><span class="font-display text-[22px] font-semibold text-brand-300 tabular">24 900 $</span></div>
+          <a href="#cars" class="btn btn-primary mt-4 w-full">Детальніше</a>
+        </div>
+      </article>
+
+      <article class="car-card lift panel reveal relative flex flex-col" data-d="2">
+        <div class="media aspect-[16/10] rounded-t-[10px]">
+          <img src="images/car-2.jpg" alt="BMW X5 2019" class="h-full w-full object-cover" loading="lazy">
+          <div class="tint"></div><div class="fade"></div>
+          <span class="absolute left-3 top-3 rounded-[5px] bg-ink-900/80 px-2.5 py-1 text-[11px] font-semibold text-brand-200 backdrop-blur">Доставлено за 61 день</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-[17px] font-semibold">BMW X5 xDrive40i <span class="text-brand-300">2019</span></h3>
+          <p class="mt-0.5 text-[12px] text-fog-500 tabular">71 000 км</p>
+          <dl class="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-[13px] leading-snug">
+            <div><dt class="eyebrow text-[10px] text-fog-500">Двигун</dt><dd class="mt-0.5">Бензин, 3.0 л</dd></div>
+            <div><dt class="eyebrow text-[10px] text-fog-500">Привід</dt><dd class="mt-0.5">Повний</dd></div>
+            <div><dt class="eyebrow text-[10px] text-fog-500">Коробка</dt><dd class="mt-0.5">Автомат</dd></div>
+            <div><dt class="eyebrow text-[10px] text-fog-500">Кузов</dt><dd class="mt-0.5">Позашляховик</dd></div>
+          </dl>
+          <p class="mt-5 flex items-center gap-1.5 border-t border-[var(--line)] pt-4 text-[12px] text-fog-400">
+            <svg class="ico h-3.5 w-3.5" aria-hidden="true"><use href="#i-map-pin"/></svg>Київ
+          </p>
+          <div class="mt-3 flex items-baseline justify-between"><span class="eyebrow text-[10px] text-fog-500">Під ключ</span><span class="font-display text-[22px] font-semibold text-brand-300 tabular">38 500 $</span></div>
+          <a href="#cars" class="btn btn-primary mt-4 w-full">Детальніше</a>
+        </div>
+      </article>
+
+      <article class="car-card lift panel reveal relative flex flex-col" data-d="3">
+        <div class="media aspect-[16/10] rounded-t-[10px]">
+          <img src="images/car-3.jpg" alt="Ford Mustang GT 2020" class="h-full w-full object-cover" loading="lazy">
+          <div class="tint"></div><div class="fade"></div>
+          <span class="absolute left-3 top-3 rounded-[5px] bg-ink-900/80 px-2.5 py-1 text-[11px] font-semibold text-brand-200 backdrop-blur">Доставлено за 58 днів</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-[17px] font-semibold">Ford Mustang GT <span class="text-brand-300">2020</span></h3>
+          <p class="mt-0.5 text-[12px] text-fog-500 tabular">39 000 км</p>
+          <dl class="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-[13px] leading-snug">
+            <div><dt class="eyebrow text-[10px] text-fog-500">Двигун</dt><dd class="mt-0.5">Бензин, 5.0 л</dd></div>
+            <div><dt class="eyebrow text-[10px] text-fog-500">Привід</dt><dd class="mt-0.5">Задній</dd></div>
+            <div><dt class="eyebrow text-[10px] text-fog-500">Коробка</dt><dd class="mt-0.5">Автомат</dd></div>
+            <div><dt class="eyebrow text-[10px] text-fog-500">Кузов</dt><dd class="mt-0.5">Купе</dd></div>
+          </dl>
+          <p class="mt-5 flex items-center gap-1.5 border-t border-[var(--line)] pt-4 text-[12px] text-fog-400">
+            <svg class="ico h-3.5 w-3.5" aria-hidden="true"><use href="#i-map-pin"/></svg>Івано-Франківськ
+          </p>
+          <div class="mt-3 flex items-baseline justify-between"><span class="eyebrow text-[10px] text-fog-500">Під ключ</span><span class="font-display text-[22px] font-semibold text-brand-300 tabular">27 300 $</span></div>
+          <a href="#cars" class="btn btn-primary mt-4 w-full">Детальніше</a>
+        </div>
+      </article>
+
+      <article class="car-card lift panel reveal relative flex flex-col" data-d="4">
+        <div class="media aspect-[16/10] rounded-t-[10px]">
+          <img src="images/car-4.jpg" alt="Tesla Model 3 2021" class="h-full w-full object-cover" loading="lazy">
+          <div class="tint"></div><div class="fade"></div>
+          <span class="absolute left-3 top-3 rounded-[5px] bg-ink-900/80 px-2.5 py-1 text-[11px] font-semibold text-brand-200 backdrop-blur">Доставлено за 49 днів</span>
+        </div>
+        <div class="flex flex-1 flex-col p-5">
+          <h3 class="font-display text-[17px] font-semibold">Tesla Model 3 LR <span class="text-brand-300">2021</span></h3>
+          <p class="mt-0.5 text-[12px] text-fog-500 tabular">52 000 км</p>
+          <dl class="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-[13px] leading-snug">
+            <div><dt class="eyebrow text-[10px] text-fog-500">Двигун</dt><dd class="mt-0.5">Електро, 75 кВт·год</dd></div>
+            <div><dt class="eyebrow text-[10px] text-fog-500">Привід</dt><dd class="mt-0.5">Повний</dd></div>
+            <div><dt class="eyebrow text-[10px] text-fog-500">Коробка</dt><dd class="mt-0.5">Редуктор</dd></div>
+            <div><dt class="eyebrow text-[10px] text-fog-500">Кузов</dt><dd class="mt-0.5">Седан</dd></div>
+          </dl>
+          <p class="mt-5 flex items-center gap-1.5 border-t border-[var(--line)] pt-4 text-[12px] text-fog-400">
+            <svg class="ico h-3.5 w-3.5" aria-hidden="true"><use href="#i-map-pin"/></svg>Тернопіль
+          </p>
+          <div class="mt-3 flex items-baseline justify-between"><span class="eyebrow text-[10px] text-fog-500">Під ключ</span><span class="font-display text-[22px] font-semibold text-brand-300 tabular">23 700 $</span></div>
+          <a href="#cars" class="btn btn-primary mt-4 w-full">Детальніше</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT / BRAND BANNER ============ -->
+  <section id="about" class="relative mt-16 sm:mt-20" aria-labelledby="about-h">
+    <div class="media relative min-h-[520px] sm:min-h-[600px]">
+      <img src="images/brand.jpg" alt="" class="absolute inset-0 h-full w-full object-cover" loading="lazy">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(20,20,19,.35)_0%,rgba(20,20,19,.85)_70%)]"></div>
+      <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#141413] to-transparent"></div>
+      <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#141413] to-transparent"></div>
+      <div class="relative mx-auto flex min-h-[520px] max-w-shell flex-col items-center justify-center px-4 py-20 text-center sm:min-h-[600px] sm:px-6 lg:px-8">
+        <img src="brand_assets/logo-mark-white.png" alt="Car Franko Import" class="reveal h-24 w-auto drop-shadow-[0_20px_40px_rgba(35,104,89,.45)] sm:h-36">
+        <p class="reveal mt-6 font-display text-[18px] font-medium tracking-[0.04em] text-fog-300 sm:text-[22px]" data-d="1">Car Franko Import</p>
+        <h2 id="about-h" class="reveal h-hero mt-8 max-w-[820px] text-[28px] normal-case sm:text-[42px]" data-d="2">Розширюємо можливості, щоб шлях до вашого авто був <span class="text-brand-300">простішим</span></h2>
+        <p class="reveal mt-6 max-w-[620px] text-[15px] text-fog-300 sm:text-[16px]" data-d="3">Шість років ми допомагаємо українцям купувати авто зі США та Європи. Надійна доставка, індивідуальний підхід і всі послуги в одному місці — від підбору до номерних знаків.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services" class="mx-auto max-w-shell px-4 pt-6 sm:px-6 lg:px-8" aria-labelledby="svc-h">
+    <div class="panel reveal p-6 sm:p-8 lg:p-10">
+      <div class="reveal mb-10 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="eyebrow mb-3 text-brand-300">Послуги</p>
+          <h2 id="svc-h" class="h-sec text-[24px] sm:text-[30px]">Ваше авто під ключ</h2>
+        </div>
+        <p class="max-w-[440px] text-[14px] text-fog-400">Зробимо все замість вас — від покупки авто на аукціоні до встановлення номерних знаків.</p>
+      </div>
+      <ul class="mx-auto grid max-w-[340px] grid-cols-1 gap-x-4 gap-y-9 text-center min-[400px]:max-w-none min-[400px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+        <li class="svc reveal flex flex-col items-center" data-d="1">
+          <span class="svc-ico ring-ico grid h-14 w-14 place-items-center rounded-full border border-brand-300/30 text-brand-300"><svg class="ico h-6 w-6" aria-hidden="true"><use href="#i-search-check"/></svg></span>
+          <h3 class="mt-4 font-display text-[15px] font-semibold leading-snug">Підбір і перевірка</h3>
+          <p class="mt-1 text-[12px] leading-relaxed text-fog-400">Професійний підбір та діагностика історії авто</p>
+        </li>
+        <li class="svc reveal flex flex-col items-center" data-d="2">
+          <span class="svc-ico ring-ico grid h-14 w-14 place-items-center rounded-full border border-brand-300/30 text-brand-300"><svg class="ico h-6 w-6" aria-hidden="true"><use href="#i-gavel"/></svg></span>
+          <h3 class="mt-4 font-display text-[15px] font-semibold leading-snug">Участь в аукціоні</h3>
+          <p class="mt-1 text-[12px] leading-relaxed text-fog-400">Торги, фотозвіт та експортні документи</p>
+        </li>
+        <li class="svc reveal flex flex-col items-center" data-d="3">
+          <span class="svc-ico ring-ico grid h-14 w-14 place-items-center rounded-full border border-brand-300/30 text-brand-300"><svg class="ico h-6 w-6" aria-hidden="true"><use href="#i-truck"/></svg></span>
+          <h3 class="mt-4 font-display text-[15px] font-semibold leading-snug">Доставка в Україну</h3>
+          <p class="mt-1 text-[12px] leading-relaxed text-fog-400">З портів Європи власними автовозами</p>
+        </li>
+        <li class="svc reveal flex flex-col items-center" data-d="4">
+          <span class="svc-ico ring-ico grid h-14 w-14 place-items-center rounded-full border border-brand-300/30 text-brand-300"><svg class="ico h-6 w-6" aria-hidden="true"><use href="#i-file-text"/></svg></span>
+          <h3 class="mt-4 font-display text-[15px] font-semibold leading-snug">Розмитнення</h3>
+          <p class="mt-1 text-[12px] leading-relaxed text-fog-400">Прозорий розрахунок мит і податків</p>
+        </li>
+        <li class="svc reveal flex flex-col items-center" data-d="5">
+          <span class="svc-ico ring-ico grid h-14 w-14 place-items-center rounded-full border border-brand-300/30 text-brand-300"><svg class="ico h-6 w-6" aria-hidden="true"><use href="#i-wrench"/></svg></span>
+          <h3 class="mt-4 font-display text-[15px] font-semibold leading-snug">Ремонт і детейлінг</h3>
+          <p class="mt-1 text-[12px] leading-relaxed text-fog-400">Запчастини та ремонт на партнерських СТО</p>
+        </li>
+        <li class="svc reveal flex flex-col items-center" data-d="5">
+          <span class="svc-ico ring-ico grid h-14 w-14 place-items-center rounded-full border border-brand-300/30 text-brand-300"><svg class="ico h-6 w-6" aria-hidden="true"><use href="#i-badge-check"/></svg></span>
+          <h3 class="mt-4 font-display text-[15px] font-semibold leading-snug">Сертифікація та облік</h3>
+          <p class="mt-1 text-[12px] leading-relaxed text-fog-400">Сертифікація і встановлення номерних знаків</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CTA #1 ============ -->
+  <section class="mx-auto max-w-shell px-4 pt-16 sm:px-6 sm:pt-20 lg:px-8" aria-labelledby="cta-h">
+    <div class="panel-elev reveal media media-hover relative overflow-hidden">
+      <img src="images/cta.jpg" alt="Чорний седан у темній студії" class="absolute inset-0 h-full w-full object-cover object-[70%_50%]" loading="lazy">
+      <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,15,14,.95)_0%,rgba(15,15,14,.7)_38%,rgba(15,15,14,.05)_70%,rgba(15,15,14,.4)_100%)]"></div>
+      <div class="tint !opacity-20"></div>
+      <div class="relative grid min-h-[340px] items-center gap-8 p-6 sm:p-10 lg:grid-cols-[1fr_auto] lg:p-12">
+        <div class="max-w-[520px]">
+          <h2 id="cta-h" class="h-sec text-[28px] leading-[1.05] sm:text-[38px]">Хочете авто зі США<br><span class="text-brand-300">без переплат?</span></h2>
+          <p class="mt-4 text-[15px] text-fog-300">Розрахуємо повну вартість під ключ і підберемо варіанти під ваш бюджет — безкоштовно.</p>
+          <button type="button" class="btn btn-primary mt-7" data-open-modal>Розрахувати вартість
+            <svg class="ico arrow h-4 w-4" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </button>
+        </div>
+        <div class="flex w-full flex-col items-start gap-3 self-end rounded-[10px] min-[400px]:flex-row min-[400px]:items-center min-[400px]:gap-4 border border-[var(--line)] bg-ink-900/70 p-4 backdrop-blur-md sm:w-auto lg:self-center">
+          <div class="flex shrink-0 -space-x-3">
+            <img src="images/av-1.jpg" alt="" class="h-11 w-11 rounded-full border-2 border-[#1C1B1A] object-cover">
+            <img src="images/av-2.jpg" alt="" class="h-11 w-11 rounded-full border-2 border-[#1C1B1A] object-cover">
+            <img src="images/av-3.jpg" alt="" class="h-11 w-11 rounded-full border-2 border-[#1C1B1A] object-cover">
+          </div>
+          <p class="min-w-0 text-[13px] leading-snug"><span class="font-display text-[16px] font-semibold">1100+ клієнтів</span><br><span class="text-fog-400">вже отримали авто разом із Car Franko</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LITHUANIA ============ -->
+  <section id="lithuania" class="mx-auto max-w-shell px-4 pt-16 sm:px-6 sm:pt-20 lg:px-8" aria-labelledby="lt-h">
+    <div class="panel reveal grid overflow-hidden lg:grid-cols-2">
+      <div class="media media-hover relative min-h-[280px] lg:min-h-[480px]">
+        <img src="images/lithuania.jpg" alt="Автовоз Car Franko з авто на трасі в Литві" class="absolute inset-0 h-full w-full object-cover" loading="lazy">
+        <div class="tint"></div><div class="fade"></div>
+        <div class="absolute bottom-5 left-5 flex items-center gap-3 rounded-[8px] border border-[var(--line)] bg-ink-900/75 px-4 py-3 backdrop-blur-md">
+          <span class="font-display text-[13px] font-semibold tracking-wide">LT</span>
+          <svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          <span class="font-display text-[13px] font-semibold tracking-wide">UA</span>
+        </div>
+      </div>
+      <div class="flex flex-col justify-center p-6 sm:p-10 lg:p-12">
+        <p class="eyebrow mb-3 text-brand-300">Окремий напрям</p>
+        <h2 id="lt-h" class="h-sec text-[26px] leading-[1.1] sm:text-[34px]">Доставка авто з Литви</h2>
+        <p class="mt-4 text-[15px] text-fog-300">Литовський ринок — це великий вибір європейських авто з прозорою історією. Ми підбираємо, перевіряємо та привозимо їх до вас власним транспортом.</p>
+        <ul class="mt-7 grid gap-4 sm:grid-cols-2">
+          <li class="flex gap-3"><svg class="ico mt-0.5 h-5 w-5 shrink-0 text-brand-300" aria-hidden="true"><use href="#i-check"/></svg><span class="text-[14px] leading-snug">Перевезення власними автовозами</span></li>
+          <li class="flex gap-3"><svg class="ico mt-0.5 h-5 w-5 shrink-0 text-brand-300" aria-hidden="true"><use href="#i-check"/></svg><span class="text-[14px] leading-snug">Огляд і перевірка авто на місці</span></li>
+          <li class="flex gap-3"><svg class="ico mt-0.5 h-5 w-5 shrink-0 text-brand-300" aria-hidden="true"><use href="#i-check"/></svg><span class="text-[14px] leading-snug">Оформлення документів і розмитнення</span></li>
+          <li class="flex gap-3"><svg class="ico mt-0.5 h-5 w-5 shrink-0 text-brand-300" aria-hidden="true"><use href="#i-check"/></svg><span class="text-[14px] leading-snug">Значно швидше, ніж доставка зі США</span></li>
+        </ul>
+        <div class="mt-9 flex flex-wrap gap-3">
+          <button type="button" class="btn btn-primary" data-open-modal data-topic="lithuania">Замовити авто з Литви
+            <svg class="ico arrow h-4 w-4" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </button>
+          <a href="tel:+380667668005" class="btn btn-ghost">Зателефонувати</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REVIEWS ============ -->
+  <section id="reviews" class="mx-auto max-w-shell px-4 pt-16 sm:px-6 sm:pt-20 lg:px-8" aria-labelledby="rev-h">
+    <div class="reveal mb-6 flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
+      <div>
+        <p class="eyebrow mb-3 text-brand-300">Відгуки</p>
+        <h2 id="rev-h" class="h-sec text-[24px] sm:text-[30px]">Що кажуть клієнти</h2>
+      </div>
+      <a href="https://www.instagram.com/car_franko_import" target="_blank" rel="noopener" class="lnk flex shrink-0 items-center gap-2 whitespace-nowrap font-display text-[14px] font-medium text-brand-300">Instagram
+        <svg class="ico arrow h-4 w-4" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+      </a>
+    </div>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <figure class="lift panel reveal flex flex-col p-5" data-d="1">
+        <figcaption class="flex items-center gap-3">
+          <img src="images/av-1.jpg" alt="" class="h-11 w-11 rounded-full object-cover" loading="lazy">
+          <div><p class="font-display text-[15px] font-semibold leading-tight">Олена</p><p class="text-[12px] text-fog-500">Toyota RAV4 2021</p></div>
+        </figcaption>
+        <div class="mt-4 flex gap-1 text-brand-300" aria-label="5 з 5"><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg></div>
+        <blockquote class="mt-3 text-[13px] leading-relaxed text-fog-300">Перша купівля зі США — дуже хвилювалась. Команда все пояснила, щотижня надсилали статус. Авто приїхало вчасно і саме таке, як на фото.</blockquote>
+      </figure>
+      <figure class="lift panel reveal flex flex-col p-5" data-d="2">
+        <figcaption class="flex items-center gap-3">
+          <img src="images/av-2.jpg" alt="" class="h-11 w-11 rounded-full object-cover" loading="lazy">
+          <div><p class="font-display text-[15px] font-semibold leading-tight">Андрій</p><p class="text-[12px] text-fog-500">BMW X5 2019</p></div>
+        </figcaption>
+        <div class="mt-4 flex gap-1 text-brand-300" aria-label="5 з 5"><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg></div>
+        <blockquote class="mt-3 text-[13px] leading-relaxed text-fog-300">Шукали X5 у хорошому стані — відсіяли кілька лотів з прихованими проблемами. Розрахунок під ключ співпав до долара.</blockquote>
+      </figure>
+      <figure class="lift panel reveal flex flex-col p-5" data-d="3">
+        <figcaption class="flex items-center gap-3">
+          <img src="images/av-3.jpg" alt="" class="h-11 w-11 rounded-full object-cover" loading="lazy">
+          <div><p class="font-display text-[15px] font-semibold leading-tight">Ігор</p><p class="text-[12px] text-fog-500">Ford Mustang GT 2020</p></div>
+        </figcaption>
+        <div class="mt-4 flex gap-1 text-brand-300" aria-label="5 з 5"><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg></div>
+        <blockquote class="mt-3 text-[13px] leading-relaxed text-fog-300">Мрія здійснилась. Ремонт на партнерському СТО зробили швидко, а на облік поставили без моєї участі. Рекомендую.</blockquote>
+      </figure>
+      <figure class="lift panel reveal flex flex-col p-5" data-d="4">
+        <figcaption class="flex items-center gap-3">
+          <img src="images/av-4.jpg" alt="" class="h-11 w-11 rounded-full object-cover" loading="lazy">
+          <div><p class="font-display text-[15px] font-semibold leading-tight">Христина</p><p class="text-[12px] text-fog-500">Tesla Model 3 2021</p></div>
+        </figcaption>
+        <div class="mt-4 flex gap-1 text-brand-300" aria-label="5 з 5"><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico ico-fill h-4 w-4" aria-hidden="true"><use href="#i-star"/></svg></div>
+        <blockquote class="mt-3 text-[13px] leading-relaxed text-fog-300">Індивідуальний підхід — це не просто слова. Менеджер був на зв'язку 24/7 і допоміг обрати комплектацію під мої поїздки.</blockquote>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ CTA #2 + FAQ ============ -->
+  <section id="faq" class="mx-auto max-w-shell px-4 pt-16 sm:px-6 sm:pt-20 lg:px-8" aria-labelledby="faq-h">
+    <div class="reveal mb-6 flex flex-wrap items-end justify-between gap-x-4 gap-y-3">
+      <div>
+        <p class="eyebrow mb-3 text-brand-300">FAQ</p>
+        <h2 id="faq-h" class="h-sec text-[24px] sm:text-[30px]">Поширені питання</h2>
+      </div>
+    </div>
+    <div class="grid items-start gap-4 md:grid-cols-2" data-faq>
+      <div class="faq lift panel reveal" data-d="1">
+        <button type="button" class="faq-q flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-[15px] font-medium" aria-expanded="false">Скільки коштує авто зі США під ключ?<svg class="ico plus h-4 w-4 shrink-0 text-brand-300" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <div class="faq-a"><div><p class="px-5 pb-5 text-[14px] text-fog-400">Вартість складається з ціни лота, аукціонних зборів, доставки, розмитнення та нашої послуги. Ми робимо повний розрахунок до покупки — без прихованих платежів.</p></div></div>
+      </div>
+      <div class="faq lift panel reveal" data-d="2">
+        <button type="button" class="faq-q flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-[15px] font-medium" aria-expanded="false">Скільки часу займає доставка?<svg class="ico plus h-4 w-4 shrink-0 text-brand-300" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <div class="faq-a"><div><p class="px-5 pb-5 text-[14px] text-fog-400">У середньому — близько 2 місяців від покупки на аукціоні до прибуття авто в Україну. Доставка з Литви займає значно менше часу.</p></div></div>
+      </div>
+      <div class="faq lift panel reveal" data-d="3">
+        <button type="button" class="faq-q flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-[15px] font-medium" aria-expanded="false">Як перевіряється стан авто до купівлі?<svg class="ico plus h-4 w-4 shrink-0 text-brand-300" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <div class="faq-a"><div><p class="px-5 pb-5 text-[14px] text-fog-400">Перевіряємо історію за VIN, аналізуємо фото та звіти аукціону, оцінюємо пошкодження та орієнтовну вартість ремонту ще до участі в торгах.</p></div></div>
+      </div>
+      <div class="faq lift panel reveal" data-d="4">
+        <button type="button" class="faq-q flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-[15px] font-medium" aria-expanded="false">Чи допомагаєте з ремонтом і реєстрацією?<svg class="ico plus h-4 w-4 shrink-0 text-brand-300" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <div class="faq-a"><div><p class="px-5 pb-5 text-[14px] text-fog-400">Так. Підбираємо запчастини, ремонтуємо на партнерських СТО, робимо детейлінг, сертифікацію та ставимо авто на облік.</p></div></div>
+      </div>
+    </div>
+
+    <!-- inline CTA form -->
+    <div class="panel-elev reveal relative mt-10 overflow-hidden p-6 sm:p-10">
+      <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(46,133,113,.35),transparent_65%)]"></div>
+      <div class="pointer-events-none absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(35,104,89,.18),transparent_65%)]"></div>
+      <div class="relative grid items-center gap-8 lg:grid-cols-[1fr_1.1fr] [&>*]:min-w-0">
+        <div>
+          <h2 class="h-sec text-[26px] leading-[1.1] sm:text-[34px]">Готові обрати <span class="text-brand-300">своє авто?</span></h2>
+          <p class="mt-3 max-w-[440px] text-[15px] text-fog-300">Залиште номер — менеджер зателефонує протягом 15 хвилин і підбере варіанти під ваш бюджет.</p>
+        </div>
+        <form class="lead-form grid gap-3 sm:grid-cols-[1fr_1fr_auto] [&>*]:min-w-0" novalidate>
+          <label class="sr-only" for="cta-name">Ім'я</label>
+          <input id="cta-name" name="name" class="field" placeholder="Ваше ім'я" autocomplete="name">
+          <label class="sr-only" for="cta-phone">Телефон</label>
+          <input id="cta-phone" name="phone" type="tel" class="field" placeholder="+38 (0__) ___ __ __" autocomplete="tel" required>
+          <button type="submit" class="btn btn-primary !py-[15px]">Надіслати</button>
+          <p class="form-msg col-span-full hidden text-[13px] text-brand-300" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER / CONTACTS ============ -->
+<footer id="contacts" class="relative mt-20 border-t border-[var(--line)] bg-ink-900">
+  <div class="mx-auto grid max-w-shell gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.2fr_.7fr_.7fr_1.3fr] lg:px-8">
+    <div>
+      <a href="#top" class="lnk inline-flex items-center gap-3" aria-label="Car Franko Import">
+        <img src="brand_assets/logo-mark-green.png" alt="" class="h-10 w-auto">
+        <span class="leading-none"><span class="block font-display text-[19px] font-semibold">Car Franko</span><span class="eyebrow mt-1 block text-[10px] text-fog-400">Import</span></span>
+      </a>
+      <p class="mt-5 max-w-[280px] text-[13px] text-fog-400">Авто зі США та Європи під ключ. Доставка з Литви власними автовозами.</p>
+      <div class="mt-5 flex gap-2">
+        <a href="https://www.instagram.com/car_franko_import" target="_blank" rel="noopener" class="icon-btn border border-[var(--line-strong)]" aria-label="Instagram"><svg class="ico relative h-5 w-5" aria-hidden="true"><use href="#i-instagram"/></svg></a>
+        <a href="https://t.me/" target="_blank" rel="noopener" class="icon-btn border border-[var(--line-strong)]" aria-label="Telegram"><svg class="ico relative h-5 w-5" aria-hidden="true"><use href="#i-telegram"/></svg></a>
+        <a href="viber://chat?number=%2B380667668005" class="icon-btn border border-[var(--line-strong)]" aria-label="Viber"><svg class="ico relative h-5 w-5" aria-hidden="true"><use href="#i-viber"/></svg></a>
+      </div>
+    </div>
+    <nav aria-label="Послуги">
+      <p class="eyebrow mb-4 text-brand-300">Послуги</p>
+      <ul class="space-y-0.5 text-[13px] text-fog-300">
+        <li><a href="#usa" class="lnk flink">Авто зі США</a></li>
+        <li><a href="#lithuania" class="lnk flink">Авто з Литви</a></li>
+        <li><a href="#cars" class="lnk flink">Каталог авто</a></li>
+        <li><a href="#services" class="lnk flink">Розмитнення</a></li>
+        <li><a href="#services" class="lnk flink">Калькулятор</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Компанія">
+      <p class="eyebrow mb-4 text-brand-300">Компанія</p>
+      <ul class="space-y-0.5 text-[13px] text-fog-300">
+        <li><a href="#about" class="lnk flink">Про нас</a></li>
+        <li><a href="#process" class="lnk flink">Етапи роботи</a></li>
+        <li><a href="#reviews" class="lnk flink">Відгуки</a></li>
+        <li><a href="#faq" class="lnk flink">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="panel-elev p-6">
+      <p class="font-display text-[17px] font-semibold">Залишились питання?</p>
+      <p class="mt-1 text-[13px] text-fog-400">Розкажіть, яке авто шукаєте — підкажемо наступний крок.</p>
+      <ul class="mt-4 space-y-0.5 text-[14px]">
+        <li><a href="tel:+380667668005" class="lnk flex items-center gap-3 tabular py-1.5"><svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="#i-phone"/></svg>+38 (066) 76 68 005</a></li>
+        <li><a href="tel:+380970079220" class="lnk flex items-center gap-3 tabular py-1.5"><svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="#i-phone"/></svg>+38 (097) 00 79 220</a></li>
+        <li><a href="https://maps.app.goo.gl/Qz3usTykE7Fo6sNAA" target="_blank" rel="noopener" class="lnk flex items-start gap-3 py-1.5"><svg class="ico mt-1 h-4 w-4 shrink-0 text-brand-300" aria-hidden="true"><use href="#i-map-pin"/></svg><span>вул. Приозерна, 33, с. Крихівці,<br>Івано-Франківська обл.</span></a></li>
+        <li><a href="https://www.instagram.com/car_franko_import" target="_blank" rel="noopener" class="lnk flex items-center gap-3 py-1.5"><svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="#i-instagram"/></svg>@car_franko_import</a></li>
+      </ul>
+      <button type="button" class="btn btn-primary mt-6 w-full" data-open-modal>Написати нам</button>
+    </div>
+  </div>
+  <div class="border-t border-[var(--line)]">
+    <div class="mx-auto flex max-w-shell flex-col gap-2 px-4 py-5 text-[12px] text-fog-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <p>© 2026 Car Franko Import. Авто зі США та Європи.</p>
+      <div class="flex gap-6"><a href="#" class="lnk flink">Політика конфіденційності</a><a href="#" class="lnk flink">Угода користувача</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING CONTACT ============ -->
+<div class="fab-wrap fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 sm:bottom-7 sm:right-7">
+  <div class="bubble panel-elev relative w-[260px] p-4" id="bubble" role="dialog" aria-label="Швидкий зв'язок">
+    <button type="button" class="icon-btn absolute right-1.5 top-1.5 h-7 w-7" data-bubble-close aria-label="Закрити"><svg class="ico relative h-3.5 w-3.5" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <p class="pr-6 font-display text-[15px] font-semibold leading-snug">Підберемо авто під ваш бюджет</p>
+    <p class="mt-1 text-[12px] leading-relaxed text-fog-400">Залиште номер — передзвонимо за 15 хвилин.</p>
+    <button type="button" class="btn btn-primary mt-3 w-full !py-2.5 text-[13px]" data-open-modal>Залишити контакт</button>
+  </div>
+  <button type="button" class="fab relative grid h-14 w-14 place-items-center rounded-full bg-brand text-white shadow-[0_12px_30px_-6px_rgba(35,104,89,.7),0_4px_10px_rgba(0,0,0,.4)]" data-open-modal aria-label="Зв'язатися з нами">
+    <span class="pulse"></span><span class="pulse p2"></span>
+    <svg class="ico fab-ico relative h-6 w-6" aria-hidden="true"><use href="#i-phone"/></svg>
+  </button>
+</div>
+
+<!-- ============ MODAL ============ -->
+<div id="modal" class="modal fixed inset-0 z-[70] grid place-items-center bg-black/70 p-4 backdrop-blur-sm" aria-hidden="true">
+  <div class="modal-card panel-elev relative w-full max-w-[440px] p-6 sm:p-8" role="dialog" aria-modal="true" aria-labelledby="modal-h">
+    <button type="button" class="icon-btn absolute right-3 top-3" data-close-modal aria-label="Закрити"><svg class="ico relative h-4 w-4" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <img src="brand_assets/logo-mark-green.png" alt="" class="h-8 w-auto">
+    <h2 id="modal-h" class="mt-5 font-display text-[24px] font-semibold leading-tight">Залиште заявку</h2>
+    <p class="mt-2 text-[14px] text-fog-400">Менеджер зв'яжеться з вами протягом 15 хвилин у робочий час.</p>
+    <form class="lead-form mt-6 grid gap-3" novalidate>
+      <label class="sr-only" for="m-name">Ім'я</label>
+      <input id="m-name" name="name" class="field" placeholder="Ваше ім'я" autocomplete="name">
+      <label class="sr-only" for="m-phone">Телефон</label>
+      <input id="m-phone" name="phone" type="tel" class="field" placeholder="+38 (0__) ___ __ __" autocomplete="tel" required>
+      <fieldset class="mt-1">
+        <legend class="eyebrow mb-2 text-[10px] text-fog-500">Напрям</legend>
+        <div class="flex flex-wrap gap-2">
+          <label class="chip relative"><input type="radio" name="topic" value="usa" checked><span>Авто зі США</span></label>
+          <label class="chip relative"><input type="radio" name="topic" value="lithuania"><span>Авто з Литви</span></label>
+          <label class="chip relative"><input type="radio" name="topic" value="other"><span>Інше питання</span></label>
+        </div>
+      </fieldset>
+      <button type="submit" class="btn btn-primary mt-3 w-full !py-[15px]">Надіслати заявку</button>
+      <p class="form-msg hidden text-center text-[13px] text-brand-300" role="status"></p>
+    </form>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+
+  // header: always fixed; solid background once scrolled
+  const hdr = $('.site-header');
+  const onScroll = () => {
+    hdr.classList.toggle('is-scrolled', scrollY > 20);
+  };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // active nav link
+  const links = $$('nav[aria-label="Головне меню"] a');
+  const secs = links.map(a => $(a.getAttribute('href'))).filter(Boolean);
+  const navObs = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const id = e.target.id === 'usa' ? 'top' : e.target.id;
+    links.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  secs.forEach(s => navObs.observe(s));
+
+  // mobile menu
+  const burger = $('.burger'), mnav = $('#mnav');
+  const setMenu = open => {
+    burger.classList.toggle('is-open', open); mnav.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', open); document.body.classList.toggle('menu-open', open);
+    document.body.classList.toggle('overflow-hidden', open);
+  };
+  burger.addEventListener('click', () => setMenu(!mnav.classList.contains('is-open')));
+  $$('a, button', mnav).forEach(el => el.addEventListener('click', () => setMenu(false)));
+
+  // hero slider
+  const slides = $$('[data-slide]'), dots = $$('[data-dot]');
+  let cur = 0, timer;
+  const go = i => {
+    cur = (i + slides.length) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle('is-active', k === cur));
+    dots.forEach((d, k) => d.classList.toggle('is-active', k === cur));
+    clearInterval(timer); timer = setInterval(() => go(cur + 1), 7000);
+  };
+  dots.forEach(d => d.addEventListener('click', e => { go(+d.dataset.dot); if (e.detail) d.blur(); }));
+  $('[data-prev]').addEventListener('click', () => go(cur - 1));
+  $('[data-next]').addEventListener('click', () => go(cur + 1));
+  go(0);
+
+  // hero parallax (transform/opacity only)
+  const hero = $('#usa');
+  let ticking = false;
+  const parallax = () => {
+    const y = Math.min(scrollY, 800);
+    hero.style.setProperty('--py', (y * 0.28).toFixed(1) + 'px');
+    hero.style.setProperty('--ho', Math.max(0, 1 - y / 520).toFixed(3));
+    ticking = false;
+  };
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(parallax); } }, { passive: true });
+  }
+
+  // reveal on scroll
+  // after the entrance finishes, drop reveal classes so hover transitions aren't slowed by reveal timing/delays
+  const settle = el => setTimeout(() => { el.classList.remove('reveal', 'is-in'); el.removeAttribute('data-d'); }, 1300);
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); settle(e.target); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  $$('.reveal').forEach(el => io.observe(el));
+
+  // count-up figures
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; cio.unobserve(e.target);
+    const el = e.target, to = +el.dataset.count, t0 = performance.now(), dur = 1400;
+    const tick = t => { const p = Math.min(1, (t - t0) / dur); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+  }), { threshold: .6 });
+  $$('[data-count]').forEach(el => cio.observe(el));
+
+  // faq
+  $$('.faq').forEach(f => $('.faq-q', f).addEventListener('click', () => {
+    const open = !f.classList.contains('is-open');
+    f.classList.toggle('is-open', open); $('.faq-q', f).setAttribute('aria-expanded', open);
+  }));
+
+  // modal
+  const modal = $('#modal');
+  let lastFocus;
+  const openModal = topic => {
+    lastFocus = document.activeElement;
+    if (topic) { const r = $(`input[name="topic"][value="${topic}"]`, modal); if (r) r.checked = true; }
+    modal.classList.add('is-open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('modal-open');
+    bubble.classList.remove('is-on');
+    setTimeout(() => $('#m-name').focus(), 120);
+  };
+  const closeModal = () => { modal.classList.remove('is-open'); document.body.classList.remove('modal-open'); modal.setAttribute('aria-hidden', 'true'); lastFocus && lastFocus.focus(); };
+  $$('[data-open-modal]').forEach(b => b.addEventListener('click', () => openModal(b.dataset.topic)));
+  $$('[data-close-modal]').forEach(b => b.addEventListener('click', closeModal));
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); setMenu(false); } });
+
+  // lead forms (front-end only; hook up to CRM/Telegram later)
+  $$('.lead-form').forEach(f => f.addEventListener('submit', e => {
+    e.preventDefault();
+    const phone = f.querySelector('[name="phone"]'), msg = f.querySelector('.form-msg');
+    const ok = phone.value.replace(/\D/g, '').length >= 10;
+    msg.classList.remove('hidden');
+    msg.textContent = ok ? 'Дякуємо! Ми зателефонуємо найближчим часом.' : 'Вкажіть, будь ласка, коректний номер телефону.';
+    msg.classList.toggle('text-brand-300', ok); msg.classList.toggle('text-red-300', !ok);
+    if (ok) f.reset(); else phone.focus();
+  }));
+
+  // attention bubble: appears after 12s, re-appears every 60s until closed
+  const bubble = $('#bubble');
+  let bubbleClosed = false;
+  const showBubble = () => { if (!bubbleClosed && !modal.classList.contains('is-open')) bubble.classList.add('is-on'); };
+  setTimeout(showBubble, 12000);
+  setInterval(showBubble, 60000);
+  $('[data-bubble-close]').addEventListener('click', () => { bubble.classList.remove('is-on'); bubbleClosed = true; });
+})();
+</script>
+</body>
+</html>
