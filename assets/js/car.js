@@ -70,7 +70,13 @@
     const loc = C.locationLabel(l), when = C.saleDateLabel(l);
     F('sale').innerHTML = [when && `${ICON('calendar', 'h-3.5 w-3.5 inline -mt-0.5 mr-1')}Торги: ${esc(when)}`, loc && `${ICON('map-pin', 'h-3.5 w-3.5 inline -mt-0.5 mr-1')}${esc(loc)}`].filter(Boolean).join('<span class="mx-2 text-fog-500">·</span>');
 
-    ['cta', 'cta2', 'cta3'].forEach(k => { F(k).dataset.note = note; });
+    ['cta', 'cta3'].forEach(k => { F(k).dataset.note = note; });
+    // open the calculator pre-filled with this car
+    const STATES = new Set('AL AZ AR CA CO CT DE DC FL GA ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split(' '));
+    const cq = new URLSearchParams({ price: String(C.priceValue(l) || ''), fuel: l.fuel || 'gasoline', year: String(l.year) });
+    if (l.fuel === 'electric') cq.set('kwh', '75'); else if (l.engine_l) cq.set('engine', String(l.engine_l));
+    if (STATES.has(l.location?.state)) cq.set('state', l.location.state);
+    F('calc-link').href = `calculator.html?${cq}`;
     F('bar-title').textContent = t;
     F('bar-price').textContent = l.current_bid_usd ? `Ставка ${fmt(l.current_bid_usd)}${NB}$` : l.buy_now_usd ? `Купити одразу ${fmt(l.buy_now_usd)}${NB}$` : 'Ставка на торгах';
 

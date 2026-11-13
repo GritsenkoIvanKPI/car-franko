@@ -1,0 +1,77 @@
+{
+  "_comment": "Calculator settings. Edit numbers here, no code changes needed. Amounts in USD unless the key says EUR/UAH.",
+  "updated": "2026-11-13",
+
+  "fx": {
+    "_comment": "Live rates come from the National Bank of Ukraine (bank.gov.ua). These are used only if that service is unavailable.",
+    "useNbu": true,
+    "fallbackUsdUah": 45.38,
+    "fallbackEurUah": 50.34
+  },
+
+  "auctionFee": {
+    "_comment": "Approximate buyer fees at US salvage auctions (fee + online bidding + gate fees). Linear between points; above the last point: rate * price + plus.",
+    "points": [[0, 325], [500, 325], [1000, 445], [2000, 615], [3000, 745], [5000, 905], [7500, 1050], [10000, 1140], [15000, 1190]],
+    "above": { "rate": 0.06, "plus": 290 }
+  },
+
+  "shipping": {
+    "_comment": "Inland trucking to the US port + ocean freight + insurance to Klaipėda (Lithuania). SET CAR FRANKO'S OWN PRICES.",
+    "destinationPort": "Клайпеда (Литва)",
+    "ports": {
+      "NJ": { "label": "Нью-Джерсі", "usd": 1550 },
+      "GA": { "label": "Саванна", "usd": 1620 },
+      "TX": { "label": "Х'юстон", "usd": 1645 },
+      "CA": { "label": "Лос-Анджелес", "usd": 2050 }
+    },
+    "hybridElectricSurchargeUsd": 200
+  },
+
+  "services": {
+    "_comment": "Car Franko's own prices. PLACEHOLDERS — replace with the real ones.",
+    "forwardingUsd": 370,
+    "customsBrokerUsd": 200,
+    "deliveryToUkraineUsd": 800,
+    "deliveryToUkraineLabel": "Доставка з Литви до Івано-Франківська власним автовозом",
+    "companyFeeUsd": 400,
+    "certificationUsd": 100,
+    "registrationUsd": 60
+  },
+
+  "customs": {
+    "_comment": "Ukrainian rules for passenger cars, 2026. Customs value = car price + auction fee + shipping to the EU port.",
+    "dutyRate": 0.10,
+    "electricDutyRate": 0,
+    "vatRate": 0.20,
+    "excise": {
+      "gasoline": [{ "maxCc": 3000, "eurPerLitre": 50 }, { "eurPerLitre": 100 }],
+      "diesel": [{ "maxCc": 3500, "eurPerLitre": 75 }, { "eurPerLitre": 150 }],
+      "hybridFixedEur": 100,
+      "electricEurPerKwh": 1
+    },
+    "ageCoefficient": { "min": 1, "max": 15 }
+  },
+
+  "pensionFund": {
+    "_comment": "Fee at first registration in Ukraine, % of the car's value without VAT. Thresholds in subsistence minimums (2026: 3328 UAH). Electric-only cars are exempt.",
+    "subsistenceMinimumUah": 3328,
+    "tiers": [{ "upToMinimums": 165, "rate": 0.03 }, { "upToMinimums": 290, "rate": 0.04 }, { "rate": 0.05 }],
+    "electricExempt": true
+  },
+
+  "states": {
+    "AL": ["Alabama", "GA"], "AZ": ["Arizona", "CA"], "AR": ["Arkansas", "TX"], "CA": ["California", "CA"],
+    "CO": ["Colorado", "TX"], "CT": ["Connecticut", "NJ"], "DE": ["Delaware", "NJ"], "DC": ["District of Columbia", "NJ"],
+    "FL": ["Florida", "GA"], "GA": ["Georgia", "GA"], "ID": ["Idaho", "CA"], "IL": ["Illinois", "NJ"],
+    "IN": ["Indiana", "NJ"], "IA": ["Iowa", "NJ"], "KS": ["Kansas", "TX"], "KY": ["Kentucky", "GA"],
+    "LA": ["Louisiana", "TX"], "ME": ["Maine", "NJ"], "MD": ["Maryland", "NJ"], "MA": ["Massachusetts", "NJ"],
+    "MI": ["Michigan", "NJ"], "MN": ["Minnesota", "NJ"], "MS": ["Mississippi", "GA"], "MO": ["Missouri", "TX"],
+    "MT": ["Montana", "TX"], "NE": ["Nebraska", "TX"], "NV": ["Nevada", "CA"], "NH": ["New Hampshire", "NJ"],
+    "NJ": ["New Jersey", "NJ"], "NM": ["New Mexico", "TX"], "NY": ["New York", "NJ"], "NC": ["North Carolina", "GA"],
+    "ND": ["North Dakota", "NJ"], "OH": ["Ohio", "NJ"], "OK": ["Oklahoma", "TX"], "OR": ["Oregon", "CA"],
+    "PA": ["Pennsylvania", "NJ"], "RI": ["Rhode Island", "NJ"], "SC": ["South Carolina", "GA"], "SD": ["South Dakota", "NJ"],
+    "TN": ["Tennessee", "GA"], "TX": ["Texas", "TX"], "UT": ["Utah", "CA"], "VT": ["Vermont", "NJ"],
+    "VA": ["Virginia", "NJ"], "WA": ["Washington", "CA"], "WV": ["West Virginia", "NJ"], "WI": ["Wisconsin", "NJ"],
+    "WY": ["Wyoming", "TX"]
+  }
+}
