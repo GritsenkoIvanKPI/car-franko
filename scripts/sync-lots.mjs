@@ -6,7 +6,7 @@
 //   CATALOG_PROVIDER=http node scripts/sync-lots.mjs   # real provider (see adapters/http-provider.mjs)
 
 import { createHash } from 'node:crypto';
-import { writeFile, mkdir } from 'node:fs/promises';
+import { writeFile, mkdir, readFile } from 'node:fs/promises';
 
 /** Stable, opaque car code shown to customers, e.g. "CF-7K3D9QX". Our team maps it back via the database. */
 const publicCode = internalId => 'CF-' + BigInt('0x' + createHash('sha1').update(internalId).digest('hex').slice(0, 10)).toString(36).toUpperCase().padStart(7, '0').slice(-7);
@@ -146,6 +146,16 @@ const out = {
   lots: lots.map(publicLot),
 };
 
+// Never let demo data replace a real catalogue by accident.
+if (PROVIDER === 'demo' && !process.argv.includes('--force')) {
+  try {
+    const current = JSON.parse(await readFile(OUTPUT_FILE, 'utf8'));
+    if (current?.meta && current.meta.demo === false) {
+      console.error('data/lots.json holds real cars; refusing to overwrite with demo data (use --force if you really mean it).');
+      process.exit(1);
+    }
+  } catch { /* no file yet */ }
+}
 await mkdir(new URL('.', OUTPUT_FILE), { recursive: true });
 await writeFile(OUTPUT_FILE, JSON.stringify(out, null, 1) + '\n');
 console.log(`[${PROVIDER}] ${lots.length} lots written, ${dropped} skipped, ${((Date.now() - started) / 1000).toFixed(1)}s`);

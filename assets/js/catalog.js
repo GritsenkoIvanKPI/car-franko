@@ -4,21 +4,9 @@
 (() => {
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
-  const NB = ' ';
+  const { NB, esc, fmt, L, plural, saleTime, card: lotCard } = window.CFLots;
   const PAGE = 12;
-  const ICON = id => `<svg class="ico h-4 w-4 shrink-0" aria-hidden="true"><use href="assets/icons.svg#i-${id}"/></svg>`;
-  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const fmt = n => new Intl.NumberFormat('uk-UA').format(n).replace(/\s/g, NB);
 
-  // labels for normalised values
-  const L = {
-    fuel: { gasoline: 'Бензин', diesel: 'Дизель', hybrid: 'Гібрид', electric: 'Електро' },
-    drive: { fwd: 'Передній', rwd: 'Задній', awd: 'Повний' },
-    tr: { automatic: 'Автомат', cvt: 'Варіатор', manual: 'Механіка' },
-    body: { sedan: 'Седан', suv: 'Кросовер / SUV', hatchback: 'Хетчбек', wagon: 'Універсал', coupe: 'Купе', minivan: 'Мінівен', pickup: 'Пікап' },
-    dmg: { front_end: 'Передня частина', rear_end: 'Задня частина', side: 'Бокове', minor_dents: 'Дрібні вм’ятини', all_over: 'По всьому кузову', hail: 'Град', water: 'Вода / затоплення', mechanical: 'Механічне', normal_wear: 'Звичайний знос' },
-    cond: { run_drive: 'На ходу', starts: 'Заводиться', stationary: 'Не на ходу' },
-  };
   // lot field behind each chip group
   const FIELD = { fuel: 'fuel', drive: 'drive', tr: 'transmission', body: 'body', dmg: 'primary_damage' };
   const MULTI = ['make', 'model', 'fuel', 'drive', 'tr', 'body', 'dmg'];
@@ -35,15 +23,6 @@
 
   let ALL = [];
   let META = {};
-  let timeShift = 0; // demo data: keep auction dates in the future
-
-  // ---------- plural helper ----------
-  const plural = (n, one, few, many) => {
-    const a = n % 10, b = n % 100;
-    if (a === 1 && b !== 11) return one;
-    if (a >= 2 && a <= 4 && (b < 12 || b > 14)) return few;
-    return many;
-  };
 
   // ---------- URL <-> state ----------
   function readUrl() {
@@ -77,8 +56,9 @@
     if (skip !== 'model' && state.model.size && !state.model.has(`${l.make}|${l.model}`)) return false;
     if (state.y1 !== null && l.year < state.y1) return false;
     if (state.y2 !== null && l.year > state.y2) return false;
-    if (state.p1 !== null && l.current_bid_usd < state.p1) return false;
-    if (state.p2 !== null && l.current_bid_usd > state.p2) return false;
+    const price = window.CFLots.priceValue(l); // bid, or Buy Now when the bid is hidden
+    if (state.p1 !== null && price < state.p1) return false;
+    if (state.p2 !== null && price > state.p2) return false;
     if (state.km1 !== null && (l.odometer_km ?? 0) < state.km1) return false;
     if (state.km2 !== null && (l.odometer_km ?? Infinity) > state.km2) return false;
     if (state.e1 !== null && (l.engine_l == null || l.engine_l < state.e1)) return false;
@@ -89,11 +69,10 @@
     if (state.bn && !l.buy_now_usd) return false;
     return true;
   }
-  const saleTime = l => (l.sale_date ? Date.parse(l.sale_date) + timeShift : Infinity);
   const SORTS = {
     date: (a, b) => saleTime(a) - saleTime(b),
-    price_asc: (a, b) => a.current_bid_usd - b.current_bid_usd,
-    price_desc: (a, b) => b.current_bid_usd - a.current_bid_usd,
+    price_asc: (a, b) => window.CFLots.priceValue(a) - window.CFLots.priceValue(b),
+    price_desc: (a, b) => window.CFLots.priceValue(b) - window.CFLots.priceValue(a),
     year_desc: (a, b) => b.year - a.year || a.current_bid_usd - b.current_bid_usd,
     km_asc: (a, b) => (a.odometer_km ?? Infinity) - (b.odometer_km ?? Infinity),
   };
@@ -185,62 +164,7 @@
   }
 
   // ---------- cards ----------
-  function countdown(l) {
-    const t = saleTime(l);
-    if (!isFinite(t)) return { text: 'Дата торгів уточнюється', soon: false };
-    const d = t - Date.now();
-    if (d <= 0) return { text: 'Торги тривають або завершились', soon: true };
-    const m = Math.floor(d / 6e4), h = Math.floor(m / 60), days = Math.floor(h / 24);
-    const text = days >= 1 ? `Торги через ${days}${NB}д ${h % 24}${NB}год` : h >= 1 ? `Торги через ${h}${NB}год ${m % 60}${NB}хв` : `Торги через ${m}${NB}хв`;
-    return { text, soon: d < 24 * 3600e3 };
-  }
-  const saleDateLabel = l => {
-    const t = saleTime(l); if (!isFinite(t)) return '';
-    return new Intl.DateTimeFormat('uk-UA', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }).format(t).replace(' о ', `, `);
-  };
-
-  function card(l, i) {
-    const title = `${l.year} ${l.make} ${l.model}`;
-    const engine = l.fuel === 'electric' ? 'Електро' : `${l.engine_l ? String(l.engine_l.toFixed(1)).replace('.', ',') + NB + 'л · ' : ''}${L.fuel[l.fuel] || ''}`;
-    const cond = l.condition ? `<span class="cond-badge ${l.condition === 'run_drive' ? '' : 'is-warn'}">${L.cond[l.condition]}</span>` : '';
-    const cd = countdown(l);
-    const dmg = [l.primary_damage, l.secondary_damage].filter(Boolean).map(d => L.dmg[d]).join(', ');
-    const loc = l.location ? [l.location.city, l.location.state].filter(Boolean).join(', ') : '';
-    const note = `${title} · код ${l.code}`;
-    const img = l.images?.[0]
-      ? `<img src="${esc(l.images[0])}" alt="${esc(title)}" class="h-full w-full object-cover" loading="${i < 6 ? 'eager' : 'lazy'}" decoding="async">`
-      : `<div class="grid h-full w-full place-items-center bg-ink-700 text-fog-500">${ICON('image')}</div>`;
-    return `
-    <article class="car-card lift panel lot-in lot-d${Math.min(i % PAGE, 8)} relative flex flex-col">
-      <div class="media aspect-[4/3] rounded-t-[10px]">
-        ${img}
-        <div class="tint !opacity-15"></div><div class="fade"></div>
-        ${cond ? `<div class="absolute left-3 top-3 flex items-center gap-2">${cond}</div>` : ''}
-        <p class="absolute bottom-3 left-3 right-3 flex items-center gap-1.5 text-[12px] font-semibold ${cd.soon ? 'text-[#E8C38A]' : 'text-white'}">${ICON('clock')}<span>${cd.text}</span></p>
-      </div>
-      <div class="flex flex-1 flex-col p-5">
-        <h3 class="font-display text-[17px] font-semibold leading-snug">${esc(l.year)} ${esc(l.make)} ${esc(l.model)}${l.trim ? ` <span class="font-normal text-fog-400">${esc(l.trim)}</span>` : ''}</h3>
-        <p class="mt-1 text-[12px] text-fog-500 tabular">Код ${esc(l.code)}${loc ? ` · ${esc(loc)}` : ''}</p>
-        <dl class="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-[13px] leading-snug">
-          <div class="flex items-start gap-2 text-fog-400">${ICON('gauge')}<div><dt class="sr-only">Пробіг</dt><dd class="text-fog">${l.odometer_km ? fmt(l.odometer_km) + NB + 'км' : '—'}</dd></div></div>
-          <div class="flex items-start gap-2 text-fog-400">${ICON('fuel')}<div><dt class="sr-only">Двигун</dt><dd class="text-fog">${engine}</dd></div></div>
-          <div class="flex items-start gap-2 text-fog-400">${ICON('gearbox')}<div><dt class="sr-only">Коробка</dt><dd class="text-fog">${L.tr[l.transmission] || '—'}</dd></div></div>
-          <div class="flex items-start gap-2 text-fog-400">${ICON('drive')}<div><dt class="sr-only">Привід</dt><dd class="text-fog">${L.drive[l.drive] || '—'}</dd></div></div>
-        </dl>
-        ${dmg ? `<p class="mt-3 flex items-start gap-2 text-[13px] text-fog-400">${ICON('alert')}<span>${esc(dmg)}${l.title === 'clean' ? ' · чистий титул' : ''}</span></p>` : ''}
-        <div class="mt-auto pt-5">
-          <div class="flex items-end justify-between gap-3 border-t border-[var(--line)] pt-4">
-            <div><p class="eyebrow text-[10px] text-fog-500">Поточна ставка</p><p class="mt-1 font-display text-[22px] font-semibold leading-none text-brand-300 tabular">${fmt(l.current_bid_usd)}${NB}$</p></div>
-            ${l.buy_now_usd ? `<div class="text-right"><p class="eyebrow text-[10px] text-fog-500">Buy Now</p><p class="mt-1 font-display text-[16px] font-semibold leading-none tabular">${fmt(l.buy_now_usd)}${NB}$</p></div>` : ''}
-          </div>
-          <p class="mt-2 text-[12px] text-fog-500">${saleDateLabel(l) ? `Торги: ${saleDateLabel(l)}` : ''}</p>
-          <div class="mt-4 flex gap-2">
-            <button type="button" class="btn btn-primary flex-1" data-open-modal data-topic="usa" data-note="${esc(note)}">Хочу це авто</button>
-          </div>
-        </div>
-      </div>
-    </article>`;
-  }
+  const card = (l, i) => lotCard(l, i % PAGE, { eager: i < 6 });
 
   // ---------- render ----------
   let lastKey = '';
@@ -314,12 +238,10 @@
   grid.innerHTML = Array.from({ length: 6 }, () => `
     <div class="panel overflow-hidden"><div class="skel aspect-[4/3] !rounded-none"></div><div class="space-y-3 p-5"><div class="skel h-5 w-3/4"></div><div class="skel h-3 w-1/2"></div><div class="grid grid-cols-2 gap-3 pt-2"><div class="skel h-4"></div><div class="skel h-4"></div><div class="skel h-4"></div><div class="skel h-4"></div></div><div class="skel mt-4 h-11"></div></div></div>`).join('');
 
-  fetch('data/lots.json', { cache: 'no-cache' })
-    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(data => {
-      META = data.meta || {};
-      ALL = (data.lots || []).filter(l => l.year >= (META.min_year || 2015));
-      if (META.demo && META.generated_at) timeShift = Math.max(0, Date.now() - Date.parse(META.generated_at));
+  window.CFLots.load()
+    .then(({ meta, lots }) => {
+      META = meta;
+      ALL = lots;
       $('[data-meta="count"]').textContent = ALL.length;
       $('[data-meta="updated"]').textContent = META.generated_at
         ? new Intl.DateTimeFormat('uk-UA', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }).format(META.demo ? Date.now() : Date.parse(META.generated_at)).replace(' о ', ', ')

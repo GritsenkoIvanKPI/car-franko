@@ -1,7 +1,7 @@
 {
  "meta": {
   "demo": true,
-  "generated_at": "2026-11-13T07:13:34.079Z",
+  "generated_at": "2026-11-13T07:40:22.021Z",
   "min_year": 2015,
   "brands": [
    "Acura",
@@ -55,7 +55,7 @@
     "city": "Houston",
     "state": "TX"
    },
-   "sale_date": "2026-11-13T15:13:34.077Z",
+   "sale_date": "2026-11-13T15:40:22.020Z",
    "current_bid_usd": 4300,
    "buy_now_usd": 6200,
    "est_retail_usd": 15800,
@@ -87,7 +87,7 @@
     "city": "Charlotte",
     "state": "NC"
    },
-   "sale_date": "2026-11-13T21:13:34.077Z",
+   "sale_date": "2026-11-13T21:40:22.020Z",
    "current_bid_usd": 6800,
    "buy_now_usd": 9400,
    "est_retail_usd": 20900,
@@ -119,7 +119,7 @@
     "city": "Los Angeles",
     "state": "CA"
    },
-   "sale_date": "2026-11-14T01:13:34.077Z",
+   "sale_date": "2026-11-14T01:40:22.020Z",
    "current_bid_usd": 16900,
    "buy_now_usd": 22500,
    "est_retail_usd": 38900,
@@ -151,7 +151,7 @@
     "city": "Dallas",
     "state": "TX"
    },
-   "sale_date": "2026-11-14T03:13:34.077Z",
+   "sale_date": "2026-11-14T03:40:22.020Z",
    "current_bid_usd": 9800,
    "buy_now_usd": null,
    "est_retail_usd": 27400,
@@ -183,7 +183,7 @@
     "city": "San Diego",
     "state": "CA"
    },
-   "sale_date": "2026-11-14T07:13:34.077Z",
+   "sale_date": "2026-11-14T07:40:22.020Z",
    "current_bid_usd": 14800,
    "buy_now_usd": 19900,
    "est_retail_usd": 31800,
@@ -215,7 +215,7 @@
     "city": "Miami",
     "state": "FL"
    },
-   "sale_date": "2026-11-14T09:13:34.077Z",
+   "sale_date": "2026-11-14T09:40:22.020Z",
    "current_bid_usd": 11200,
    "buy_now_usd": 15900,
    "est_retail_usd": 29800,
@@ -247,7 +247,7 @@
     "city": "Philadelphia",
     "state": "PA"
    },
-   "sale_date": "2026-11-14T13:13:34.077Z",
+   "sale_date": "2026-11-14T13:40:22.020Z",
    "current_bid_usd": 11600,
    "buy_now_usd": null,
    "est_retail_usd": 28900,
@@ -279,7 +279,7 @@
     "city": "Orlando",
     "state": "FL"
    },
-   "sale_date": "2026-11-14T15:13:34.077Z",
+   "sale_date": "2026-11-14T15:40:22.020Z",
    "current_bid_usd": 5200,
    "buy_now_usd": null,
    "est_retail_usd": 21500,
@@ -311,7 +311,7 @@
     "city": "Nashville",
     "state": "TN"
    },
-   "sale_date": "2026-11-14T21:13:34.077Z",
+   "sale_date": "2026-11-14T21:40:22.020Z",
    "current_bid_usd": 9900,
    "buy_now_usd": 13800,
    "est_retail_usd": 22600,
@@ -343,7 +343,7 @@
     "city": "Tampa",
     "state": "FL"
    },
-   "sale_date": "2026-11-14T23:13:34.077Z",
+   "sale_date": "2026-11-14T23:40:22.020Z",
    "current_bid_usd": 9600,
    "buy_now_usd": 13500,
    "est_retail_usd": 25200,
@@ -375,7 +375,7 @@
     "city": "Atlanta",
     "state": "GA"
    },
-   "sale_date": "2026-11-15T03:13:34.077Z",
+   "sale_date": "2026-11-15T03:40:22.020Z",
    "current_bid_usd": 12400,
    "buy_now_usd": null,
    "est_retail_usd": 33900,
@@ -407,7 +407,7 @@
     "city": "Seattle",
     "state": "WA"
    },
-   "sale_date": "2026-11-15T05:13:34.077Z",
+   "sale_date": "2026-11-15T05:40:22.020Z",
    "current_bid_usd": 8700,
    "buy_now_usd": 12400,
    "est_retail_usd": 23900,
@@ -439,7 +439,7 @@
     "city": "Phoenix",
     "state": "AZ"
    },
-   "sale_date": "2026-11-15T09:13:34.077Z",
+   "sale_date": "2026-11-15T09:40:22.020Z",
    "current_bid_usd": 8900,
    "buy_now_usd": null,
    "est_retail_usd": 26100,
@@ -471,7 +471,7 @@
     "city": "San Antonio",
     "state": "TX"
    },
-   "sale_date": "2026-11-15T11:13:34.077Z",
+   "sale_date": "2026-11-15T11:40:22.020Z",
    "current_bid_usd": 14200,
    "buy_now_usd": null,
    "est_retail_usd": 34600,
@@ -503,7 +503,7 @@
     "city": "Chicago",
     "state": "IL"
    },
-   "sale_date": "2026-11-15T15:13:34.077Z",
+   "sale_date": "2026-11-15T15:40:22.020Z",
    "current_bid_usd": 7900,
    "buy_now_usd": 11900,
    "est_retail_usd": 23700,
@@ -535,7 +535,7 @@
     "city": "Baltimore",
     "state": "MD"
    },
-   "sale_date": "2026-11-15T21:13:34.077Z",
+   "sale_date": "2026-11-15T21:40:22.020Z",
    "current_bid_usd": 5600,
    "buy_now_usd": null,
    "est_retail_usd": 19700,
@@ -567,7 +567,7 @@
     "city": "Raleigh",
     "state": "NC"
    },
-   "sale_date": "2026-11-15T23:13:34.077Z",
+   "sale_date": "2026-11-15T23:40:22.020Z",
    "current_bid_usd": 7100,
    "buy_now_usd": null,
    "est_retail_usd": 21100,
@@ -599,7 +599,7 @@
     "city": "Columbus",
     "state": "OH"
    },
-   "sale_date": "2026-11-16T03:13:34.077Z",
+   "sale_date": "2026-11-16T03:40:22.020Z",
    "current_bid_usd": 7600,
    "buy_now_usd": 10500,
    "est_retail_usd": 22300,
@@ -631,7 +631,7 @@
     "city": "Las Vegas",
     "state": "NV"
    },
-   "sale_date": "2026-11-16T09:13:34.077Z",
+   "sale_date": "2026-11-16T09:40:22.020Z",
    "current_bid_usd": 6400,
    "buy_now_usd": 9200,
    "est_retail_usd": 19400,
@@ -663,7 +663,7 @@
     "city": "Denver",
     "state": "CO"
    },
-   "sale_date": "2026-11-16T15:13:34.077Z",
+   "sale_date": "2026-11-16T15:40:22.020Z",
    "current_bid_usd": 7300,
    "buy_now_usd": null,
    "est_retail_usd": 21800,
@@ -695,7 +695,7 @@
     "city": "Kansas City",
     "state": "MO"
    },
-   "sale_date": "2026-11-16T21:13:34.077Z",
+   "sale_date": "2026-11-16T21:40:22.020Z",
    "current_bid_usd": 6900,
    "buy_now_usd": 9800,
    "est_retail_usd": 20300,
@@ -727,7 +727,7 @@
     "city": "Newark",
     "state": "NJ"
    },
-   "sale_date": "2026-11-17T03:13:34.077Z",
+   "sale_date": "2026-11-17T03:40:22.020Z",
    "current_bid_usd": 6100,
    "buy_now_usd": null,
    "est_retail_usd": 19900,
@@ -759,7 +759,7 @@
     "city": "Detroit",
     "state": "MI"
    },
-   "sale_date": "2026-11-17T09:13:34.077Z",
+   "sale_date": "2026-11-17T09:40:22.020Z",
    "current_bid_usd": 10300,
    "buy_now_usd": null,
    "est_retail_usd": 30200,
@@ -791,7 +791,7 @@
     "city": "Portland",
     "state": "OR"
    },
-   "sale_date": "2026-11-17T21:13:34.077Z",
+   "sale_date": "2026-11-17T21:40:22.020Z",
    "current_bid_usd": 9100,
    "buy_now_usd": 12900,
    "est_retail_usd": 22400,

@@ -69,7 +69,7 @@ h1, h2, h3 { text-wrap: balance; }
 .lnk { position: relative; transition: opacity var(--t-fast) ease, transform var(--t-mid) var(--spring-soft); }
 .lnk:active { opacity: .6; }
 .flink { display: inline-block; padding: 6px 0; opacity: .78; }
-.nav-link { position: relative; color: #F2F1EE; opacity: .66; transition: opacity .3s ease; }
+.nav-link { position: relative; white-space: nowrap; color: #F2F1EE; opacity: .66; transition: opacity .3s ease; }
 .nav-link.is-active { opacity: 1; }
 .nav-link:active { opacity: .5; }
 .nav-link:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 6px; border-radius: 2px; }
@@ -319,3 +319,40 @@ input[type=number].field-sm::-webkit-outer-spin-button, input[type=number].field
 .lot-d7 { animation-delay: 280ms; }
 .lot-d8 { animation-delay: 320ms; }
 .chip.is-empty > span { opacity: .45; }
+
+/* ================= car page ================= */
+.gal-main { cursor: zoom-in; }
+.gal-main img { transition: opacity .35s ease; }
+.gal-main img.is-swap { opacity: 0; }
+.gal-nav { position: absolute; top: 50%; translate: 0 -50%; width: 44px; height: 44px; border-radius: 999px; display: grid; place-items: center; background: rgba(15,15,14,.7); border: 1px solid var(--line-strong); color: #F2F1EE; backdrop-filter: blur(6px); opacity: .85; transition: transform .45s var(--spring-soft), opacity .2s ease; }
+.gal-nav:active { transform: scale(.92); }
+.gal-nav:focus-visible, .thumb:focus-visible, .lb-btn:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 2px; }
+.thumb { position: relative; overflow: hidden; border-radius: 8px; aspect-ratio: 4 / 3; opacity: .55; transition: opacity .25s ease, transform .45s var(--spring-soft); }
+.thumb::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 2px solid var(--brand-text); opacity: 0; transition: opacity .25s ease; }
+.thumb.is-active { opacity: 1; }
+.thumb.is-active::after { opacity: 1; }
+.thumb:active { transform: scale(.96); }
+.spec-row { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+.spec-row:last-child { border-bottom: 0; }
+.spec-row dt { color: #9C9A95; }
+.spec-row dd { color: #F2F1EE; text-align: right; font-weight: 500; }
+
+/* lightbox */
+.lightbox { opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+.lightbox.is-open { opacity: 1; pointer-events: auto; }
+.lightbox img { transform: scale(.97); transition: transform .5s var(--ease-out), opacity .3s ease; }
+.lightbox.is-open img { transform: none; }
+.lb-btn { width: 48px; height: 48px; border-radius: 999px; display: grid; place-items: center; background: rgba(255,255,255,.08); color: #F2F1EE; transition: transform .45s var(--spring-soft), opacity .2s ease; }
+.lb-btn:active { transform: scale(.92); }
+
+/* sticky contact bar on phones */
+.cta-bar { transform: translateY(110%); transition: transform .5s var(--ease-out); }
+.cta-bar.is-on { transform: none; }
+/* the sticky bar already offers contact, so the round button steps aside on phones */
+@media (max-width: 1023.98px) { body.has-cta-bar .fab-wrap { opacity: 0; transform: translateY(12px); pointer-events: none; } }
+
+@media (hover: hover) and (pointer: fine) {
+  .gal-nav:hover { opacity: 1; transform: scale(1.06); }
+  .thumb:hover { opacity: .9; }
+  .lb-btn:hover { transform: scale(1.06); }
+}

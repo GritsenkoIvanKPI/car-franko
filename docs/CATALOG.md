@@ -68,3 +68,17 @@ Copart and IAAI have no public API, and their terms restrict automated copying o
   - Staff find the original lot by that code in the database.
 - **Public data file:** `data/lots.json` contains only what the page shows, plus the code. There's no auction name, lot number, lot link or VIN (see `publicLot()` in `scripts/sync-lots.mjs`).
 - **Scale:** 12 cards load at a time. Everything is filtered in the browser, which suits a few thousand lots. For larger volumes, move filtering to a small server API that accepts the same URL parameters.
+
+## Car page
+
+`car.html?code=CF-XXXXXXX` shows one car from `data/lots.json`. The same template serves every car.
+
+- **Gallery:** large photo, thumbnails, and full-screen viewing with arrows, the ← → keys and swipe. With one photo the arrows and thumbnails hide.
+- **Summary:** auction countdown, condition, year, mileage, engine, drive, current bid ("на торгах" when the source hides it) and Buy Now, plus sale date and location.
+- **Description:** written automatically from the car's data: engine and gearbox, damage, whether it runs, keys, title type explained in plain words, location and next steps.
+- **Tables:** specifications, and condition & documents.
+- **Contact:** "Зв'язатися з нами", "Отримати розрахунок" and, on phones, a sticky bottom bar. All open the enquiry pop-up, pre-filled with "<car> · код CF-…".
+- **Similar cars:** 4 cards, ranked by same body type, then same brand, then closest price.
+- **Unknown or expired code:** a "not found" message with links to the catalogue and the enquiry form.
+
+Shared pieces live in `assets/js/lots-common.js` (labels, formatting, countdown, data loading and the car card), so the catalogue and car pages always describe a car the same way.

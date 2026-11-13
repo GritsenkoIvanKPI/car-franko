@@ -15,7 +15,9 @@
     "migrate": "tsx src/db/migrate.ts",
     "import": "tsx src/cli/import.ts",
     "db:dump": "sh scripts/db-dump.sh",
-    "renormalize": "tsx src/cli/renormalize.ts"
+    "renormalize": "tsx src/cli/renormalize.ts",
+    "photos": "tsx src/cli/fetch-photos.ts",
+    "export:site": "tsx src/cli/export-site.ts"
   },
   "dependencies": {
     "pg": "^8.23.1",

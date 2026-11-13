@@ -14,6 +14,8 @@ const EnvSchema = z.object({
   HTTP_USER_AGENT: z.string().default('CarFrankoLotSync/0.1 (+https://github.com/GritsenkoIvanKPI/car-franko)'),
   HTTP_TIMEOUT_MS: z.coerce.number().int().positive().default(30_000),
   IAAI_SITEMAP_INDEX_URL: z.string().url().default('https://www.iaai.com/Xj9rDOVMEi0hc38S/sitemap_index.xml'),
+  /** Website folder; downloaded photos go to <SITE_ROOT>/images/cars/<code>/ and the site export to <SITE_ROOT>/data/lots.json. */
+  SITE_ROOT: z.string().default('..'),
   /** Gap between requests to one source, picked at random in [min, max]. */
   RATE_LIMIT_MIN_MS: z.coerce.number().int().min(1000).default(2000),
   RATE_LIMIT_MAX_MS: z.coerce.number().int().min(1000).default(3000),

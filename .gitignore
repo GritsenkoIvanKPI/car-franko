@@ -11,3 +11,6 @@ CLAUDE.md
 SKILL.md
 SKILL canvas.md
 GEMINI_IMAGE_GENERATION.md
+
+# genuine auction photos: downloaded by server/ (npm run photos), deployed to the host separately (too large for git)
+images/cars/
