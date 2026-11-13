@@ -1,0 +1,32 @@
+{
+  "name": "car-franko-auction-sync",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Imports filtered Copart / IAAI lots into our own database",
+  "type": "module",
+  "engines": {
+    "node": ">=20.12"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "migrate": "tsx src/db/migrate.ts",
+    "import": "tsx src/cli/import.ts",
+    "db:dump": "sh scripts/db-dump.sh",
+    "renormalize": "tsx src/cli/renormalize.ts"
+  },
+  "dependencies": {
+    "pg": "^8.23.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.16",
+    "@types/node": "^26.6.6",
+    "@types/pg": "^8.23.1",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

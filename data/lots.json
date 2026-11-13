@@ -1,13 +1,8 @@
 {
  "meta": {
-  "provider": "demo",
   "demo": true,
-  "generated_at": "2026-11-13T04:44:41.836Z",
+  "generated_at": "2026-11-13T07:13:34.079Z",
   "min_year": 2015,
-  "sources": [
-   "copart",
-   "iaai"
-  ],
   "brands": [
    "Acura",
    "Audi",
@@ -38,11 +33,7 @@
  },
  "lots": [
   {
-   "id": "copart-72204417",
-   "source": "copart",
-   "lot": "72204417",
-   "url": "https://www.copart.com/lot/72204417",
-   "vin": null,
+   "code": "CF-JX3GWT7",
    "year": 2019,
    "make": "Chevrolet",
    "model": "Malibu",
@@ -64,7 +55,7 @@
     "city": "Houston",
     "state": "TX"
    },
-   "sale_date": "2026-11-13T12:44:41.834Z",
+   "sale_date": "2026-11-13T15:13:34.077Z",
    "current_bid_usd": 4300,
    "buy_now_usd": 6200,
    "est_retail_usd": 15800,
@@ -74,11 +65,7 @@
    ]
   },
   {
-   "id": "iaai-38977416",
-   "source": "iaai",
-   "lot": "38977416",
-   "url": "https://www.iaai.com/VehicleDetail/38977416~US",
-   "vin": null,
+   "code": "CF-MWWSTM3",
    "year": 2018,
    "make": "Honda",
    "model": "Accord",
@@ -100,7 +87,7 @@
     "city": "Charlotte",
     "state": "NC"
    },
-   "sale_date": "2026-11-13T18:44:41.834Z",
+   "sale_date": "2026-11-13T21:13:34.077Z",
    "current_bid_usd": 6800,
    "buy_now_usd": 9400,
    "est_retail_usd": 20900,
@@ -110,11 +97,7 @@
    ]
   },
   {
-   "id": "copart-72389104",
-   "source": "copart",
-   "lot": "72389104",
-   "url": "https://www.copart.com/lot/72389104",
-   "vin": null,
+   "code": "CF-G93HODK",
    "year": 2022,
    "make": "Tesla",
    "model": "Model Y",
@@ -136,7 +119,7 @@
     "city": "Los Angeles",
     "state": "CA"
    },
-   "sale_date": "2026-11-13T22:44:41.834Z",
+   "sale_date": "2026-11-14T01:13:34.077Z",
    "current_bid_usd": 16900,
    "buy_now_usd": 22500,
    "est_retail_usd": 38900,
@@ -146,11 +129,7 @@
    ]
   },
   {
-   "id": "copart-71843562",
-   "source": "copart",
-   "lot": "71843562",
-   "url": "https://www.copart.com/lot/71843562",
-   "vin": null,
+   "code": "CF-L6KC3NE",
    "year": 2019,
    "make": "Acura",
    "model": "RDX",
@@ -172,7 +151,7 @@
     "city": "Dallas",
     "state": "TX"
    },
-   "sale_date": "2026-11-14T00:44:41.834Z",
+   "sale_date": "2026-11-14T03:13:34.077Z",
    "current_bid_usd": 9800,
    "buy_now_usd": null,
    "est_retail_usd": 27400,
@@ -182,11 +161,7 @@
    ]
   },
   {
-   "id": "iaai-39066871",
-   "source": "iaai",
-   "lot": "39066871",
-   "url": "https://www.iaai.com/VehicleDetail/39066871~US",
-   "vin": null,
+   "code": "CF-5GEZW6G",
    "year": 2017,
    "make": "Lexus",
    "model": "RX",
@@ -208,7 +183,7 @@
     "city": "San Diego",
     "state": "CA"
    },
-   "sale_date": "2026-11-14T04:44:41.834Z",
+   "sale_date": "2026-11-14T07:13:34.077Z",
    "current_bid_usd": 14800,
    "buy_now_usd": 19900,
    "est_retail_usd": 31800,
@@ -218,11 +193,7 @@
    ]
   },
   {
-   "id": "copart-72018845",
-   "source": "copart",
-   "lot": "72018845",
-   "url": "https://www.copart.com/lot/72018845",
-   "vin": null,
+   "code": "CF-8C7ZVGO",
    "year": 2019,
    "make": "BMW",
    "model": "3 Series",
@@ -244,7 +215,7 @@
     "city": "Miami",
     "state": "FL"
    },
-   "sale_date": "2026-11-14T06:44:41.834Z",
+   "sale_date": "2026-11-14T09:13:34.077Z",
    "current_bid_usd": 11200,
    "buy_now_usd": 15900,
    "est_retail_usd": 29800,
@@ -254,11 +225,7 @@
    ]
   },
   {
-   "id": "copart-71995384",
-   "source": "copart",
-   "lot": "71995384",
-   "url": "https://www.copart.com/lot/71995384",
-   "vin": null,
+   "code": "CF-ZROFC9A",
    "year": 2018,
    "make": "Mercedes-Benz",
    "model": "GLC",
@@ -280,7 +247,7 @@
     "city": "Philadelphia",
     "state": "PA"
    },
-   "sale_date": "2026-11-14T10:44:41.834Z",
+   "sale_date": "2026-11-14T13:13:34.077Z",
    "current_bid_usd": 11600,
    "buy_now_usd": null,
    "est_retail_usd": 28900,
@@ -290,11 +257,7 @@
    ]
   },
   {
-   "id": "copart-71930266",
-   "source": "copart",
-   "lot": "71930266",
-   "url": "https://www.copart.com/lot/71930266",
-   "vin": null,
+   "code": "CF-IUWYUUM",
    "year": 2019,
    "make": "Dodge",
    "model": "Charger",
@@ -316,7 +279,7 @@
     "city": "Orlando",
     "state": "FL"
    },
-   "sale_date": "2026-11-14T12:44:41.834Z",
+   "sale_date": "2026-11-14T15:13:34.077Z",
    "current_bid_usd": 5200,
    "buy_now_usd": null,
    "est_retail_usd": 21500,
@@ -326,11 +289,7 @@
    ]
   },
   {
-   "id": "copart-72315508",
-   "source": "copart",
-   "lot": "72315508",
-   "url": "https://www.copart.com/lot/72315508",
-   "vin": null,
+   "code": "CF-MA2CKE9",
    "year": 2021,
    "make": "Hyundai",
    "model": "Tucson",
@@ -352,7 +311,7 @@
     "city": "Nashville",
     "state": "TN"
    },
-   "sale_date": "2026-11-14T18:44:41.834Z",
+   "sale_date": "2026-11-14T21:13:34.077Z",
    "current_bid_usd": 9900,
    "buy_now_usd": 13800,
    "est_retail_usd": 22600,
@@ -362,11 +321,7 @@
    ]
   },
   {
-   "id": "iaai-39208641",
-   "source": "iaai",
-   "lot": "39208641",
-   "url": "https://www.iaai.com/VehicleDetail/39208641~US",
-   "vin": null,
+   "code": "CF-W71RX1M",
    "year": 2021,
    "make": "Toyota",
    "model": "Camry",
@@ -388,7 +343,7 @@
     "city": "Tampa",
     "state": "FL"
    },
-   "sale_date": "2026-11-14T20:44:41.834Z",
+   "sale_date": "2026-11-14T23:13:34.077Z",
    "current_bid_usd": 9600,
    "buy_now_usd": 13500,
    "est_retail_usd": 25200,
@@ -398,11 +353,7 @@
    ]
   },
   {
-   "id": "iaai-38821904",
-   "source": "iaai",
-   "lot": "38821904",
-   "url": "https://www.iaai.com/VehicleDetail/38821904~US",
-   "vin": null,
+   "code": "CF-BSGQDNC",
    "year": 2020,
    "make": "Audi",
    "model": "Q5",
@@ -424,7 +375,7 @@
     "city": "Atlanta",
     "state": "GA"
    },
-   "sale_date": "2026-11-15T00:44:41.834Z",
+   "sale_date": "2026-11-15T03:13:34.077Z",
    "current_bid_usd": 12400,
    "buy_now_usd": null,
    "est_retail_usd": 33900,
@@ -434,11 +385,7 @@
    ]
   },
   {
-   "id": "iaai-38890147",
-   "source": "iaai",
-   "lot": "38890147",
-   "url": "https://www.iaai.com/VehicleDetail/38890147~US",
-   "vin": null,
+   "code": "CF-3UEQRNW",
    "year": 2019,
    "make": "Mazda",
    "model": "CX-5",
@@ -460,7 +407,7 @@
     "city": "Seattle",
     "state": "WA"
    },
-   "sale_date": "2026-11-15T02:44:41.834Z",
+   "sale_date": "2026-11-15T05:13:34.077Z",
    "current_bid_usd": 8700,
    "buy_now_usd": 12400,
    "est_retail_usd": 23900,
@@ -470,11 +417,7 @@
    ]
   },
   {
-   "id": "copart-71559031",
-   "source": "copart",
-   "lot": "71559031",
-   "url": "https://www.copart.com/lot/71559031",
-   "vin": null,
+   "code": "CF-1EHOYYG",
    "year": 2018,
    "make": "Cadillac",
    "model": "XT5",
@@ -496,7 +439,7 @@
     "city": "Phoenix",
     "state": "AZ"
    },
-   "sale_date": "2026-11-15T06:44:41.834Z",
+   "sale_date": "2026-11-15T09:13:34.077Z",
    "current_bid_usd": 8900,
    "buy_now_usd": null,
    "est_retail_usd": 26100,
@@ -506,11 +449,7 @@
    ]
   },
   {
-   "id": "copart-72248813",
-   "source": "copart",
-   "lot": "72248813",
-   "url": "https://www.copart.com/lot/72248813",
-   "vin": null,
+   "code": "CF-I29XM58",
    "year": 2019,
    "make": "RAM",
    "model": "1500",
@@ -532,7 +471,7 @@
     "city": "San Antonio",
     "state": "TX"
    },
-   "sale_date": "2026-11-15T08:44:41.834Z",
+   "sale_date": "2026-11-15T11:13:34.077Z",
    "current_bid_usd": 14200,
    "buy_now_usd": null,
    "est_retail_usd": 34600,
@@ -542,11 +481,7 @@
    ]
   },
   {
-   "id": "iaai-39102583",
-   "source": "iaai",
-   "lot": "39102583",
-   "url": "https://www.iaai.com/VehicleDetail/39102583~US",
-   "vin": null,
+   "code": "CF-IK8SGIW",
    "year": 2020,
    "make": "Ford",
    "model": "Escape",
@@ -568,7 +503,7 @@
     "city": "Chicago",
     "state": "IL"
    },
-   "sale_date": "2026-11-15T12:44:41.834Z",
+   "sale_date": "2026-11-15T15:13:34.077Z",
    "current_bid_usd": 7900,
    "buy_now_usd": 11900,
    "est_retail_usd": 23700,
@@ -578,11 +513,7 @@
    ]
   },
   {
-   "id": "iaai-38714059",
-   "source": "iaai",
-   "lot": "38714059",
-   "url": "https://www.iaai.com/VehicleDetail/38714059~US",
-   "vin": null,
+   "code": "CF-OMW8YFK",
    "year": 2017,
    "make": "Infiniti",
    "model": "Q50",
@@ -604,7 +535,7 @@
     "city": "Baltimore",
     "state": "MD"
    },
-   "sale_date": "2026-11-15T18:44:41.834Z",
+   "sale_date": "2026-11-15T21:13:34.077Z",
    "current_bid_usd": 5600,
    "buy_now_usd": null,
    "est_retail_usd": 19700,
@@ -614,11 +545,7 @@
    ]
   },
   {
-   "id": "copart-71866097",
-   "source": "copart",
-   "lot": "71866097",
-   "url": "https://www.copart.com/lot/71866097",
-   "vin": null,
+   "code": "CF-QXZIKR8",
    "year": 2019,
    "make": "Volkswagen",
    "model": "Tiguan",
@@ -640,7 +567,7 @@
     "city": "Raleigh",
     "state": "NC"
    },
-   "sale_date": "2026-11-15T20:44:41.834Z",
+   "sale_date": "2026-11-15T23:13:34.077Z",
    "current_bid_usd": 7100,
    "buy_now_usd": null,
    "est_retail_usd": 21100,
@@ -650,11 +577,7 @@
    ]
   },
   {
-   "id": "iaai-39017722",
-   "source": "iaai",
-   "lot": "39017722",
-   "url": "https://www.iaai.com/VehicleDetail/39017722~US",
-   "vin": null,
+   "code": "CF-D42N271",
    "year": 2021,
    "make": "Buick",
    "model": "Encore GX",
@@ -676,7 +599,7 @@
     "city": "Columbus",
     "state": "OH"
    },
-   "sale_date": "2026-11-16T00:44:41.834Z",
+   "sale_date": "2026-11-16T03:13:34.077Z",
    "current_bid_usd": 7600,
    "buy_now_usd": 10500,
    "est_retail_usd": 22300,
@@ -686,11 +609,7 @@
    ]
   },
   {
-   "id": "copart-71788620",
-   "source": "copart",
-   "lot": "71788620",
-   "url": "https://www.copart.com/lot/71788620",
-   "vin": null,
+   "code": "CF-IHIG6VY",
    "year": 2020,
    "make": "KIA",
    "model": "Sportage",
@@ -712,7 +631,7 @@
     "city": "Las Vegas",
     "state": "NV"
    },
-   "sale_date": "2026-11-16T06:44:41.834Z",
+   "sale_date": "2026-11-16T09:13:34.077Z",
    "current_bid_usd": 6400,
    "buy_now_usd": 9200,
    "est_retail_usd": 19400,
@@ -722,11 +641,7 @@
    ]
   },
   {
-   "id": "copart-72071139",
-   "source": "copart",
-   "lot": "72071139",
-   "url": "https://www.copart.com/lot/72071139",
-   "vin": null,
+   "code": "CF-URFM9O3",
    "year": 2019,
    "make": "GMC",
    "model": "Terrain",
@@ -748,7 +663,7 @@
     "city": "Denver",
     "state": "CO"
    },
-   "sale_date": "2026-11-16T12:44:41.834Z",
+   "sale_date": "2026-11-16T15:13:34.077Z",
    "current_bid_usd": 7300,
    "buy_now_usd": null,
    "est_retail_usd": 21800,
@@ -758,11 +673,7 @@
    ]
   },
   {
-   "id": "iaai-39150236",
-   "source": "iaai",
-   "lot": "39150236",
-   "url": "https://www.iaai.com/VehicleDetail/39150236~US",
-   "vin": null,
+   "code": "CF-UYR36CP",
    "year": 2020,
    "make": "Nissan",
    "model": "Rogue",
@@ -784,7 +695,7 @@
     "city": "Kansas City",
     "state": "MO"
    },
-   "sale_date": "2026-11-16T18:44:41.834Z",
+   "sale_date": "2026-11-16T21:13:34.077Z",
    "current_bid_usd": 6900,
    "buy_now_usd": 9800,
    "est_retail_usd": 20300,
@@ -794,11 +705,7 @@
    ]
   },
   {
-   "id": "iaai-38655170",
-   "source": "iaai",
-   "lot": "38655170",
-   "url": "https://www.iaai.com/VehicleDetail/38655170~US",
-   "vin": null,
+   "code": "CF-0EOUMA2",
    "year": 2018,
    "make": "Chrysler",
    "model": "Pacifica",
@@ -820,7 +727,7 @@
     "city": "Newark",
     "state": "NJ"
    },
-   "sale_date": "2026-11-17T00:44:41.834Z",
+   "sale_date": "2026-11-17T03:13:34.077Z",
    "current_bid_usd": 6100,
    "buy_now_usd": null,
    "est_retail_usd": 19900,
@@ -830,11 +737,7 @@
    ]
   },
   {
-   "id": "copart-72150972",
-   "source": "copart",
-   "lot": "72150972",
-   "url": "https://www.copart.com/lot/72150972",
-   "vin": null,
+   "code": "CF-KJGCJ9J",
    "year": 2020,
    "make": "Lincoln",
    "model": "Corsair",
@@ -856,7 +759,7 @@
     "city": "Detroit",
     "state": "MI"
    },
-   "sale_date": "2026-11-17T06:44:41.834Z",
+   "sale_date": "2026-11-17T09:13:34.077Z",
    "current_bid_usd": 10300,
    "buy_now_usd": null,
    "est_retail_usd": 30200,
@@ -866,11 +769,7 @@
    ]
   },
   {
-   "id": "iaai-38602758",
-   "source": "iaai",
-   "lot": "38602758",
-   "url": "https://www.iaai.com/VehicleDetail/38602758~US",
-   "vin": null,
+   "code": "CF-P29QY12",
    "year": 2019,
    "make": "Subaru",
    "model": "Outback",
@@ -892,7 +791,7 @@
     "city": "Portland",
     "state": "OR"
    },
-   "sale_date": "2026-11-17T18:44:41.834Z",
+   "sale_date": "2026-11-17T21:13:34.077Z",
    "current_bid_usd": 9100,
    "buy_now_usd": 12900,
    "est_retail_usd": 22400,

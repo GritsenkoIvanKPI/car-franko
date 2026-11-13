@@ -1,0 +1,20 @@
+# Local PostgreSQL. Later steps add the worker and API services here.
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: carfranko
+      POSTGRES_PASSWORD: carfranko
+      POSTGRES_DB: carfranko
+    ports:
+      - "${DB_PORT:-5433}:5432"   # host port 5433 so it never clashes with another local Postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U carfranko"]
+      interval: 5s
+      retries: 10
+
+volumes:
+  pgdata:

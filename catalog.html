@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Каталог авто з аукціонів США — Car Franko Import</title>
-  <meta name="description" content="Каталог лотів Copart та IAAI 2015 року й новіші: фільтри за маркою, роком, ціною, пробігом, двигуном, паливом і приводом. Пригін авто під ключ від Car Franko Import.">
+  <meta name="description" content="Каталог авто з аукціонів США 2015 року й новіші: фільтри за маркою, роком, ціною, пробігом, двигуном, паливом і приводом. Пригін авто під ключ від Car Franko Import.">
   <link rel="icon" type="image/png" href="brand_assets/logo-mark-green.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,10 +82,10 @@
       <div class="max-w-[720px]">
         <p class="eyebrow mb-3 text-brand-300">Аукціони США</p>
         <h1 id="cat-h" class="h-sec text-[30px] leading-[1.08] sm:text-[42px]">Каталог авто з аукціонів</h1>
-        <p class="mt-4 text-[15px] text-fog-300 sm:text-[16px]">Актуальні лоти Copart та IAAI 2015 року й новіші. Оберіть авто — ми перевіримо історію, порахуємо вартість під ключ і візьмемо участь у торгах замість вас.</p>
+        <p class="mt-4 text-[15px] text-fog-300 sm:text-[16px]">Актуальні авто з аукціонів США 2015 року й новіші. Оберіть авто — ми перевіримо історію, порахуємо вартість під ключ і візьмемо участь у торгах замість вас.</p>
       </div>
       <dl class="flex flex-wrap gap-2 text-[13px]" id="cat-meta">
-        <div class="panel flex items-center gap-2 px-3 py-2"><dt class="sr-only">Лотів</dt><svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="assets/icons.svg#i-car"/></svg><dd><span class="font-semibold text-fog tabular" data-meta="count">—</span> лотів</dd></div>
+        <div class="panel flex items-center gap-2 px-3 py-2"><dt class="sr-only">Авто в каталозі</dt><svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="assets/icons.svg#i-car"/></svg><dd><span class="font-semibold text-fog tabular" data-meta="count">—</span> авто</dd></div>
         <div class="panel flex items-center gap-2 px-3 py-2"><dt class="sr-only">Рік</dt><svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="assets/icons.svg#i-calendar"/></svg><dd>2015+</dd></div>
         <div class="panel flex items-center gap-2 px-3 py-2"><dt class="sr-only">Оновлено</dt><svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="assets/icons.svg#i-refresh"/></svg><dd>Оновлено <span data-meta="updated">—</span></dd></div>
       </dl>
@@ -93,7 +93,7 @@
 
     <div id="demo-note" class="panel mt-6 hidden items-start gap-3 border-[rgba(232,195,138,.25)] px-4 py-3 text-[13px] text-fog-300">
       <svg class="ico mt-0.5 h-4 w-4 text-[#E8C38A]" aria-hidden="true"><use href="assets/icons.svg#i-alert"/></svg>
-      <p><span class="font-semibold text-[#E8C38A]">Демо-режим.</span> Зараз показано приклади лотів. Після підключення джерела даних тут автоматично з'являться актуальні лоти Copart та&nbsp;IAAI.</p>
+      <p><span class="font-semibold text-[#E8C38A]">Демо-режим.</span> Зараз показано приклади авто. Після підключення бази тут автоматично з'являться актуальні пропозиції з аукціонів США.</p>
     </div>
   </section>
 
@@ -112,10 +112,6 @@
       </div>
 
       <form id="filter-form" class="flex-1 overflow-y-auto px-5 pb-5 pt-4" autocomplete="off" novalidate>
-        <div class="f-group">
-          <p class="f-label">Аукціон</p>
-          <div class="chip-row" data-chips="src"></div>
-        </div>
 
         <div class="f-group">
           <p class="f-label"><span>Марка</span><span class="normal-case tracking-normal text-fog-500" data-sel-count="make"></span></p>
@@ -188,7 +184,7 @@
         <div class="relative min-w-0 flex-1 basis-[240px]">
           <svg class="ico pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-fog-500" aria-hidden="true"><use href="assets/icons.svg#i-search"/></svg>
           <label class="sr-only" for="q">Пошук</label>
-          <input id="q" type="search" class="field-sm !pl-9" placeholder="Марка, модель, VIN або номер лоту">
+          <input id="q" type="search" class="field-sm !pl-9" placeholder="Марка, модель або код авто">
         </div>
         <button type="button" class="btn btn-ghost !px-4 !py-[11px] lg:hidden" data-filters-open>
           <svg class="ico h-4 w-4" aria-hidden="true"><use href="assets/icons.svg#i-sliders"/></svg>Фільтри<span class="hidden min-w-[20px] rounded-full bg-brand px-1.5 py-0.5 text-center text-[11px] leading-none text-white" data-active-count></span>
@@ -207,7 +203,7 @@
       </div>
 
       <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
-        <p class="text-[14px] text-fog-400" aria-live="polite">Знайдено <span class="font-semibold text-fog tabular" data-result-count>0</span>&nbsp;<span data-result-word>лотів</span></p>
+        <p class="text-[14px] text-fog-400" aria-live="polite">Знайдено <span class="font-semibold text-fog tabular" data-result-count>0</span>&nbsp;<span data-result-word>авто</span></p>
       </div>
       <div class="mt-3 flex flex-wrap gap-2" data-pills></div>
 

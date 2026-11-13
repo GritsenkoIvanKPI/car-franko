@@ -5,7 +5,11 @@
 //   node scripts/sync-lots.mjs                 # demo data
 //   CATALOG_PROVIDER=http node scripts/sync-lots.mjs   # real provider (see adapters/http-provider.mjs)
 
+import { createHash } from 'node:crypto';
 import { writeFile, mkdir } from 'node:fs/promises';
+
+/** Stable, opaque car code shown to customers, e.g. "CF-7K3D9QX". Our team maps it back via the database. */
+const publicCode = internalId => 'CF-' + BigInt('0x' + createHash('sha1').update(internalId).digest('hex').slice(0, 10)).toString(36).toUpperCase().padStart(7, '0').slice(-7);
 import { MIN_YEAR, BRANDS, BRAND_ALIASES, SOURCES, KEEP_ENDED_HOURS, OUTPUT_FILE } from './catalog.config.mjs';
 
 const PROVIDER = process.env.CATALOG_PROVIDER || 'demo';
@@ -127,17 +131,19 @@ for (const r of raw) {
 }
 lots.sort((a, b) => (Date.parse(a.sale_date) || Infinity) - (Date.parse(b.sale_date) || Infinity));
 
+// Public file: the website never reveals which auction a car comes from.
+// No source, lot number, lot URL or VIN — only what the page shows, plus our own car code.
+const publicLot = ({ source, lot, url, vin, id, ...rest }) => ({ code: publicCode(id), ...rest });
+
 const out = {
   meta: {
-    provider: PROVIDER,
     demo: PROVIDER === 'demo',
     generated_at: new Date().toISOString(),
     min_year: MIN_YEAR,
-    sources: SOURCES,
     brands: BRANDS,
     count: lots.length,
   },
-  lots,
+  lots: lots.map(publicLot),
 };
 
 await mkdir(new URL('.', OUTPUT_FILE), { recursive: true });

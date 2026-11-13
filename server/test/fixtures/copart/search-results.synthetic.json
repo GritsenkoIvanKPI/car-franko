@@ -1,0 +1,26 @@
+{
+  "_note": "SYNTHETIC — not a captured response. Copart blocked all non-browser requests during research, so this follows the field names of Copart's frontend search API as documented in normalize/copart.ts. Replace with a real capture if Copart access becomes possible.",
+  "returnCode": 1,
+  "data": {
+    "results": {
+      "totalElements": 2,
+      "content": [
+        {
+          "ln": 72389104, "mkn": "TESLA", "lm": "MODEL Y", "lmg": "MODEL Y", "mtrim": "LONG RANGE", "lcy": 2022,
+          "fv": "7SAYGDEE*NF******", "orr": 24660, "ord": "ACTUAL", "egn": "", "cy": "0", "ft": "ELECTRIC",
+          "tmtp": "AUTOMATIC", "drv": "All wheel drive", "bstl": "4DR SPOR", "clr": "WHITE",
+          "dd": "FRONT END", "sdd": "MINOR DENT/SCRATCHES", "td": "CA - SALVAGE CERTIFICATE", "tsmn": "CA",
+          "hk": "YES", "lcd": "RUN AND DRIVE", "yn": "CA - LOS ANGELES", "locCity": "LOS ANGELES", "locState": "CA",
+          "zip": "90058", "lat": 33.99, "lng": -118.22, "ad": 1795111200000, "hb": 16900, "bnp": 22500,
+          "tims": "https://cs.copart.com/v1/AUTH_svc.pdoc00001/lpp/1124/abc_thb.jpg", "ls": "A"
+        },
+        {
+          "ln": "71930266", "mkn": "DODGE", "lm": "CHARGER", "lcy": "2019", "fv": "2C3CDXBG7KH******",
+          "orr": "52,410", "ord": "NOT ACTUAL", "egn": "3.6L 6", "ft": "GAS", "tmtp": "AUTOMATIC", "drv": "Rear-wheel drive",
+          "bstl": "SEDAN 4D", "clr": "BLACK", "dd": "FRONT END", "sdd": "ALL OVER", "td": "FL - CERT OF TITLE-SALVAGE",
+          "hk": "NO", "lcd": "STATIONARY", "yn": "FL - ORLANDO NORTH", "ad": 1795284000000, "hb": 0, "bnp": 0
+        }
+      ]
+    }
+  }
+}

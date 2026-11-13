@@ -60,10 +60,11 @@ Copart and IAAI have no public API, and their terms restrict automated copying o
 
 ## Catalogue page
 
-- **Filters:** auction, brand, model (shows after a brand is picked), year, current bid, mileage (km), engine size, fuel, drive, transmission, body, damage, plus toggles for runs & drives, keys present, clean title and Buy Now. There is also a search box for brand, model, VIN or lot number.
+- **Filters:** brand, model (shows after a brand is picked), year, current bid, mileage (km), engine size, fuel, drive, transmission, body, damage, plus toggles for runs & drives, keys present, clean title and Buy Now. There is also a search box for brand, model or our car code.
 - **Sorting:** auction date, bid (low to high and high to low), year, mileage.
 - **Shareable views:** all filters are saved in the page address, e.g. `catalog.html?make=Toyota,Lexus&y1=2019&fuel=hybrid`.
-- **Lot cards:**
-  - "Хочу це авто" opens the enquiry form, pre-filled with the auction, lot number and car.
-  - The arrow icon opens the original lot on Copart or IAAI.
+- **Lot cards:** never name the auction. Instead of the lot number each car shows our own code, e.g. `CF-7K3D9QX`.
+  - "Хочу це авто" opens the enquiry form, pre-filled with the car and its code.
+  - Staff find the original lot by that code in the database.
+- **Public data file:** `data/lots.json` contains only what the page shows, plus the code. There's no auction name, lot number, lot link or VIN (see `publicLot()` in `scripts/sync-lots.mjs`).
 - **Scale:** 12 cards load at a time. Everything is filtered in the browser, which suits a few thousand lots. For larger volumes, move filtering to a small server API that accepts the same URL parameters.

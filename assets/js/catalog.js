@@ -12,7 +12,6 @@
 
   // labels for normalised values
   const L = {
-    src: { copart: 'Copart', iaai: 'IAAI' },
     fuel: { gasoline: 'Бензин', diesel: 'Дизель', hybrid: 'Гібрид', electric: 'Електро' },
     drive: { fwd: 'Передній', rwd: 'Задній', awd: 'Повний' },
     tr: { automatic: 'Автомат', cvt: 'Варіатор', manual: 'Механіка' },
@@ -21,8 +20,8 @@
     cond: { run_drive: 'На ходу', starts: 'Заводиться', stationary: 'Не на ходу' },
   };
   // lot field behind each chip group
-  const FIELD = { src: 'source', fuel: 'fuel', drive: 'drive', tr: 'transmission', body: 'body', dmg: 'primary_damage' };
-  const MULTI = ['src', 'make', 'model', 'fuel', 'drive', 'tr', 'body', 'dmg'];
+  const FIELD = { fuel: 'fuel', drive: 'drive', tr: 'transmission', body: 'body', dmg: 'primary_damage' };
+  const MULTI = ['make', 'model', 'fuel', 'drive', 'tr', 'body', 'dmg'];
   const NUMS = ['y1', 'y2', 'p1', 'p2', 'km1', 'km2', 'e1', 'e2'];
   const FLAGS = ['rd', 'keys', 'clean', 'bn'];
   const FLAG_LABEL = { rd: 'На ходу', keys: 'Є ключі', clean: 'Чистий титул', bn: 'Buy Now' };
@@ -70,7 +69,7 @@
   const norm = s => String(s || '').toLowerCase();
   function matches(l, skip) {
     if (state.q) {
-      const hay = norm(`${l.year} ${l.make} ${l.model} ${l.trim || ''} ${l.vin || ''} ${l.lot}`);
+      const hay = norm(`${l.year} ${l.make} ${l.model} ${l.trim || ''} ${l.code || ''}`);
       if (!state.q.toLowerCase().split(/\s+/).every(w => hay.includes(w))) return false;
     }
     for (const k of Object.keys(FIELD)) if (k !== skip && state[k].size && !state[k].has(l[FIELD[k]])) return false;
@@ -207,7 +206,7 @@
     const cd = countdown(l);
     const dmg = [l.primary_damage, l.secondary_damage].filter(Boolean).map(d => L.dmg[d]).join(', ');
     const loc = l.location ? [l.location.city, l.location.state].filter(Boolean).join(', ') : '';
-    const note = `${L.src[l.source]} · лот ${l.lot} · ${title}`;
+    const note = `${title} · код ${l.code}`;
     const img = l.images?.[0]
       ? `<img src="${esc(l.images[0])}" alt="${esc(title)}" class="h-full w-full object-cover" loading="${i < 6 ? 'eager' : 'lazy'}" decoding="async">`
       : `<div class="grid h-full w-full place-items-center bg-ink-700 text-fog-500">${ICON('image')}</div>`;
@@ -216,12 +215,12 @@
       <div class="media aspect-[4/3] rounded-t-[10px]">
         ${img}
         <div class="tint !opacity-15"></div><div class="fade"></div>
-        <div class="absolute left-3 top-3 flex items-center gap-2"><span class="src-badge src-${l.source}">${L.src[l.source]}</span>${cond}</div>
+        ${cond ? `<div class="absolute left-3 top-3 flex items-center gap-2">${cond}</div>` : ''}
         <p class="absolute bottom-3 left-3 right-3 flex items-center gap-1.5 text-[12px] font-semibold ${cd.soon ? 'text-[#E8C38A]' : 'text-white'}">${ICON('clock')}<span>${cd.text}</span></p>
       </div>
       <div class="flex flex-1 flex-col p-5">
         <h3 class="font-display text-[17px] font-semibold leading-snug">${esc(l.year)} ${esc(l.make)} ${esc(l.model)}${l.trim ? ` <span class="font-normal text-fog-400">${esc(l.trim)}</span>` : ''}</h3>
-        <p class="mt-1 text-[12px] text-fog-500 tabular">Лот ${esc(l.lot)}${loc ? ` · ${esc(loc)}` : ''}</p>
+        <p class="mt-1 text-[12px] text-fog-500 tabular">Код ${esc(l.code)}${loc ? ` · ${esc(loc)}` : ''}</p>
         <dl class="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-[13px] leading-snug">
           <div class="flex items-start gap-2 text-fog-400">${ICON('gauge')}<div><dt class="sr-only">Пробіг</dt><dd class="text-fog">${l.odometer_km ? fmt(l.odometer_km) + NB + 'км' : '—'}</dd></div></div>
           <div class="flex items-start gap-2 text-fog-400">${ICON('fuel')}<div><dt class="sr-only">Двигун</dt><dd class="text-fog">${engine}</dd></div></div>
@@ -237,7 +236,6 @@
           <p class="mt-2 text-[12px] text-fog-500">${saleDateLabel(l) ? `Торги: ${saleDateLabel(l)}` : ''}</p>
           <div class="mt-4 flex gap-2">
             <button type="button" class="btn btn-primary flex-1" data-open-modal data-topic="usa" data-note="${esc(note)}">Хочу це авто</button>
-            ${l.url ? `<a href="${esc(l.url)}" target="_blank" rel="noopener nofollow" class="icon-btn h-[44px] w-[44px] border border-[var(--line-strong)]" aria-label="Відкрити лот на ${L.src[l.source]}" title="Лот на ${L.src[l.source]}"><svg class="ico relative h-4 w-4" aria-hidden="true"><use href="assets/icons.svg#i-external"/></svg></a>` : ''}
           </div>
         </div>
       </div>
@@ -257,7 +255,7 @@
     lastKey = key;
 
     $$('[data-result-count]').forEach(el => (el.textContent = list.length));
-    $('[data-result-word]').textContent = plural(list.length, 'лот', 'лоти', 'лотів');
+    $('[data-result-word]').textContent = 'авто';
     $('#empty').classList.toggle('hidden', list.length > 0);
     $('#empty').classList.toggle('flex', list.length === 0);
     const more = $('#more');

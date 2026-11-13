@@ -1,0 +1,19 @@
+{
+  "filterSets": [
+    {
+      "name": "main-brands-2015plus",
+      "enabled": true,
+      "sources": ["iaai", "copart"],
+      "makes": [
+        "Acura", "Audi", "BMW", "Buick", "Cadillac", "Chevrolet", "Chrysler", "Dodge", "Ford", "GMC",
+        "Honda", "Hyundai", "Infiniti", "KIA", "Lexus", "Lincoln", "Mazda", "Mercedes-Benz", "Nissan",
+        "RAM", "Subaru", "Tesla", "Toyota", "Volkswagen"
+      ],
+      "yearFrom": 2015,
+      "excludeDamageTypes": ["fire", "water_flood", "stripped"],
+      "titleTypes": ["clean", "salvage", "rebuilt", "other"],
+      "priceMax": 40000,
+      "includeUnpriced": true
+    }
+  ]
+}
