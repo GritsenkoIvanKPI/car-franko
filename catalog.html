@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Каталог авто з аукціонів США — Car Franko Import</title>
+  <meta name="description" content="Каталог лотів Copart та IAAI 2015 року й новіші: фільтри за маркою, роком, ціною, пробігом, двигуном, паливом і приводом. Пригін авто під ключ від Car Franko Import.">
+  <link rel="icon" type="image/png" href="brand_assets/logo-mark-green.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/js/tw-config.js"></script>
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body class="grain">
+
+<!-- ============ HEADER ============ -->
+<header id="top" class="site-header fixed inset-x-0 top-0 z-50">
+  <div class="hdr-bg"></div>
+  <div class="relative mx-auto flex h-[72px] max-w-shell items-center gap-6 px-4 sm:px-6 lg:px-8">
+    <a href="index.html" class="lnk flex shrink-0 items-center gap-3" aria-label="Car Franko Import — на головну">
+      <img src="brand_assets/logo-mark-green.png" alt="" class="h-8 w-auto">
+      <span class="hidden leading-none sm:block">
+        <span class="block font-display text-[17px] font-semibold tracking-tight">Car Franko</span>
+        <span class="eyebrow mt-1 block text-[10px] text-fog-400">Import</span>
+      </span>
+    </a>
+
+    <nav class="ml-6 hidden items-center gap-7 text-[14px] lg:flex" aria-label="Головне меню">
+      <a href="index.html" class="nav-link">Головна</a>
+      <a href="index.html#usa" class="nav-link">Авто зі США</a>
+      <a href="index.html#lithuania" class="nav-link">Авто з Литви</a>
+      <a href="catalog.html" class="nav-link is-active" aria-current="page">Каталог</a>
+      <a href="index.html#services" class="nav-link">Послуги</a>
+      <a href="index.html#contacts" class="nav-link">Контакти</a>
+    </nav>
+
+    <div class="ml-auto flex items-center gap-1 sm:gap-2">
+      <a href="https://www.instagram.com/car_franko_import" target="_blank" rel="noopener" class="icon-btn hidden md:inline-grid" aria-label="Instagram">
+        <svg class="ico relative h-5 w-5" aria-hidden="true"><use href="assets/icons.svg#i-instagram"/></svg>
+      </a>
+      <a href="https://t.me/" target="_blank" rel="noopener" class="icon-btn hidden md:inline-grid" aria-label="Telegram">
+        <svg class="ico relative h-5 w-5" aria-hidden="true"><use href="assets/icons.svg#i-telegram"/></svg>
+      </a>
+      <a href="viber://chat?number=%2B380667668005" class="icon-btn hidden md:inline-grid" aria-label="Viber">
+        <svg class="ico relative h-5 w-5" aria-hidden="true"><use href="assets/icons.svg#i-viber"/></svg>
+      </a>
+      <button type="button" class="btn btn-primary ml-2 hidden !px-5 !py-[11px] sm:inline-flex" data-open-modal>Заявка</button>
+      <a href="tel:+380667668005" class="lnk ml-3 hidden font-display text-[15px] font-medium tabular xl:block">+38 (066) 76 68 005</a>
+      <button type="button" class="burger icon-btn ml-1 lg:hidden" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mnav">
+        <span class="relative flex flex-col gap-1"><i></i><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div id="mnav" class="mnav fixed inset-0 z-40 bg-ink-900/95 backdrop-blur-xl lg:hidden">
+  <nav class="flex h-full flex-col justify-center gap-2 px-6 pt-[72px]" aria-label="Мобільне меню">
+    <a href="index.html#top" class="mnav-item lnk font-display text-3xl font-medium">Головна</a>
+    <a href="index.html#usa" class="mnav-item lnk font-display text-3xl font-medium">Авто зі США</a>
+    <a href="index.html#lithuania" class="mnav-item lnk font-display text-3xl font-medium">Авто з Литви</a>
+    <a href="catalog.html" class="mnav-item lnk font-display text-3xl font-medium">Каталог</a>
+    <a href="index.html#services" class="mnav-item lnk font-display text-3xl font-medium">Послуги</a>
+    <a href="index.html#contacts" class="mnav-item lnk font-display text-3xl font-medium">Контакти</a>
+    <div class="mnav-item mt-8 flex flex-col gap-3">
+      <a href="tel:+380667668005" class="lnk font-display text-lg tabular text-brand-300">+38 (066) 76 68 005</a>
+      <button type="button" class="btn btn-primary w-full" data-open-modal>Залишити заявку</button>
+    </div>
+  </nav>
+</div>
+
+<main class="ambient relative pt-[72px]">
+
+  <!-- ============ PAGE HEAD ============ -->
+  <section class="mx-auto max-w-shell px-4 pt-8 sm:px-6 sm:pt-12 lg:px-8" aria-labelledby="cat-h">
+    <nav class="text-[13px] text-fog-500" aria-label="Хлібні крихти">
+      <a href="index.html" class="lnk -my-1.5 inline-block py-1.5 text-fog-400">Головна</a><span class="mx-2">/</span><span class="text-fog-300">Каталог</span>
+    </nav>
+    <div class="mt-5 flex flex-wrap items-end justify-between gap-x-8 gap-y-5">
+      <div class="max-w-[720px]">
+        <p class="eyebrow mb-3 text-brand-300">Аукціони США</p>
+        <h1 id="cat-h" class="h-sec text-[30px] leading-[1.08] sm:text-[42px]">Каталог авто з аукціонів</h1>
+        <p class="mt-4 text-[15px] text-fog-300 sm:text-[16px]">Актуальні лоти Copart та IAAI 2015 року й новіші. Оберіть авто — ми перевіримо історію, порахуємо вартість під ключ і візьмемо участь у торгах замість вас.</p>
+      </div>
+      <dl class="flex flex-wrap gap-2 text-[13px]" id="cat-meta">
+        <div class="panel flex items-center gap-2 px-3 py-2"><dt class="sr-only">Лотів</dt><svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="assets/icons.svg#i-car"/></svg><dd><span class="font-semibold text-fog tabular" data-meta="count">—</span> лотів</dd></div>
+        <div class="panel flex items-center gap-2 px-3 py-2"><dt class="sr-only">Рік</dt><svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="assets/icons.svg#i-calendar"/></svg><dd>2015+</dd></div>
+        <div class="panel flex items-center gap-2 px-3 py-2"><dt class="sr-only">Оновлено</dt><svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="assets/icons.svg#i-refresh"/></svg><dd>Оновлено <span data-meta="updated">—</span></dd></div>
+      </dl>
+    </div>
+
+    <div id="demo-note" class="panel mt-6 hidden items-start gap-3 border-[rgba(232,195,138,.25)] px-4 py-3 text-[13px] text-fog-300">
+      <svg class="ico mt-0.5 h-4 w-4 text-[#E8C38A]" aria-hidden="true"><use href="assets/icons.svg#i-alert"/></svg>
+      <p><span class="font-semibold text-[#E8C38A]">Демо-режим.</span> Зараз показано приклади лотів. Після підключення джерела даних тут автоматично з'являться актуальні лоти Copart та&nbsp;IAAI.</p>
+    </div>
+  </section>
+
+  <!-- ============ CATALOGUE ============ -->
+  <section class="mx-auto mt-8 grid max-w-shell gap-6 px-4 pb-4 sm:px-6 lg:grid-cols-[296px_1fr] lg:px-8" aria-label="Каталог">
+
+    <!-- filters -->
+    <div class="filters-overlay fixed inset-0 z-[64] bg-black/60 backdrop-blur-sm lg:hidden" data-filters-close></div>
+    <aside id="filters" class="filters-panel panel-elev flex flex-col overflow-hidden lg:self-start" aria-label="Фільтри">
+      <div class="flex items-center justify-between border-b border-[var(--line)] px-5 py-4">
+        <p class="flex items-center gap-2 font-display text-[17px] font-semibold"><svg class="ico h-[18px] w-[18px] text-brand-300" aria-hidden="true"><use href="assets/icons.svg#i-sliders"/></svg>Фільтри</p>
+        <div class="flex items-center gap-1">
+          <button type="button" class="lnk flex items-center gap-1.5 rounded-md px-2 py-1.5 text-[13px] text-fog-400" data-reset><svg class="ico h-3.5 w-3.5" aria-hidden="true"><use href="assets/icons.svg#i-reset"/></svg>Скинути</button>
+          <button type="button" class="icon-btn lg:hidden" data-filters-close aria-label="Закрити фільтри"><svg class="ico relative h-4 w-4" aria-hidden="true"><use href="assets/icons.svg#i-x"/></svg></button>
+        </div>
+      </div>
+
+      <form id="filter-form" class="flex-1 overflow-y-auto px-5 pb-5 pt-4" autocomplete="off" novalidate>
+        <div class="f-group">
+          <p class="f-label">Аукціон</p>
+          <div class="chip-row" data-chips="src"></div>
+        </div>
+
+        <div class="f-group">
+          <p class="f-label"><span>Марка</span><span class="normal-case tracking-normal text-fog-500" data-sel-count="make"></span></p>
+          <label class="sr-only" for="make-search">Пошук марки</label>
+          <input id="make-search" class="field-sm mb-2" type="search" placeholder="Пошук марки">
+          <div class="check-list" data-checks="make"></div>
+        </div>
+
+        <div class="f-group">
+          <p class="f-label"><span>Модель</span><span class="normal-case tracking-normal text-fog-500" data-sel-count="model"></span></p>
+          <p class="text-[13px] text-fog-500" data-model-hint>Спершу оберіть марку</p>
+          <div class="check-list hidden" data-checks="model"></div>
+        </div>
+
+        <div class="f-group">
+          <p class="f-label">Рік випуску</p>
+          <div class="f-row">
+            <label class="sr-only" for="f-y1">Рік від</label><select id="f-y1" name="y1" class="field-sm"></select>
+            <label class="sr-only" for="f-y2">Рік до</label><select id="f-y2" name="y2" class="field-sm"></select>
+          </div>
+        </div>
+
+        <div class="f-group">
+          <p class="f-label">Поточна ставка, $</p>
+          <div class="f-row">
+            <label class="sr-only" for="f-p1">Ціна від</label><input id="f-p1" name="p1" type="number" inputmode="numeric" min="0" step="500" class="field-sm" placeholder="від">
+            <label class="sr-only" for="f-p2">Ціна до</label><input id="f-p2" name="p2" type="number" inputmode="numeric" min="0" step="500" class="field-sm" placeholder="до">
+          </div>
+        </div>
+
+        <div class="f-group">
+          <p class="f-label">Пробіг, км</p>
+          <div class="f-row">
+            <label class="sr-only" for="f-km1">Пробіг від</label><input id="f-km1" name="km1" type="number" inputmode="numeric" min="0" step="5000" class="field-sm" placeholder="від">
+            <label class="sr-only" for="f-km2">Пробіг до</label><input id="f-km2" name="km2" type="number" inputmode="numeric" min="0" step="5000" class="field-sm" placeholder="до">
+          </div>
+        </div>
+
+        <div class="f-group">
+          <p class="f-label">Об'єм двигуна, л</p>
+          <div class="f-row">
+            <label class="sr-only" for="f-e1">Об'єм від</label><select id="f-e1" name="e1" class="field-sm"></select>
+            <label class="sr-only" for="f-e2">Об'єм до</label><select id="f-e2" name="e2" class="field-sm"></select>
+          </div>
+        </div>
+
+        <div class="f-group"><p class="f-label">Паливо</p><div class="chip-row" data-chips="fuel"></div></div>
+        <div class="f-group"><p class="f-label">Привід</p><div class="chip-row" data-chips="drive"></div></div>
+        <div class="f-group"><p class="f-label">Коробка передач</p><div class="chip-row" data-chips="tr"></div></div>
+        <div class="f-group"><p class="f-label">Тип кузова</p><div class="chip-row" data-chips="body"></div></div>
+        <div class="f-group"><p class="f-label">Пошкодження</p><div class="chip-row" data-chips="dmg"></div></div>
+
+        <div class="f-group">
+          <p class="f-label">Стан і умови</p>
+          <label class="toggle"><span>На ходу (Run&nbsp;&amp;&nbsp;Drive)</span><input type="checkbox" name="rd"><span class="track" aria-hidden="true"></span></label>
+          <label class="toggle"><span>Є ключі</span><input type="checkbox" name="keys"><span class="track" aria-hidden="true"></span></label>
+          <label class="toggle"><span>Чистий титул (Clean)</span><input type="checkbox" name="clean"><span class="track" aria-hidden="true"></span></label>
+          <label class="toggle"><span>Можна купити одразу (Buy&nbsp;Now)</span><input type="checkbox" name="bn"><span class="track" aria-hidden="true"></span></label>
+        </div>
+      </form>
+
+      <div class="border-t border-[var(--line)] p-4 lg:hidden">
+        <button type="button" class="btn btn-primary w-full !py-[14px]" data-filters-close><span>Показати <span class="tabular" data-result-count>0</span>&nbsp;авто</span></button>
+      </div>
+    </aside>
+
+    <!-- results -->
+    <div class="min-w-0">
+      <div class="panel flex flex-wrap items-center gap-3 p-3">
+        <div class="relative min-w-0 flex-1 basis-[240px]">
+          <svg class="ico pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-fog-500" aria-hidden="true"><use href="assets/icons.svg#i-search"/></svg>
+          <label class="sr-only" for="q">Пошук</label>
+          <input id="q" type="search" class="field-sm !pl-9" placeholder="Марка, модель, VIN або номер лоту">
+        </div>
+        <button type="button" class="btn btn-ghost !px-4 !py-[11px] lg:hidden" data-filters-open>
+          <svg class="ico h-4 w-4" aria-hidden="true"><use href="assets/icons.svg#i-sliders"/></svg>Фільтри<span class="hidden min-w-[20px] rounded-full bg-brand px-1.5 py-0.5 text-center text-[11px] leading-none text-white" data-active-count></span>
+        </button>
+        <div class="relative min-w-0 flex-1 basis-[150px] sm:flex-none sm:basis-auto">
+          <svg class="ico pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-fog-500" aria-hidden="true"><use href="assets/icons.svg#i-sort"/></svg>
+          <label class="sr-only" for="sort">Сортування</label>
+          <select id="sort" class="field-sm !pl-9 sm:!w-auto">
+            <option value="date">Торги найближчі</option>
+            <option value="price_asc">Ставка: від дешевших</option>
+            <option value="price_desc">Ставка: від дорожчих</option>
+            <option value="year_desc">Рік: новіші</option>
+            <option value="km_asc">Пробіг: менший</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+        <p class="text-[14px] text-fog-400" aria-live="polite">Знайдено <span class="font-semibold text-fog tabular" data-result-count>0</span>&nbsp;<span data-result-word>лотів</span></p>
+      </div>
+      <div class="mt-3 flex flex-wrap gap-2" data-pills></div>
+
+      <div id="lots" class="mt-5 grid gap-5 sm:grid-cols-2 xl:grid-cols-3" aria-live="polite"></div>
+
+      <div id="empty" class="panel mt-5 hidden flex-col items-center px-6 py-14 text-center">
+        <span class="ring-ico grid h-14 w-14 place-items-center rounded-full border border-brand-300/30 text-brand-300"><svg class="ico h-6 w-6" aria-hidden="true"><use href="assets/icons.svg#i-search"/></svg></span>
+        <h2 class="mt-5 font-display text-[20px] font-semibold">Нічого не знайдено</h2>
+        <p class="mt-2 max-w-[420px] text-[14px] text-fog-400">Спробуйте змінити фільтри або залиште заявку — підберемо авто під ваш запит, навіть якщо його ще немає в&nbsp;каталозі.</p>
+        <div class="mt-6 flex flex-wrap justify-center gap-3">
+          <button type="button" class="btn btn-ghost" data-reset>Скинути фільтри</button>
+          <button type="button" class="btn btn-primary" data-open-modal>Підібрати авто</button>
+        </div>
+      </div>
+
+      <div id="error" class="panel mt-5 hidden flex-col items-center px-6 py-14 text-center">
+        <h2 class="font-display text-[20px] font-semibold">Не вдалося завантажити каталог</h2>
+        <p class="mt-2 max-w-[420px] text-[14px] text-fog-400">Оновіть сторінку трохи згодом або зателефонуйте нам — підберемо авто вручну.</p>
+        <button type="button" class="btn btn-primary mt-6" data-reload>Оновити сторінку</button>
+      </div>
+
+      <div class="mt-8 flex justify-center">
+        <button type="button" id="more" class="btn btn-ghost hidden">Показати ще</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="mx-auto max-w-shell px-4 pt-14 sm:px-6 lg:px-8" aria-labelledby="cat-cta-h">
+    <div class="panel-elev reveal relative overflow-hidden p-6 sm:p-10">
+      <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(46,133,113,.35),transparent_65%)]"></div>
+      <div class="relative grid items-center gap-6 lg:grid-cols-[1fr_auto]">
+        <div>
+          <h2 id="cat-cta-h" class="h-sec text-[24px] leading-[1.1] sm:text-[32px]">Не знайшли потрібне авто?</h2>
+          <p class="mt-3 max-w-[560px] text-[15px] text-fog-300">На аукціонах щодня з'являються тисячі нових лотів. Розкажіть, що шукаєте, — підберемо варіанти і повідомимо, щойно з'явиться відповідний.</p>
+        </div>
+        <button type="button" class="btn btn-primary" data-open-modal>Залишити запит
+          <svg class="ico arrow h-4 w-4" aria-hidden="true"><use href="assets/icons.svg#i-arrow-right"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ============ FOOTER / CONTACTS ============ -->
+<footer id="contacts" class="relative mt-20 border-t border-[var(--line)] bg-ink-900">
+  <div class="mx-auto grid max-w-shell gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.2fr_.7fr_.7fr_1.3fr] lg:px-8">
+    <div>
+      <a href="index.html#top" class="lnk inline-flex items-center gap-3" aria-label="Car Franko Import">
+        <img src="brand_assets/logo-mark-green.png" alt="" class="h-10 w-auto">
+        <span class="leading-none"><span class="block font-display text-[19px] font-semibold">Car Franko</span><span class="eyebrow mt-1 block text-[10px] text-fog-400">Import</span></span>
+      </a>
+      <p class="mt-5 max-w-[280px] text-[13px] text-fog-400">Авто зі США та Європи під ключ. Доставка з Литви власними автовозами.</p>
+      <div class="mt-5 flex gap-2">
+        <a href="https://www.instagram.com/car_franko_import" target="_blank" rel="noopener" class="icon-btn border border-[var(--line-strong)]" aria-label="Instagram"><svg class="ico relative h-5 w-5" aria-hidden="true"><use href="assets/icons.svg#i-instagram"/></svg></a>
+        <a href="https://t.me/" target="_blank" rel="noopener" class="icon-btn border border-[var(--line-strong)]" aria-label="Telegram"><svg class="ico relative h-5 w-5" aria-hidden="true"><use href="assets/icons.svg#i-telegram"/></svg></a>
+        <a href="viber://chat?number=%2B380667668005" class="icon-btn border border-[var(--line-strong)]" aria-label="Viber"><svg class="ico relative h-5 w-5" aria-hidden="true"><use href="assets/icons.svg#i-viber"/></svg></a>
+      </div>
+    </div>
+    <nav aria-label="Послуги">
+      <p class="eyebrow mb-4 text-brand-300">Послуги</p>
+      <ul class="space-y-0.5 text-[13px] text-fog-300">
+        <li><a href="index.html#usa" class="lnk flink">Авто зі США</a></li>
+        <li><a href="index.html#lithuania" class="lnk flink">Авто з Литви</a></li>
+        <li><a href="catalog.html" class="lnk flink">Каталог авто</a></li>
+        <li><a href="index.html#services" class="lnk flink">Розмитнення</a></li>
+        <li><a href="index.html#services" class="lnk flink">Калькулятор</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Компанія">
+      <p class="eyebrow mb-4 text-brand-300">Компанія</p>
+      <ul class="space-y-0.5 text-[13px] text-fog-300">
+        <li><a href="index.html#about" class="lnk flink">Про нас</a></li>
+        <li><a href="index.html#process" class="lnk flink">Етапи роботи</a></li>
+        <li><a href="index.html#reviews" class="lnk flink">Відгуки</a></li>
+        <li><a href="index.html#faq" class="lnk flink">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="panel-elev p-6">
+      <p class="font-display text-[17px] font-semibold">Залишились питання?</p>
+      <p class="mt-1 text-[13px] text-fog-400">Розкажіть, яке авто шукаєте — підкажемо наступний крок.</p>
+      <ul class="mt-4 space-y-0.5 text-[14px]">
+        <li><a href="tel:+380667668005" class="lnk flex items-center gap-3 tabular py-1.5"><svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="assets/icons.svg#i-phone"/></svg>+38 (066) 76 68 005</a></li>
+        <li><a href="tel:+380970079220" class="lnk flex items-center gap-3 tabular py-1.5"><svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="assets/icons.svg#i-phone"/></svg>+38 (097) 00 79 220</a></li>
+        <li><a href="https://maps.app.goo.gl/Qz3usTykE7Fo6sNAA" target="_blank" rel="noopener" class="lnk flex items-start gap-3 py-1.5"><svg class="ico mt-1 h-4 w-4 shrink-0 text-brand-300" aria-hidden="true"><use href="assets/icons.svg#i-map-pin"/></svg><span>вул. Приозерна, 33, с. Крихівці,<br>Івано-Франківська обл.</span></a></li>
+        <li><a href="https://www.instagram.com/car_franko_import" target="_blank" rel="noopener" class="lnk flex items-center gap-3 py-1.5"><svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="assets/icons.svg#i-instagram"/></svg>@car_franko_import</a></li>
+      </ul>
+      <button type="button" class="btn btn-primary mt-6 w-full" data-open-modal>Написати нам</button>
+    </div>
+  </div>
+  <div class="border-t border-[var(--line)]">
+    <div class="mx-auto flex max-w-shell flex-col gap-2 px-4 py-5 text-[12px] text-fog-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <p>© 2026 Car Franko Import. Авто зі США та Європи.</p>
+      <div class="flex gap-6"><a href="#" class="lnk flink">Політика конфіденційності</a><a href="#" class="lnk flink">Угода користувача</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING CONTACT ============ -->
+<div class="fab-wrap fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 sm:bottom-7 sm:right-7">
+  <div class="bubble panel-elev relative w-[260px] p-4" id="bubble" role="dialog" aria-label="Швидкий зв'язок">
+    <button type="button" class="icon-btn absolute right-1.5 top-1.5 h-7 w-7" data-bubble-close aria-label="Закрити"><svg class="ico relative h-3.5 w-3.5" aria-hidden="true"><use href="assets/icons.svg#i-x"/></svg></button>
+    <p class="pr-6 font-display text-[15px] font-semibold leading-snug">Підберемо авто під ваш бюджет</p>
+    <p class="mt-1 text-[12px] leading-relaxed text-fog-400">Залиште номер — передзвонимо за 15 хвилин.</p>
+    <button type="button" class="btn btn-primary mt-3 w-full !py-2.5 text-[13px]" data-open-modal>Залишити контакт</button>
+  </div>
+  <button type="button" class="fab relative grid h-14 w-14 place-items-center rounded-full bg-brand text-white shadow-[0_12px_30px_-6px_rgba(35,104,89,.7),0_4px_10px_rgba(0,0,0,.4)]" data-open-modal aria-label="Зв'язатися з нами">
+    <span class="pulse"></span><span class="pulse p2"></span>
+    <svg class="ico fab-ico relative h-6 w-6" aria-hidden="true"><use href="assets/icons.svg#i-phone"/></svg>
+  </button>
+</div>
+
+<!-- ============ MODAL ============ -->
+<div id="modal" class="modal fixed inset-0 z-[70] grid place-items-center bg-black/70 p-4 backdrop-blur-sm" aria-hidden="true">
+  <div class="modal-card panel-elev relative w-full max-w-[440px] p-6 sm:p-8" role="dialog" aria-modal="true" aria-labelledby="modal-h">
+    <button type="button" class="icon-btn absolute right-3 top-3" data-close-modal aria-label="Закрити"><svg class="ico relative h-4 w-4" aria-hidden="true"><use href="assets/icons.svg#i-x"/></svg></button>
+    <img src="brand_assets/logo-mark-green.png" alt="" class="h-8 w-auto">
+    <h2 id="modal-h" class="mt-5 font-display text-[24px] font-semibold leading-tight">Залиште заявку</h2>
+    <p class="mt-2 text-[14px] text-fog-400">Менеджер зв'яжеться з вами протягом 15 хвилин у робочий час.</p>
+    <p id="m-note" class="mt-4 hidden rounded-md border border-[var(--line)] bg-ink-900 px-3 py-2 text-[13px] text-brand-200"></p>
+    <form class="lead-form mt-6 grid gap-3" novalidate>
+      <input type="hidden" name="lot" value="">
+      <label class="sr-only" for="m-name">Ім'я</label>
+      <input id="m-name" name="name" class="field" placeholder="Ваше ім'я" autocomplete="name">
+      <label class="sr-only" for="m-phone">Телефон</label>
+      <input id="m-phone" name="phone" type="tel" class="field" placeholder="+38 (0__) ___ __ __" autocomplete="tel" required>
+      <fieldset class="mt-1">
+        <legend class="eyebrow mb-2 text-[10px] text-fog-500">Напрям</legend>
+        <div class="flex flex-wrap gap-2">
+          <label class="chip relative"><input type="radio" name="topic" value="usa" checked><span>Авто зі США</span></label>
+          <label class="chip relative"><input type="radio" name="topic" value="lithuania"><span>Авто з Литви</span></label>
+          <label class="chip relative"><input type="radio" name="topic" value="other"><span>Інше питання</span></label>
+        </div>
+      </fieldset>
+      <button type="submit" class="btn btn-primary mt-3 w-full !py-[15px]">Надіслати заявку</button>
+      <p class="form-msg hidden text-center text-[13px] text-brand-300" role="status"></p>
+    </form>
+  </div>
+</div>
+
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/catalog.js" defer></script>
+</body>
+</html>
