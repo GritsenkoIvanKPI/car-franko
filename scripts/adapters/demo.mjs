@@ -55,7 +55,7 @@ export async function fetchLots() {
       location: { city, state },
       sale_date: new Date(now + saleInHours * H).toISOString(),
       current_bid_usd: currentBid, buy_now_usd: buyNow, est_retail_usd: estRetail,
-      color, images: [`images/lots/${image}.jpg`],
+      color, images: [], // demo lots have no photos: the catalogue shows genuine auction photos only
     };
   });
 }

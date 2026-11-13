@@ -44,7 +44,7 @@ const lots = rows.flatMap(r => {
     fuel: nz(r.fuel), engine_l: r.engine_l === null ? null : Number(r.engine_l), cylinders: r.cylinders,
     transmission: nz(r.transmission), drive: nz(r.drive),
     odometer_mi: r.odometer_mi, odometer_km: r.odometer_km,
-    primary_damage: nz(r.primary_damage), secondary_damage: nz(r.secondary_damage),
+    primary_damage: nz(r.primary_damage), secondary_damage: r.secondary_damage === r.primary_damage ? null : nz(r.secondary_damage),
     title: r.title_type, condition: nz(r.drivability), keys: r.keys,
     location: { city: r.location_city ? String(r.location_city).replace(/\b\w+/g, (w: string) => w[0]!.toUpperCase() + w.slice(1).toLowerCase()) : null, state: r.location_state },
     sale_date: r.sale_date ? new Date(r.sale_date).toISOString() : null,
