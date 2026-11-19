@@ -35,6 +35,47 @@
     return band.eurPerLitre * (engineL || 0) * ageCoefficient(prodYear, currentYear, cfg.ageCoefficient);
   }
 
+  const NBSP = '\u00a0';
+
+  /** Cheapest port for a set of land prices: land + markup + that port's container. */
+  function bestPort(land, shipping) {
+    let best = null;
+    for (const [key, landUsd] of Object.entries(land)) {
+      const port = shipping.ports[key];
+      if (!port || !(landUsd >= 0)) continue;
+      const usd = landUsd + shipping.markupPerLocationUsd + port.containerUsd;
+      if (!best || usd < best.usd) best = { portKey: key, port, landUsd, usd };
+    }
+    return best;
+  }
+
+  const median = xs => { const a = [...xs].sort((x, y) => x - y), m = a.length >> 1; return a.length % 2 ? a[m] : Math.round((a[m - 1] + a[m]) / 2); };
+
+  /**
+   * Delivery from the car's location to Klaipėda (before the hybrid/electric surcharge).
+   * Exact location from the price list → its own land prices.
+   * Other place in a listed state → the state's median land price to each port.
+   * State missing from the list → unlistedLandUsd to the state's default port.
+   * Returns { state, location|null, portKey, port, landUsd, usd }.
+   */
+  function resolveRoute(stateCode, city, states, shipping) {
+    const state = states[stateCode] ? stateCode : 'NJ';
+    const inState = (shipping.locations || []).filter(l => l.state === state);
+    const location = city ? inState.find(l => l.city === city) || null : null;
+    let best = null;
+    if (location) best = bestPort(location.land, shipping);
+    else if (inState.length) {
+      const land = {};
+      for (const key of Object.keys(shipping.ports)) {
+        const xs = inState.map(l => l.land[key]).filter(v => v >= 0);
+        if (xs.length) land[key] = median(xs);
+      }
+      best = bestPort(land, shipping);
+    }
+    if (!best) best = bestPort({ [states[state][1]]: shipping.unlistedLandUsd }, shipping);
+    return { state, location, ...best };
+  }
+
   /** Pension fund fee (USD) at first registration. */
   function pensionFee(valueUsd, { fuel, usdUah }, cfg) {
     if (fuel === 'electric' && cfg.electricExempt) return { rate: 0, usd: 0 };
@@ -45,7 +86,7 @@
 
   /**
    * Full landed cost.
-   * input: { price, fuel, engineL, batteryKwh, prodYear, state, currentYear?, usdUah?, eurUah? }
+   * input: { price, fuel, engineL, batteryKwh, prodYear, state, location? (city from the price list), currentYear?, usdUah?, eurUah? }
    */
   function calculate(input, config) {
     const currentYear = input.currentYear ?? new Date().getFullYear();
@@ -55,13 +96,12 @@
     const price = Math.max(0, Number(input.price) || 0);
     const fuel = input.fuel || 'gasoline';
 
-    const state = config.states[input.state] ? input.state : 'NJ';
-    const portKey = config.states[state][1];
-    const port = config.shipping.ports[portKey];
+    const route = resolveRoute(input.state, input.location, config.states, config.shipping);
+    const { port, portKey, state, location } = route;
     const surcharge = fuel === 'hybrid' || fuel === 'electric' ? config.shipping.hybridElectricSurchargeUsd : 0;
 
     const fee = auctionFee(price, config.auctionFee);
-    const shipping = port.usd + surcharge;
+    const shipping = route.usd + surcharge;
     const s = config.services;
 
     // customs
@@ -79,7 +119,7 @@
         { key: 'auctionFee', label: 'Аукціонний збір', usd: fee },
       ] },
       { key: 'delivery', title: 'Доставка', items: [
-        { key: 'shipping', label: `Доставка по США й морем до порту ${config.shipping.destinationPort}`, note: `через порт ${port.label}`, usd: shipping },
+        { key: 'shipping', label: `Доставка до порту ${config.shipping.destinationPort}`, note: `${location ? `з ${location.city}, ${location.state}` : 'середня ціна по штату'}, через порт ${port.label}${surcharge ? `; гібрид чи електро +${surcharge}${NBSP}$` : ''}`, usd: shipping },
         { key: 'forwarding', label: 'Експедиторські послуги в порту', usd: s.forwardingUsd },
         { key: 'toUkraine', label: s.deliveryToUkraineLabel, usd: s.deliveryToUkraineUsd },
       ] },
@@ -114,11 +154,11 @@
 
     return {
       groups, total, extras, extrasTotal, grandTotal: total + extrasTotal,
-      customsValue, customsTotal, port: { key: portKey, ...port }, state,
+      customsValue, customsTotal, port: { key: portKey, ...port }, state, location,
       fx: { usdUah, eurUah, eurUsd },
       ageCoefficient: ageCoefficient(Number(input.prodYear), currentYear, c.ageCoefficient),
     };
   }
 
-  return { ageCoefficient, auctionFee, exciseEur, pensionFee, calculate };
+  return { ageCoefficient, auctionFee, exciseEur, pensionFee, bestPort, resolveRoute, calculate };
 });

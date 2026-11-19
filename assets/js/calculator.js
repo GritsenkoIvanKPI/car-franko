@@ -1,5 +1,5 @@
 // Car Franko Import — calculator page. Settings: data/calculator.json, maths: assets/js/calc-core.js.
-// Prefill via URL: calculator.html?price=12000&fuel=diesel&engine=2.0&year=2019&state=TX (or &kwh=75 for electric)
+// Prefill via URL: calculator.html?price=12000&fuel=diesel&engine=2.0&year=2019&state=TX&loc=Houston (or &kwh=75 for electric)
 (() => {
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
@@ -22,6 +22,7 @@
     batteryKwh: Number(form.elements.batteryKwh.value) || 0,
     prodYear: Number(form.elements.prodYear.value),
     state: form.elements.state.value,
+    location: form.elements.location.value,
     usdUah: FX.usdUah,
     eurUah: FX.eurUah,
   });
@@ -31,7 +32,7 @@
     const r = window.CFCalc.calculate(input, CFG);
     $('[data-engine]').classList.toggle('hidden', input.fuel === 'electric');
     $('[data-battery]').classList.toggle('hidden', input.fuel !== 'electric');
-    $('[data-port]').textContent = typo(`Порт відправлення: ${r.port.label} → ${CFG.shipping.destinationPort}`);
+    $('[data-port]').textContent = typo(`${r.location ? `${r.location.city}, ${r.location.state}` : 'Штат ' + r.state} → порт ${r.port.label} → ${CFG.shipping.destinationPort}`);
 
     $('[data-total]').textContent = usd(r.total);
     $('[data-bar-total]').textContent = usd(r.total);
@@ -52,9 +53,11 @@
 
     const fuelLabel = { gasoline: 'бензин', diesel: 'дизель', hybrid: 'гібрид', electric: 'електро' }[input.fuel];
     const spec = input.fuel === 'electric' ? `${input.batteryKwh} кВт·год` : `${input.engineL.toFixed(1).replace('.', ',')} л`;
-    $('[data-calc-cta]').dataset.note = `Розрахунок: ${usd(input.price)} · ${fuelLabel} ${spec} · ${input.prodYear} · штат ${input.state} → під ключ ≈ ${usd(r.total)}`;
+    const where = r.location ? `${r.location.city}, ${r.location.state}` : `штат ${input.state}`;
+    $('[data-calc-cta]').dataset.note = `Розрахунок: ${usd(input.price)} · ${fuelLabel} ${spec} · ${input.prodYear} · ${where} → під ключ ≈ ${usd(r.total)}`;
 
     const q = new URLSearchParams({ price: input.price, fuel: input.fuel, year: input.prodYear, state: input.state });
+    if (r.location) q.set('loc', r.location.city);
     if (input.fuel === 'electric') q.set('kwh', input.batteryKwh); else q.set('engine', input.engineL);
     history.replaceState(null, '', `?${q}`);
   }
@@ -68,7 +71,18 @@
     if (p.get('kwh')) form.elements.batteryKwh.value = p.get('kwh');
     if (p.get('year') && form.elements.prodYear.querySelector(`option[value="${p.get('year')}"]`)) form.elements.prodYear.value = p.get('year');
     if (p.get('state') && CFG.states[p.get('state')]) form.elements.state.value = p.get('state');
+    fillLocations(p.get('loc'));
     range.value = Math.min(Number(range.max), Math.max(Number(range.min), Number(price.value) || 0));
+  }
+
+  // locations of the chosen state; the first option uses the state's average land price
+  function fillLocations(selected) {
+    const st = form.elements.state.value;
+    const list = (CFG.shipping.locations || []).filter(l => l.state === st).sort((a, b) => a.city.localeCompare(b.city));
+    form.elements.location.innerHTML = `<option value="">${list.length ? 'Інша локація в штаті' : 'Будь-яка локація в штаті'}</option>`
+      + list.map(l => `<option value="${esc(l.city)}">${esc(l.city)}</option>`).join('');
+    form.elements.location.disabled = !list.length;
+    if (selected && list.some(l => l.city === selected)) form.elements.location.value = selected;
   }
 
   async function loadFx() {
@@ -86,6 +100,7 @@
   // events
   price.addEventListener('input', () => { range.value = Math.min(Number(range.max), Math.max(Number(range.min), Number(price.value) || 0)); render(); });
   range.addEventListener('input', () => { price.value = range.value; render(); });
+  form.elements.state.addEventListener('change', () => fillLocations());
   form.addEventListener('input', e => { if (e.target !== price && e.target !== range) render(); });
   form.addEventListener('change', render);
   form.addEventListener('submit', e => e.preventDefault());

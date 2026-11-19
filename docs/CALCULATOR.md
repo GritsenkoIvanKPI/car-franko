@@ -6,26 +6,45 @@ All numbers come from [`data/calculator.json`](../data/calculator.json). Edit th
 
 ## Before going live: set your own prices
 
-These values in `data/calculator.json` are **placeholders**, taken from a competitor's public calculator as a starting point:
+Values marked **confirmed** came from Car Franko. The rest are placeholders until the real prices arrive:
 
-| Key | What it is | Placeholder |
+| Key | What it is | Value now |
 |---|---|---|
-| `shipping.ports.*.usd` | Trucking to the US port, ocean freight and insurance to Klaipėda | NJ 1550, GA 1620, TX 1645, CA 2050 |
+| `shipping.ports.*.containerUsd` | Container from the US port to Klaipėda | **confirmed**: Savannah 1050, Elizabeth NJ 1100, Houston 1225, Los Angeles 1650, Indianapolis 1250 |
+| `shipping.markupPerLocationUsd` | Added to every location's land price | **50** (confirmed) |
+| `shipping.locations` | Land price from each location to each port | **forwarder's price list** (450 locations) |
+| `shipping.unlistedLandUsd` | Land price for a state with no locations in the list (only DC now) | 600 |
 | `shipping.hybridElectricSurchargeUsd` | Extra for hybrids and electric cars | 200 |
 | `services.forwardingUsd` | Forwarding services at the port | 370 |
 | `services.customsBrokerUsd` | Customs broker | 200 |
 | `services.deliveryToUkraineUsd` | Lithuania → Ivano-Frankivsk on our own truck | 800 |
-| `services.companyFeeUsd` | Car Franko's fee | 400 |
-| `services.certificationUsd`, `registrationUsd` | Certification, registration | 100, 60 |
+| `services.companyFeeUsd` | Car Franko's services | **500** (confirmed) |
+| `services.certificationUsd` | Certification | **170** (confirmed) |
+| `services.registrationUsd` | Registration | 60 |
 | `auctionFee` | Auction buyer fee curve | approximate |
 
-`states` maps each US state to the departure port used for shipping.
+## Delivery: 5 ports and the forwarder's price list
+
+The customer sees one delivery figure: land transport from the car's location to a US port + $50 + that port's container to Klaipėda. The calculator works it out for each of the 5 ports and uses the cheapest.
+
+- `shipping.ports` holds the 5 ports, their container prices and `source`, the port's column header in the price list.
+- `shipping.locations` holds the land price from each location to each port. It is imported from the forwarder's public price list; auction and yard names are dropped, only city and state are kept.
+- On the page the customer picks a state, then a location. "Інша локація в штаті" uses the state's median land price to each port.
+- Oversized vehicles are quoted individually; the page says so.
+
+To refresh the price list (it changes from time to time):
+
+```
+node scripts/import-locations.mjs "https://www.cargoloop.com/LocalTransportation.aspx"
+```
+
+The script refuses to write anything if it finds fewer than 50 locations or a port column is missing.
 
 ## How the calculation works
 
 ### Customs value
 
-Car price + auction fee + shipping to the EU port.
+Car price + auction fee + delivery to the EU port.
 
 ### Customs duties
 
@@ -70,8 +89,8 @@ Our calculator follows the Tax Code. Re-check the rates each January.
 The calculator can be pre-filled from its address:
 
 ```
-calculator.html?price=12000&fuel=diesel&engine=2.0&year=2019&state=TX
+calculator.html?price=12000&fuel=diesel&engine=2.0&year=2019&state=TX&loc=Houston
 calculator.html?price=20000&fuel=electric&kwh=75&year=2022&state=CA
 ```
 
-Car pages use this for their "Розрахувати вартість під ключ" button.
+Car pages use this, including the car's location, for their "Розрахувати вартість під ключ" button.

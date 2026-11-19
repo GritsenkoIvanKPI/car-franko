@@ -96,7 +96,7 @@
 
       <fieldset class="mt-7">
         <legend class="f-label">Тип пального</legend>
-        <div class="chip-row">
+        <div class="chip-row chip-row--even">
           <label class="chip relative"><input type="radio" name="fuel" value="gasoline" checked><span>Бензин</span></label>
           <label class="chip relative"><input type="radio" name="fuel" value="diesel"><span>Дизель</span></label>
           <label class="chip relative"><input type="radio" name="fuel" value="hybrid"><span>Гібрид</span></label>
@@ -120,14 +120,17 @@
       </div>
 
       <div class="mt-7">
-        <label for="c-state" class="f-label">Де знаходиться авто (штат США)</label>
-        <select id="c-state" name="state" class="field"></select>
+        <p class="f-label">Де знаходиться авто</p>
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div><label for="c-state" class="sr-only">Штат США</label><select id="c-state" name="state" class="field"></select></div>
+          <div><label for="c-location" class="sr-only">Локація</label><select id="c-location" name="location" class="field"></select></div>
+        </div>
         <p class="mt-2 flex items-center gap-2 text-[13px] text-fog-400"><svg class="ico h-4 w-4 text-brand-300" aria-hidden="true"><use href="assets/icons.svg#i-ship"/></svg><span data-port></span></p>
       </div>
 
       <p class="mt-7 flex items-start gap-2 rounded-[8px] border border-[var(--line)] bg-ink-900/40 px-4 py-3 text-[13px] leading-relaxed text-fog-400">
         <svg class="ico mt-0.5 h-4 w-4 text-brand-300" aria-hidden="true"><use href="assets/icons.svg#i-alert"/></svg>
-        <span>Розрахунок орієнтовний. Точну суму для конкретного авто менеджер порахує безкоштовно до&nbsp;торгів.</span>
+        <span>Розрахунок орієнтовний. Точну вартість доставки й&nbsp;усю суму для конкретного авто уточніть у&nbsp;менеджера&nbsp;— порахуємо безкоштовно до&nbsp;торгів. Доставку негабаритних авто рахуємо індивідуально.</span>
       </p>
     </form>
 
@@ -164,7 +167,7 @@
       <div class="mt-6 grid gap-6 text-[14px] leading-relaxed text-fog-300 sm:grid-cols-3">
         <div><p class="font-display text-[15px] font-semibold text-fog">Мито 10%</p><p class="mt-1 text-fog-400">Від митної вартості: ціна авто, аукціонний збір і&nbsp;доставка до&nbsp;порту в&nbsp;Європі. Для електромобілів&nbsp;— 0%.</p></div>
         <div><p class="font-display text-[15px] font-semibold text-fog">Акциз</p><p class="mt-1 text-fog-400">Ставка за&nbsp;літр × об'єм × коефіцієнт віку. Бензин 50&nbsp;€ (понад 3&nbsp;л&nbsp;— 100&nbsp;€), дизель 75&nbsp;€ (понад 3,5&nbsp;л&nbsp;— 150&nbsp;€). Гібрид&nbsp;— 100&nbsp;€, електро&nbsp;— 1&nbsp;€ за&nbsp;кВт·год.</p></div>
-        <div><p class="font-display text-[15px] font-semibold text-fog">ПДВ 20%</p><p class="mt-1 text-fog-400">Від суми митної вартості, мита та&nbsp;акцизу. З&nbsp;2026 року сплачується й&nbsp;для&nbsp;електромобілів.</p></div>
+        <div><p class="font-display text-[15px] font-semibold text-fog">ПДВ 20%</p><p class="mt-1 text-fog-400">Від суми митної вартості, мита та&nbsp;акцизу. З&nbsp;2026&nbsp;року його&nbsp;сплачують і&nbsp;за&nbsp;електромобілі.</p></div>
       </div>
     </div>
   </section>

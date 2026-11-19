@@ -47,13 +47,14 @@ test('pension fund: 3% / 4% / 5% by value in subsistence minimums; electric exem
 test('full calculation: $10 000 petrol 2.0 L 2019 from Texas', () => {
   const r = C.calculate({ ...base, price: 10000, fuel: 'gasoline', engineL: 2.0, prodYear: 2019, state: 'TX' }, cfg);
   const item = k => r.groups.flatMap(g => g.items).find(i => i.key === k).usd;
-  assert.equal(r.port.key, 'TX');
   assert.equal(item('auctionFee'), 1140);
-  assert.equal(item('shipping'), 1645);
-  assert.equal(r.customsValue, 12785);
-  assert.equal(item('duty'), 1279);                     // 10 %
+  const route = C.resolveRoute('TX', '', cfg.states, cfg.shipping);
+  assert.equal(item('shipping'), route.usd);            // one delivery figure: land + markup + container
+  const cv = 10000 + 1140 + route.usd;
+  assert.equal(r.customsValue, cv);
+  assert.equal(item('duty'), Math.round(cv * 0.1));     // 10 %
   assert.equal(item('excise'), Math.round(600 * 50.3379 / 45.3849));
-  assert.equal(item('vat'), Math.round((12785 + 1279 + item('excise')) * 0.2));
+  assert.equal(item('vat'), Math.round((cv + item('duty') + item('excise')) * 0.2));
   assert.equal(r.total, r.groups.reduce((a, g) => a + g.usd, 0));
   assert.equal(r.grandTotal, r.total + r.extrasTotal);
   assert.ok(r.extras.find(e => e.key === 'pension').label.includes('4%'));
@@ -65,11 +66,50 @@ test('electric: no duty, excise by battery, VAT applies, shipping surcharge, no 
   assert.equal(item('duty'), 0);
   assert.equal(item('excise'), Math.round(75 * 50.3379 / 45.3849));
   assert.ok(item('vat') > 0);
-  assert.equal(item('shipping'), cfg.shipping.ports.CA.usd + cfg.shipping.hybridElectricSurchargeUsd);
+  assert.equal(item('shipping'), C.resolveRoute('CA', '', cfg.states, cfg.shipping).usd + cfg.shipping.hybridElectricSurchargeUsd);
   assert.equal(r.extras.find(e => e.key === 'pension').usd, 0);
 });
 
 test('unknown state falls back to the New Jersey port', () => {
   const r = C.calculate({ ...base, price: 5000, fuel: 'gasoline', engineL: 1.5, prodYear: 2018, state: 'XX' }, cfg);
   assert.equal(r.port.key, 'NJ');
+});
+
+const ship = { ...cfg.shipping, markupPerLocationUsd: 50, ports: { GA: { label: 'GA', containerUsd: 1050 }, NJ: { label: 'NJ', containerUsd: 1100 } } };
+
+test('exact location: cheapest port wins, delivery = land + $50 + container', () => {
+  const shipping = { ...ship, locations: [{ city: 'Elkton', state: 'MD', land: { GA: 700, NJ: 330 } }] };
+  const r = C.resolveRoute('MD', 'Elkton', cfg.states, shipping);
+  assert.equal(r.portKey, 'NJ');
+  assert.equal(r.usd, 330 + 50 + 1100);
+  assert.equal(r.location.city, 'Elkton');
+});
+
+test('another place in a listed state uses the state median per port', () => {
+  const shipping = { ...ship, locations: [
+    { city: 'A', state: 'GA', land: { GA: 200, NJ: 900 } },
+    { city: 'B', state: 'GA', land: { GA: 300, NJ: 900 } },
+    { city: 'C', state: 'GA', land: { GA: 900, NJ: 900 } },
+  ] };
+  const r = C.resolveRoute('GA', 'Nowhere', cfg.states, shipping);
+  assert.equal(r.location, null);
+  assert.equal(r.portKey, 'GA');
+  assert.equal(r.usd, 300 + 50 + 1050);
+});
+
+test('a state missing from the price list uses its default port and unlistedLandUsd', () => {
+  const r = C.resolveRoute('DC', '', cfg.states, cfg.shipping);
+  assert.equal(r.portKey, cfg.states.DC[1]);
+  assert.equal(r.usd, cfg.shipping.unlistedLandUsd + cfg.shipping.markupPerLocationUsd + cfg.shipping.ports[r.portKey].containerUsd);
+});
+
+test('price list: 5 ports, every state maps to a port, no auction names', () => {
+  assert.deepEqual(Object.keys(cfg.shipping.ports).sort(), ['CA', 'GA', 'IN', 'NJ', 'TX']);
+  for (const [code, [, port]] of Object.entries(cfg.states)) assert.ok(cfg.shipping.ports[port], code);
+  assert.ok(cfg.shipping.locations.length > 300);
+  for (const l of cfg.shipping.locations) {
+    assert.ok(cfg.states[l.state], l.state);
+    assert.ok(Object.keys(l.land).every(k => cfg.shipping.ports[k] && l.land[k] > 0), l.city);
+    assert.deepEqual(Object.keys(l).sort(), ['city', 'land', 'state']);
+  }
 });
