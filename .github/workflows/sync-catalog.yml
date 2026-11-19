@@ -1,0 +1,42 @@
+# Refreshes data/lots.json from the auction data provider on a schedule.
+# Inactive until the repository variable CATALOG_PROVIDER is set to "http"
+# (Settings → Secrets and variables → Actions), together with the secrets
+# CATALOG_API_URL and CATALOG_API_KEY.
+name: Sync catalogue
+
+on:
+  schedule:
+    - cron: '0 */3 * * *'   # every 3 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-catalog
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    if: ${{ vars.CATALOG_PROVIDER == 'http' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Fetch lots
+        env:
+          CATALOG_PROVIDER: ${{ vars.CATALOG_PROVIDER }}
+          CATALOG_API_URL: ${{ secrets.CATALOG_API_URL }}
+          CATALOG_API_KEY: ${{ secrets.CATALOG_API_KEY }}
+          CATALOG_API_AUTH: ${{ vars.CATALOG_API_AUTH }}
+        run: node scripts/sync-lots.mjs
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- data/lots.json; then echo "No changes"; exit 0; fi
+          git config user.name "catalog-bot"
+          git config user.email "catalog-bot@users.noreply.github.com"
+          git add data/lots.json
+          git commit -m "Update catalogue lots"
+          git push
