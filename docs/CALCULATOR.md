@@ -14,7 +14,7 @@ Values marked **confirmed** came from Car Franko. The rest are placeholders unti
 | `shipping.markupPerLocationUsd` | Added to every location's land price | **50** (confirmed) |
 | `shipping.locations` | Land price from each location to each port | **forwarder's price list** (450 locations) |
 | `shipping.unlistedLandUsd` | Land price for a state with no locations in the list (only DC now) | 600 |
-| `shipping.hybridElectricSurchargeUsd` | Extra for hybrids and electric cars | 200 |
+| `shipping.hybridElectricSurchargeUsd` | Extra for hybrids and electric cars | **200** (confirmed) |
 | `services.forwardingUsd` | Forwarding services at the port | 370 |
 | `services.customsBrokerUsd` | Customs broker | 200 |
 | `services.deliveryToUkraineUsd` | Lithuania → Ivano-Frankivsk on our own truck | 800 |
