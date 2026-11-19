@@ -12,7 +12,7 @@ Values marked **confirmed** came from Car Franko. The rest are placeholders unti
 |---|---|---|
 | `shipping.ports.*.containerUsd` | Container from the US port to Klaipėda | **confirmed**: Savannah 1050, Elizabeth NJ 1100, Houston 1225, Los Angeles 1650, Indianapolis 1250 |
 | `shipping.markupPerLocationUsd` | Added to every location's land price | **50** (confirmed) |
-| `shipping.locations` | Land price from each location to each port | **forwarder's price list** (450 locations) |
+| `shipping.locations` | Land price from each location to each port | **forwarder's price list** (555 locations, every US state except DC) |
 | `shipping.unlistedLandUsd` | Land price for a state with no locations in the list (only DC now) | 600 |
 | `shipping.hybridElectricSurchargeUsd` | Extra for hybrids and electric cars | **200** (confirmed) |
 | `services.forwardingUsd` | Forwarding services at the port | 370 |
@@ -28,7 +28,7 @@ Values marked **confirmed** came from Car Franko. The rest are placeholders unti
 The customer sees one delivery figure: land transport from the car's location to a US port + $50 + that port's container to Klaipėda. The calculator works it out for each of the 5 ports and uses the cheapest.
 
 - `shipping.ports` holds the 5 ports, their container prices and `source`, the port's column header in the price list.
-- `shipping.locations` holds the land price from each location to each port. It is imported from the forwarder's public price list; auction and yard names are dropped, only city and state are kept.
+- `shipping.locations` holds the land price from each location to each port. It is imported from the forwarder's public price list: one entry per pickup location under the name the forwarder uses (e.g. "Atlanta East 30680"), with its city and state. The auction column is dropped, and locations named after an auction brand get their city name instead.
 - On the page the customer picks a state, then a location. "Інша локація в штаті" uses the state's median land price to each port.
 - Oversized vehicles are quoted individually; the page says so.
 

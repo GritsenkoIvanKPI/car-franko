@@ -78,18 +78,19 @@ test('unknown state falls back to the New Jersey port', () => {
 const ship = { ...cfg.shipping, markupPerLocationUsd: 50, ports: { GA: { label: 'GA', containerUsd: 1050 }, NJ: { label: 'NJ', containerUsd: 1100 } } };
 
 test('exact location: cheapest port wins, delivery = land + $50 + container', () => {
-  const shipping = { ...ship, locations: [{ city: 'Elkton', state: 'MD', land: { GA: 700, NJ: 330 } }] };
+  const shipping = { ...ship, locations: [{ name: 'Elkton 21921', city: 'Elkton', state: 'MD', land: { GA: 700, NJ: 330 } }] };
   const r = C.resolveRoute('MD', 'Elkton', cfg.states, shipping);
   assert.equal(r.portKey, 'NJ');
   assert.equal(r.usd, 330 + 50 + 1100);
   assert.equal(r.location.city, 'Elkton');
+  assert.equal(C.resolveRoute('MD', 'Elkton 21921', cfg.states, shipping).usd, r.usd); // by name, as the page sends it
 });
 
 test('another place in a listed state uses the state median per port', () => {
   const shipping = { ...ship, locations: [
-    { city: 'A', state: 'GA', land: { GA: 200, NJ: 900 } },
-    { city: 'B', state: 'GA', land: { GA: 300, NJ: 900 } },
-    { city: 'C', state: 'GA', land: { GA: 900, NJ: 900 } },
+    { name: 'A', city: 'A', state: 'GA', land: { GA: 200, NJ: 900 } },
+    { name: 'B', city: 'B', state: 'GA', land: { GA: 300, NJ: 900 } },
+    { name: 'C', city: 'C', state: 'GA', land: { GA: 900, NJ: 900 } },
   ] };
   const r = C.resolveRoute('GA', 'Nowhere', cfg.states, shipping);
   assert.equal(r.location, null);
@@ -110,6 +111,7 @@ test('price list: 5 ports, every state maps to a port, no auction names', () => 
   for (const l of cfg.shipping.locations) {
     assert.ok(cfg.states[l.state], l.state);
     assert.ok(Object.keys(l.land).every(k => cfg.shipping.ports[k] && l.land[k] > 0), l.city);
-    assert.deepEqual(Object.keys(l).sort(), ['city', 'land', 'state']);
+    assert.deepEqual(Object.keys(l).sort(), ['city', 'land', 'name', 'state']);
+    assert.ok(!/copart|iaai|\biaa\b|auction|crashedtoys/i.test(l.name), l.name); // our sources; Manheim, PA is a real town
   }
 });

@@ -58,10 +58,11 @@
    * State missing from the list → unlistedLandUsd to the state's default port.
    * Returns { state, location|null, portKey, port, landUsd, usd }.
    */
-  function resolveRoute(stateCode, city, states, shipping) {
+  function resolveRoute(stateCode, place, states, shipping) {
     const state = states[stateCode] ? stateCode : 'NJ';
     const inState = (shipping.locations || []).filter(l => l.state === state);
-    const location = city ? inState.find(l => l.city === city) || null : null;
+    // `place` is a location name from the price list, or a city (car pages pass the car's city)
+    const location = place ? inState.find(l => l.name === place) || inState.find(l => l.city === place) || null : null;
     let best = null;
     if (location) best = bestPort(location.land, shipping);
     else if (inState.length) {
@@ -86,7 +87,7 @@
 
   /**
    * Full landed cost.
-   * input: { price, fuel, engineL, batteryKwh, prodYear, state, location? (city from the price list), currentYear?, usdUah?, eurUah? }
+   * input: { price, fuel, engineL, batteryKwh, prodYear, state, location? (location name from the price list, or a city), currentYear?, usdUah?, eurUah? }
    */
   function calculate(input, config) {
     const currentYear = input.currentYear ?? new Date().getFullYear();
@@ -119,7 +120,7 @@
         { key: 'auctionFee', label: 'Аукціонний збір', usd: fee },
       ] },
       { key: 'delivery', title: 'Доставка', items: [
-        { key: 'shipping', label: `Доставка до порту ${config.shipping.destinationPort}`, note: `${location ? `з ${location.city}, ${location.state}` : 'середня ціна по штату'}, через порт ${port.label}${surcharge ? `; гібрид чи електро +${surcharge}${NBSP}$` : ''}`, usd: shipping },
+        { key: 'shipping', label: `Доставка до порту ${config.shipping.destinationPort}`, note: `${location ? `з ${location.name}, ${location.state}` : 'середня ціна по штату'}, через порт ${port.label}${surcharge ? `; гібрид чи електро +${surcharge}${NBSP}$` : ''}`, usd: shipping },
         { key: 'forwarding', label: 'Експедиторські послуги в порту', usd: s.forwardingUsd },
         { key: 'toUkraine', label: s.deliveryToUkraineLabel, usd: s.deliveryToUkraineUsd },
       ] },

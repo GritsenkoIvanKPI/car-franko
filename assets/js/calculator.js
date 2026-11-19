@@ -32,7 +32,7 @@
     const r = window.CFCalc.calculate(input, CFG);
     $('[data-engine]').classList.toggle('hidden', input.fuel === 'electric');
     $('[data-battery]').classList.toggle('hidden', input.fuel !== 'electric');
-    $('[data-port]').textContent = typo(`${r.location ? `${r.location.city}, ${r.location.state}` : 'Штат ' + r.state} → порт ${r.port.label} → ${CFG.shipping.destinationPort}`);
+    $('[data-port]').textContent = typo(`${r.location ? `${r.location.name}, ${r.location.state}` : 'Штат ' + r.state} → порт ${r.port.label} → ${CFG.shipping.destinationPort}`);
 
     $('[data-total]').textContent = usd(r.total);
     $('[data-bar-total]').textContent = usd(r.total);
@@ -53,11 +53,11 @@
 
     const fuelLabel = { gasoline: 'бензин', diesel: 'дизель', hybrid: 'гібрид', electric: 'електро' }[input.fuel];
     const spec = input.fuel === 'electric' ? `${input.batteryKwh} кВт·год` : `${input.engineL.toFixed(1).replace('.', ',')} л`;
-    const where = r.location ? `${r.location.city}, ${r.location.state}` : `штат ${input.state}`;
+    const where = r.location ? `${r.location.name}, ${r.location.state}` : `штат ${input.state}`;
     $('[data-calc-cta]').dataset.note = `Розрахунок: ${usd(input.price)} · ${fuelLabel} ${spec} · ${input.prodYear} · ${where} → під ключ ≈ ${usd(r.total)}`;
 
     const q = new URLSearchParams({ price: input.price, fuel: input.fuel, year: input.prodYear, state: input.state });
-    if (r.location) q.set('loc', r.location.city);
+    if (r.location) q.set('loc', r.location.name);
     if (input.fuel === 'electric') q.set('kwh', input.batteryKwh); else q.set('engine', input.engineL);
     history.replaceState(null, '', `?${q}`);
   }
@@ -78,11 +78,12 @@
   // locations of the chosen state; the first option uses the state's average land price
   function fillLocations(selected) {
     const st = form.elements.state.value;
-    const list = (CFG.shipping.locations || []).filter(l => l.state === st).sort((a, b) => a.city.localeCompare(b.city));
+    const list = (CFG.shipping.locations || []).filter(l => l.state === st).sort((a, b) => a.name.localeCompare(b.name));
     form.elements.location.innerHTML = `<option value="">${list.length ? 'Інша локація в штаті' : 'Будь-яка локація в штаті'}</option>`
-      + list.map(l => `<option value="${esc(l.city)}">${esc(l.city)}</option>`).join('');
+      + list.map(l => `<option value="${esc(l.name)}">${esc(l.name)}</option>`).join('');
     form.elements.location.disabled = !list.length;
-    if (selected && list.some(l => l.city === selected)) form.elements.location.value = selected;
+    const hit = selected && (list.find(l => l.name === selected) || list.find(l => l.city === selected));
+    if (hit) form.elements.location.value = hit.name;
   }
 
   async function loadFx() {
