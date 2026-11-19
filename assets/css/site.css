@@ -68,7 +68,7 @@ h1, h2, h3 { text-wrap: balance; }
 /* text links */
 .lnk { position: relative; transition: opacity var(--t-fast) ease, transform var(--t-mid) var(--spring-soft); }
 .lnk:active { opacity: .6; }
-.flink { display: inline-block; padding: 6px 0; opacity: .78; }
+.flink { display: inline-block; min-width: 44px; padding: 8px 0; opacity: .78; }
 .nav-link { position: relative; white-space: nowrap; color: #F2F1EE; opacity: .66; transition: opacity .3s ease; }
 .nav-link.is-active { opacity: 1; }
 .nav-link:active { opacity: .5; }
@@ -272,6 +272,9 @@ input[type=number].field-sm::-webkit-outer-spin-button, input[type=number].field
 
 /* chips in filters reuse .chip from the modal */
 .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip-row--even { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 400px) { .chip-row--even { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.chip-row--even > .chip > span { display: flex; justify-content: center; align-items: center; min-height: 44px; padding-inline: .5rem; }
 .chip > span .n { margin-left: 6px; font-size: 11px; color: #76746F; }
 
 /* active filter pills */

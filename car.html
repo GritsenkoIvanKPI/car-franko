@@ -96,10 +96,10 @@
   <article id="car" class="hidden" aria-labelledby="car-title">
     <!-- breadcrumbs -->
     <div class="mx-auto max-w-shell px-4 pt-8 sm:px-6 lg:px-8">
-      <nav class="flex flex-wrap items-center gap-x-2 text-[13px] text-fog-500" aria-label="Хлібні крихти">
-        <a href="index.html" class="lnk -my-1.5 inline-block py-1.5 text-fog-400">Головна</a><span>/</span>
-        <a href="catalog.html" class="lnk -my-1.5 inline-block py-1.5 text-fog-400">Каталог</a><span>/</span>
-        <span class="text-fog-300" data-f="crumb"></span>
+      <nav class="flex items-center gap-x-2 whitespace-nowrap text-[13px] text-fog-500" aria-label="Хлібні крихти">
+        <a href="index.html" class="lnk -my-1.5 inline-block shrink-0 py-1.5 text-fog-400">Головна</a><span>/</span>
+        <a href="catalog.html" class="lnk -my-1.5 inline-block shrink-0 py-1.5 text-fog-400">Каталог</a><span>/</span>
+        <span class="min-w-0 truncate text-fog-300" data-f="crumb"></span>
       </nav>
     </div>
 
@@ -124,10 +124,10 @@
           <p class="mt-1 text-[15px] text-fog-400" data-f="trim"></p>
           <p class="mt-2 text-[12px] text-fog-500 tabular" data-f="code"></p>
 
-          <ul class="mt-5 grid grid-cols-2 gap-2" data-f="chips"></ul>
+          <ul class="mt-5 grid grid-cols-1 gap-2 min-[360px]:grid-cols-2" data-f="chips"></ul>
 
           <div class="mt-6 flex items-end justify-between gap-4 border-t border-[var(--line)] pt-5" data-f="price"></div>
-          <p class="mt-2 text-[13px] text-fog-400" data-f="sale"></p>
+          <p class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-fog-400" data-f="sale"></p>
 
           <div class="mt-6 grid gap-2">
             <button type="button" class="btn btn-primary w-full !py-[15px]" data-open-modal data-topic="usa" data-f="cta">Зв&#39;язатися з нами

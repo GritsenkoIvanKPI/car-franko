@@ -39,7 +39,7 @@ const lots = rows.flatMap(r => {
   const color = r.color ? COLORS[String(r.color).toUpperCase()] ?? String(r.color).charAt(0) + String(r.color).slice(1).toLowerCase() : null;
   return [{
     code: publicCode(r.source, r.source_lot_id),
-    year: r.year, make: r.make, model: r.model, trim: r.trim,
+    year: r.year, make: r.make, model: r.model, trim: r.trim && !r.trim.includes('/') ? r.trim : null, // a '/' list means the exact trim is unknown
     body: r.body_type in BODY ? BODY[r.body_type] : r.body_type,
     fuel: nz(r.fuel), engine_l: r.engine_l === null ? null : Number(r.engine_l), cylinders: r.cylinders,
     transmission: nz(r.transmission), drive: nz(r.drive),

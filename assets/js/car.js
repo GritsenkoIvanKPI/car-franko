@@ -17,7 +17,7 @@
     const p = [];
     p.push(`${t}${NB}— ${body} ${l.year} року ${km}.` + (l.fuel === 'electric'
       ? ` Електромобіль, привід${NB}— ${(L.drive[l.drive] || '').toLowerCase()}.`
-      : ` Двигун ${l.engine_l ? String(l.engine_l.toFixed(1)).replace('.', ',') + NB + 'л, ' : ''}${(L.fuel[l.fuel] || '').toLowerCase()}; коробка${NB}— ${(L.tr[l.transmission] || '').toLowerCase()}, привід${NB}— ${(L.drive[l.drive] || '').toLowerCase()}.`)
+      : `${l.engine_l || L.fuel[l.fuel] ? ` Двигун ${[l.engine_l && String(l.engine_l.toFixed(1)).replace('.', ',') + NB + 'л', (L.fuel[l.fuel] || '').toLowerCase()].filter(Boolean).join(', ')}.` : ''} Коробка${NB}— ${(L.tr[l.transmission] || '').toLowerCase()}, привід${NB}— ${(L.drive[l.drive] || '').toLowerCase()}.`)
       + (l.color ? ` Колір: ${l.color.toLowerCase()}.` : ''));
 
     const dmg = [];
@@ -30,7 +30,7 @@
     if (dmg.length) p.push(dmg.join(' '));
 
     if (l.title === 'clean') p.push('Документи: чистий титул (Clean)${NB}— страхова не визнавала авто тотальною шкодою.'.replace('${NB}', NB));
-    else if (l.title === 'salvage') p.push('Документи: Salvage${NB}— страхова визнала авто пошкодженим. Такі авто зазвичай розмитнюють і реєструють в Україні після ремонту; для цього лоту ми перевіримо це заздалегідь.'.replace('${NB}', NB));
+    else if (l.title === 'salvage') p.push('Документи: Salvage${NB}— страхова визнала авто пошкодженим. Такі авто зазвичай розмитнюють і реєструють в Україні після ремонту. Ми заздалегідь перевіримо, чи можна зареєструвати саме це авто.'.replace('${NB}', NB));
 
     const loc = C.locationLabel(l), when = C.saleDateLabel(l);
     p.push(`${loc ? `Авто знаходиться в ${loc}, США. ` : ''}${when ? `Торги${NB}— ${when}. ` : ''}Ми перевіримо історію авто, порахуємо повну вартість під ключ і візьмемо участь у торгах замість вас.`);
@@ -55,7 +55,7 @@
       + (l.condition ? `<span class="cond-badge ${l.condition === 'run_drive' ? '' : 'is-warn'}">${L.cond[l.condition]}</span>` : '');
     F('badge').innerHTML = '';
 
-    const chip = (icon, text) => `<li class="flex items-center gap-2 rounded-[8px] border border-[var(--line)] bg-ink-900/40 px-3 py-2.5 text-[13px]"><span class="text-brand-300">${ICON(icon)}</span><span class="min-w-0 truncate">${esc(text)}</span></li>`;
+    const chip = (icon, text) => `<li class="flex items-center gap-2 rounded-[8px] border border-[var(--line)] bg-ink-900/40 px-3 py-2.5 text-[13px]"><span class="text-brand-300">${ICON(icon)}</span><span class="min-w-0 leading-snug">${esc(text)}</span></li>`;
     F('chips').innerHTML = [
       chip('calendar', `${l.year} рік`),
       chip('gauge', l.odometer_km ? `${fmt(l.odometer_km)}${NB}км` : 'Пробіг —'),
@@ -68,14 +68,14 @@
       : `<div><p class="eyebrow text-[10px] text-fog-500">Ставка</p><p class="mt-1.5 font-display text-[22px] font-semibold leading-none text-brand-300">на торгах</p></div>`;
     F('price').innerHTML = bid + (l.buy_now_usd ? `<div class="text-right"><p class="eyebrow text-[10px] text-fog-500">Купити одразу</p><p class="mt-1.5 font-display text-[20px] font-semibold leading-none tabular">${fmt(l.buy_now_usd)}${NB}$</p></div>` : '');
     const loc = C.locationLabel(l), when = C.saleDateLabel(l);
-    F('sale').innerHTML = [when && `${ICON('calendar', 'h-3.5 w-3.5 inline -mt-0.5 mr-1')}Торги: ${esc(when)}`, loc && `${ICON('map-pin', 'h-3.5 w-3.5 inline -mt-0.5 mr-1')}${esc(loc)}`].filter(Boolean).join('<span class="mx-2 text-fog-500">·</span>');
+    F('sale').innerHTML = [when && `${ICON('calendar', 'h-3.5 w-3.5 inline -mt-0.5 mr-1')}Торги: ${esc(when)}`, loc && `${ICON('map-pin', 'h-3.5 w-3.5 inline -mt-0.5 mr-1')}${esc(loc)}`].filter(Boolean).map(x => `<span class="whitespace-nowrap">${x}</span>`).join('');
 
     ['cta', 'cta3'].forEach(k => { F(k).dataset.note = note; });
     // open the calculator pre-filled with this car
     const STATES = new Set('AL AZ AR CA CO CT DE DC FL GA ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split(' '));
     const cq = new URLSearchParams({ price: String(C.priceValue(l) || ''), fuel: l.fuel || 'gasoline', year: String(l.year) });
     if (l.fuel === 'electric') cq.set('kwh', '75'); else if (l.engine_l) cq.set('engine', String(l.engine_l));
-    if (STATES.has(l.location?.state)) cq.set('state', l.location.state);
+    if (STATES.has(l.location?.state)) { cq.set('state', l.location.state); if (l.location.city) cq.set('loc', l.location.city); }
     F('calc-link').href = `calculator.html?${cq}`;
     F('bar-title').textContent = t;
     F('bar-price').textContent = l.current_bid_usd ? `Ставка ${fmt(l.current_bid_usd)}${NB}$` : l.buy_now_usd ? `Купити одразу ${fmt(l.buy_now_usd)}${NB}$` : 'Ставка на торгах';

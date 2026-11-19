@@ -50,7 +50,7 @@ window.CFLots = (() => {
   const saleDateLabel = l => { const t = saleTime(l); return isFinite(t) ? dateFmt.format(t).replace(' о ', ', ') : ''; };
 
   const title = l => `${l.year} ${l.make} ${l.model}`;
-  const engineLabel = l => (l.fuel === 'electric' ? 'Електро' : `${l.engine_l ? String(l.engine_l.toFixed(1)).replace('.', ',') + NB + 'л · ' : ''}${L.fuel[l.fuel] || ''}`);
+  const engineLabel = l => (l.fuel === 'electric' ? 'Електро' : [l.engine_l && String(l.engine_l.toFixed(1)).replace('.', ',') + NB + 'л', L.fuel[l.fuel]].filter(Boolean).join(' · '));
   const damageLabel = l => [l.primary_damage, l.secondary_damage].filter(Boolean).map(d => L.dmg[d]).join(', ');
   const locationLabel = l => (l.location ? [l.location.city, l.location.state].filter(Boolean).join(', ') : '');
   const carUrl = l => `car.html?code=${encodeURIComponent(l.code)}`;
