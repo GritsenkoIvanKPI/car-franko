@@ -1,5 +1,6 @@
 // Car Franko Import — calculator page. Settings: data/calculator.json, maths: assets/js/calc-core.js.
-// Prefill via URL: calculator.html?price=12000&fuel=diesel&engine=2.0&year=2019&state=TX&loc=Houston (or &kwh=75 for electric)
+// Prefill via URL: calculator.html?price=12000&fuel=diesel&engine=2.0&year=2019&port=TX&loc=Houston%2077073 (or &kwh=75 for electric).
+// Car pages pass &state=GA&loc=<city>; the location (and so the port) is found by city and state.
 (() => {
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
@@ -21,7 +22,7 @@
     engineL: Number(form.elements.engineL.value) || 0,
     batteryKwh: Number(form.elements.batteryKwh.value) || 0,
     prodYear: Number(form.elements.prodYear.value),
-    state: form.elements.state.value,
+    port: form.elements.port.value,
     location: form.elements.location.value,
     usdUah: FX.usdUah,
     eurUah: FX.eurUah,
@@ -32,7 +33,7 @@
     const r = window.CFCalc.calculate(input, CFG);
     $('[data-engine]').classList.toggle('hidden', input.fuel === 'electric');
     $('[data-battery]').classList.toggle('hidden', input.fuel !== 'electric');
-    $('[data-port]').textContent = typo(`${r.location ? `${r.location.name}, ${r.location.state}` : 'Штат ' + r.state} → порт ${r.port.label} → ${CFG.shipping.destinationPort}`);
+    $('[data-port]').textContent = typo(`${r.location ? `${r.location.name}, ${r.location.state}` : 'Локація не вибрана'} → порт ${r.port.label} → ${CFG.shipping.destinationPort}`);
 
     $('[data-total]').textContent = usd(r.total);
     $('[data-bar-total]').textContent = usd(r.total);
@@ -53,10 +54,10 @@
 
     const fuelLabel = { gasoline: 'бензин', diesel: 'дизель', hybrid: 'гібрид', electric: 'електро' }[input.fuel];
     const spec = input.fuel === 'electric' ? `${input.batteryKwh} кВт·год` : `${input.engineL.toFixed(1).replace('.', ',')} л`;
-    const where = r.location ? `${r.location.name}, ${r.location.state}` : `штат ${input.state}`;
+    const where = r.location ? `${r.location.name}, ${r.location.state}` : `порт ${r.port.label}`;
     $('[data-calc-cta]').dataset.note = `Розрахунок: ${usd(input.price)} · ${fuelLabel} ${spec} · ${input.prodYear} · ${where} → під ключ ≈ ${usd(r.total)}`;
 
-    const q = new URLSearchParams({ price: input.price, fuel: input.fuel, year: input.prodYear, state: input.state });
+    const q = new URLSearchParams({ price: input.price, fuel: input.fuel, year: input.prodYear, port: r.port.key });
     if (r.location) q.set('loc', r.location.name);
     if (input.fuel === 'electric') q.set('kwh', input.batteryKwh); else q.set('engine', input.engineL);
     history.replaceState(null, '', `?${q}`);
@@ -70,20 +71,22 @@
     if (p.get('engine')) form.elements.engineL.value = p.get('engine');
     if (p.get('kwh')) form.elements.batteryKwh.value = p.get('kwh');
     if (p.get('year') && form.elements.prodYear.querySelector(`option[value="${p.get('year')}"]`)) form.elements.prodYear.value = p.get('year');
-    if (p.get('state') && CFG.states[p.get('state')]) form.elements.state.value = p.get('state');
-    fillLocations(p.get('loc'));
+    // a known location decides the port; otherwise take the port from the address
+    const loc = window.CFCalc.findLocation({ name: p.get('loc'), city: p.get('loc'), state: p.get('state') }, CFG.shipping);
+    const port = loc ? loc.port : p.get('port');
+    if (port && CFG.shipping.ports[port]) form.elements.port.value = port;
+    fillLocations(loc && loc.name);
     range.value = Math.min(Number(range.max), Math.max(Number(range.min), Number(price.value) || 0));
   }
 
-  // locations of the chosen state; the first option uses the state's average land price
+  // only the locations that ship through the chosen port, grouped by state
   function fillLocations(selected) {
-    const st = form.elements.state.value;
-    const list = (CFG.shipping.locations || []).filter(l => l.state === st).sort((a, b) => a.name.localeCompare(b.name));
-    form.elements.location.innerHTML = `<option value="">${list.length ? 'Інша локація в штаті' : 'Будь-яка локація в штаті'}</option>`
-      + list.map(l => `<option value="${esc(l.name)}">${esc(l.name)}</option>`).join('');
-    form.elements.location.disabled = !list.length;
-    const hit = selected && (list.find(l => l.name === selected) || list.find(l => l.city === selected));
-    if (hit) form.elements.location.value = hit.name;
+    const list = window.CFCalc.portLocations(form.elements.port.value, CFG.shipping);
+    const groups = new Map();
+    for (const l of list) { if (!groups.has(l.state)) groups.set(l.state, []); groups.get(l.state).push(l); }
+    form.elements.location.innerHTML = `<option value="">Оберіть локацію (${list.length})</option>`
+      + [...groups].map(([st, ls]) => `<optgroup label="${esc(CFG.states[st]?.[0] || st)} (${st})">${ls.map(l => `<option value="${esc(l.name)}">${esc(l.name)}</option>`).join('')}</optgroup>`).join('');
+    if (selected && list.some(l => l.name === selected)) form.elements.location.value = selected;
   }
 
   async function loadFx() {
@@ -101,7 +104,7 @@
   // events
   price.addEventListener('input', () => { range.value = Math.min(Number(range.max), Math.max(Number(range.min), Number(price.value) || 0)); render(); });
   range.addEventListener('input', () => { price.value = range.value; render(); });
-  form.elements.state.addEventListener('change', () => fillLocations());
+  form.elements.port.addEventListener('change', () => fillLocations());
   form.addEventListener('input', e => { if (e.target !== price && e.target !== range) render(); });
   form.addEventListener('change', render);
   form.addEventListener('submit', e => e.preventDefault());
@@ -126,7 +129,7 @@
       CFG = cfg;
       const now = new Date().getFullYear();
       form.elements.prodYear.innerHTML = Array.from({ length: now + 1 - 2008 }, (_, i) => now + 1 - i).map(y => `<option value="${y}" ${y === now - 6 ? 'selected' : ''}>${y}</option>`).join('');
-      form.elements.state.innerHTML = Object.entries(cfg.states).sort((a, b) => a[1][0].localeCompare(b[1][0])).map(([code, [name]]) => `<option value="${code}" ${code === 'TX' ? 'selected' : ''}>${name} (${code})</option>`).join('');
+      form.elements.port.innerHTML = Object.entries(cfg.shipping.ports).map(([key, p]) => `<option value="${key}">${esc(p.label)}</option>`).join('');
       prefill();
       FX = { usdUah: cfg.fx.fallbackUsdUah, eurUah: cfg.fx.fallbackEurUah, date: '', live: false };
       render();               // instant result with saved rates

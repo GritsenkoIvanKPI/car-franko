@@ -37,44 +37,31 @@
 
   const NBSP = '\u00a0';
 
-  /** Cheapest port for a set of land prices: land + markup + that port's container. */
-  function bestPort(land, shipping) {
-    let best = null;
-    for (const [key, landUsd] of Object.entries(land)) {
-      const port = shipping.ports[key];
-      if (!port || !(landUsd >= 0)) continue;
-      const usd = landUsd + shipping.markupPerLocationUsd + port.containerUsd;
-      if (!best || usd < best.usd) best = { portKey: key, port, landUsd, usd };
-    }
-    return best;
+  const median = xs => { const a = [...xs].sort((x, y) => x - y), m = a.length >> 1; return a.length ? (a.length % 2 ? a[m] : Math.round((a[m - 1] + a[m]) / 2)) : 0; };
+
+  /** Locations that ship through a port (the port the forwarder marks for them), sorted by state and name. */
+  function portLocations(portKey, shipping) {
+    return (shipping.locations || []).filter(l => l.port === portKey)
+      .sort((a, b) => a.state.localeCompare(b.state) || a.name.localeCompare(b.name));
   }
 
-  const median = xs => { const a = [...xs].sort((x, y) => x - y), m = a.length >> 1; return a.length % 2 ? a[m] : Math.round((a[m - 1] + a[m]) / 2); };
+  /** Find a location: by its exact name, or by city and state (car pages know the car's city). */
+  function findLocation({ name, city, state }, shipping) {
+    const all = shipping.locations || [];
+    return (name && all.find(l => l.name === name)) || (city && state && all.find(l => l.city === city && l.state === state)) || null;
+  }
 
   /**
-   * Delivery from the car's location to Klaipėda (before the hybrid/electric surcharge).
-   * Exact location from the price list → its own land prices.
-   * Other place in a listed state → the state's median land price to each port.
-   * State missing from the list → unlistedLandUsd to the state's default port.
-   * Returns { state, location|null, portKey, port, landUsd, usd }.
+   * Delivery to Klaipėda through the chosen port: the location's land price (or the port's median when the
+   * location isn't chosen) + markup + container. Returns { portKey, port, location|null, landUsd, usd }.
    */
-  function resolveRoute(stateCode, place, states, shipping) {
-    const state = states[stateCode] ? stateCode : 'NJ';
-    const inState = (shipping.locations || []).filter(l => l.state === state);
-    // `place` is a location name from the price list, or a city (car pages pass the car's city)
-    const location = place ? inState.find(l => l.name === place) || inState.find(l => l.city === place) || null : null;
-    let best = null;
-    if (location) best = bestPort(location.land, shipping);
-    else if (inState.length) {
-      const land = {};
-      for (const key of Object.keys(shipping.ports)) {
-        const xs = inState.map(l => l.land[key]).filter(v => v >= 0);
-        if (xs.length) land[key] = median(xs);
-      }
-      best = bestPort(land, shipping);
-    }
-    if (!best) best = bestPort({ [states[state][1]]: shipping.unlistedLandUsd }, shipping);
-    return { state, location, ...best };
+  function resolveRoute(portKey, locationName, shipping) {
+    const key = shipping.ports[portKey] ? portKey : Object.keys(shipping.ports)[0];
+    const list = portLocations(key, shipping);
+    const location = locationName ? list.find(l => l.name === locationName) || null : null;
+    const landUsd = location ? location.landUsd : median(list.map(l => l.landUsd));
+    const port = shipping.ports[key];
+    return { portKey: key, port, location, landUsd, usd: landUsd + shipping.markupPerLocationUsd + port.containerUsd };
   }
 
   /** Pension fund fee (USD) at first registration. */
@@ -87,7 +74,7 @@
 
   /**
    * Full landed cost.
-   * input: { price, fuel, engineL, batteryKwh, prodYear, state, location? (location name from the price list, or a city), currentYear?, usdUah?, eurUah? }
+   * input: { price, fuel, engineL, batteryKwh, prodYear, port, location? (location name from the price list), currentYear?, usdUah?, eurUah? }
    */
   function calculate(input, config) {
     const currentYear = input.currentYear ?? new Date().getFullYear();
@@ -97,8 +84,8 @@
     const price = Math.max(0, Number(input.price) || 0);
     const fuel = input.fuel || 'gasoline';
 
-    const route = resolveRoute(input.state, input.location, config.states, config.shipping);
-    const { port, portKey, state, location } = route;
+    const route = resolveRoute(input.port, input.location, config.shipping);
+    const { port, portKey, location } = route;
     const surcharge = fuel === 'hybrid' || fuel === 'electric' ? config.shipping.hybridElectricSurchargeUsd : 0;
 
     const fee = auctionFee(price, config.auctionFee);
@@ -120,7 +107,7 @@
         { key: 'auctionFee', label: 'Аукціонний збір', usd: fee },
       ] },
       { key: 'delivery', title: 'Доставка', items: [
-        { key: 'shipping', label: `Доставка до порту ${config.shipping.destinationPort}`, note: `${location ? `з ${location.name}, ${location.state}` : 'середня ціна по штату'}, через порт ${port.label}${surcharge ? `; гібрид чи електро +${surcharge}${NBSP}$` : ''}`, usd: shipping },
+        { key: 'shipping', label: `Доставка до порту ${config.shipping.destinationPort}`, note: `${location ? `з ${location.name}, ${location.state}` : 'середня ціна для локацій цього порту'}, через порт ${port.label}${surcharge ? `; гібрид чи електро +${surcharge}${NBSP}$` : ''}`, usd: shipping },
         { key: 'forwarding', label: 'Експедиторські послуги в порту', usd: s.forwardingUsd },
         { key: 'toUkraine', label: s.deliveryToUkraineLabel, usd: s.deliveryToUkraineUsd },
       ] },
@@ -155,11 +142,11 @@
 
     return {
       groups, total, extras, extrasTotal, grandTotal: total + extrasTotal,
-      customsValue, customsTotal, port: { key: portKey, ...port }, state, location,
+      customsValue, customsTotal, port: { key: portKey, ...port }, location,
       fx: { usdUah, eurUah, eurUsd },
       ageCoefficient: ageCoefficient(Number(input.prodYear), currentYear, c.ageCoefficient),
     };
   }
 
-  return { ageCoefficient, auctionFee, exciseEur, pensionFee, bestPort, resolveRoute, calculate };
+  return { ageCoefficient, auctionFee, exciseEur, pensionFee, portLocations, findLocation, resolveRoute, calculate };
 });

@@ -5,6 +5,7 @@
 //
 // The source is the forwarder's "local transportation" table: one row per pickup location with
 // City, State and a land price to each departure port (column headers like "Savannah, GA").
+// The forwarder colours the one port each location ships through; we keep that port and its land price only.
 // Only the ports listed in data/calculator.json → shipping.ports are kept (matched by their `source` header).
 // The import keeps the location name, city, state and prices. The auction column is dropped, and a location
 // named after an auction gets its city instead, because the website never says which auction a car comes from.
@@ -22,7 +23,8 @@ const html = /^https?:\/\//.test(src)
 
 const decode = s => s.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"');
 const text = s => decode(s.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
-const rows = [...html.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)].map(m => [...m[1].matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/g)].map(c => text(c[1])));
+const cellRows = [...html.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)].map(m => [...m[1].matchAll(/<t[dh]([^>]*)>([\s\S]*?)<\/t[dh]>/g)].map(c => ({ text: text(c[2]), marked: /background-color/i.test(c[1]) })));
+const rows = cellRows.map(r => r.map(c => c.text));
 
 const head = rows.find(r => r.includes('City') && r.includes('State'));
 if (!head) throw new Error('No price table found (expected columns City and State).');
@@ -55,20 +57,23 @@ for (const r of rows) {
   if (r === head || r.length < head.length) continue;
   const state = stateCode(r[iState]), city = title(r[iCity] || '');
   if (!state || !city) { skipped++; continue; } // Canada and other places outside the US
-  const land = {};
-  for (const [key, i] of portCols) { const v = money(r[i]); if (v) land[key] = v; }
-  if (!Object.keys(land).length) { skipped++; continue; }
+  // the forwarder colours the one port a location ships through; that is the only route we offer
+  const cells = cellRows[rows.indexOf(r)];
+  const marked = portCols.filter(([, i]) => cells[i]?.marked && money(r[i]));
+  if (marked.length !== 1) { skipped++; continue; }
+  const [port, pi] = marked[0];
+  const landUsd = money(r[pi]);
   const zip = (r[iZip] || '').trim();
   const name = locationName(r[iName] || '', city, state, zip);
-  const k = `${state}|${keyOf(name)}`;
+  const k = `${port}|${state}|${keyOf(name)}`;
   const prev = byPlace.get(k);
-  if (!prev) { byPlace.set(k, { name, city, state, land }); continue; }
-  // the same yard listed twice: keep the higher price per port, so the estimate never comes out too low
-  for (const [p, v] of Object.entries(land)) prev.land[p] = Math.max(prev.land[p] || 0, v);
+  if (!prev) { byPlace.set(k, { name, city, state, port, landUsd }); continue; }
+  // the same yard listed twice: keep the higher price, so the estimate never comes out too low
+  prev.landUsd = Math.max(prev.landUsd, landUsd);
   if (prev.name === prev.name.toUpperCase() || /^[A-Z\s\d,()-]+$/.test(prev.name)) prev.name = name;
 }
 
-const locations = [...byPlace.values()].sort((a, b) => a.state.localeCompare(b.state) || a.name.localeCompare(b.name));
+const locations = [...byPlace.values()].sort((a, b) => a.port.localeCompare(b.port) || a.state.localeCompare(b.state) || a.name.localeCompare(b.name));
 if (locations.length < 50) throw new Error(`Only ${locations.length} locations parsed; nothing was changed.`);
 cfg.updated = new Date().toISOString().slice(0, 10);
 cfg.shipping.locations = '__LOCATIONS__';
@@ -77,5 +82,5 @@ const json = JSON.stringify(cfg, null, 2)
   .replace('"__LOCATIONS__"', '[\n' + locations.map(l => '      ' + JSON.stringify(l)).join(',\n') + '\n    ]');
 JSON.parse(json);
 await writeFile(CONFIG, json + '\n');
-const states = new Set(locations.map(l => l.state));
-console.log(`${locations.length} locations in ${states.size} states imported (${skipped} rows skipped).`);
+const perPort = Object.keys(cfg.shipping.ports).map(p => `${p} ${locations.filter(l => l.port === p).length}`).join(', ');
+console.log(`${locations.length} locations imported (${perPort}); ${skipped} rows skipped.`);

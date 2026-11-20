@@ -12,8 +12,7 @@ Values marked **confirmed** came from Car Franko. The rest are placeholders unti
 |---|---|---|
 | `shipping.ports.*.containerUsd` | Container from the US port to Klaipėda | **confirmed**: Savannah 1050, Elizabeth NJ 1100, Houston 1225, Los Angeles 1650, Indianapolis 1250 |
 | `shipping.markupPerLocationUsd` | Added to every location's land price | **50** (confirmed) |
-| `shipping.locations` | Land price from each location to each port | **forwarder's price list** (555 locations, every US state except DC) |
-| `shipping.unlistedLandUsd` | Land price for a state with no locations in the list (only DC now) | 600 |
+| `shipping.locations` | Each location's port (colour in the price list) and land price | **forwarder's price list** (555 locations: GA 151, NJ 130, TX 77, CA 104, IN 93) |
 | `shipping.hybridElectricSurchargeUsd` | Extra for hybrids and electric cars | **200** (confirmed) |
 | `services.forwardingUsd` | Forwarding services at the port | 370 |
 | `services.customsBrokerUsd` | Customs broker | 200 |
@@ -25,11 +24,14 @@ Values marked **confirmed** came from Car Franko. The rest are placeholders unti
 
 ## Delivery: 5 ports and the forwarder's price list
 
-The customer sees one delivery figure: land transport from the car's location to a US port + $50 + that port's container to Klaipėda. The calculator works it out for each of the 5 ports and uses the cheapest.
+In the forwarder's price list each location has one coloured cell: the port that location ships through. That is the only route we use. It is not always the cheapest port (63 locations go elsewhere).
+
+On the page the customer picks a port first (Savannah GA, Elizabeth NJ, Houston TX, Los Angeles CA, Indianapolis IN). The location list then shows only that port's locations, grouped by state. The delivery line is one figure: the location's land price to its port + $50 + the port's container to Klaipėda. Example: Akron 44203 (OH) → Elizabeth NJ: $550 + $50 + $1,100 = $1,700.
 
 - `shipping.ports` holds the 5 ports, their container prices and `source`, the port's column header in the price list.
-- `shipping.locations` holds the land price from each location to each port. It is imported from the forwarder's public price list: one entry per pickup location under the name the forwarder uses (e.g. "Atlanta East 30680"), with its city and state. The auction column is dropped, and locations named after an auction brand get their city name instead.
-- On the page the customer picks a state, then a location. "Інша локація в штаті" uses the state's median land price to each port.
+- `shipping.locations` holds one row per location: `name` (as the forwarder writes it, e.g. "Atlanta East 30680"), `city`, `state`, `port` (the coloured one) and `landUsd`. The auction column is dropped, and locations named after an auction brand get their city name instead.
+- With no location chosen, the calculator uses the median land price of that port's locations.
+- Car pages pass the car's state and city; the calculator finds the location and selects its port.
 - Oversized vehicles are quoted individually; the page says so.
 
 To refresh the price list (it changes from time to time):
@@ -89,7 +91,8 @@ Our calculator follows the Tax Code. Re-check the rates each January.
 The calculator can be pre-filled from its address:
 
 ```
-calculator.html?price=12000&fuel=diesel&engine=2.0&year=2019&state=TX&loc=Houston
+calculator.html?price=12000&fuel=diesel&engine=2.0&year=2019&port=TX
+calculator.html?price=12000&fuel=gasoline&engine=2.0&year=2019&state=OH&loc=Barberton   (car pages: state + city)
 calculator.html?price=20000&fuel=electric&kwh=75&year=2022&state=CA
 ```
 
