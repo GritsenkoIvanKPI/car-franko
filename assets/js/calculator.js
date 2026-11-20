@@ -79,15 +79,16 @@
     range.value = Math.min(Number(range.max), Math.max(Number(range.min), Number(price.value) || 0));
   }
 
-  // only the locations that ship through the chosen port, grouped by state
+  // all locations, grouped by state; choosing one sets its port
   function fillLocations(selected) {
-    const list = window.CFCalc.portLocations(form.elements.port.value, CFG.shipping);
+    const all = [...(CFG.shipping.locations || [])].sort((a, b) => a.state.localeCompare(b.state) || a.name.localeCompare(b.name));
     const groups = new Map();
-    for (const l of list) { if (!groups.has(l.state)) groups.set(l.state, []); groups.get(l.state).push(l); }
-    form.elements.location.innerHTML = `<option value="">Оберіть локацію (${list.length})</option>`
+    for (const l of all) { if (!groups.has(l.state)) groups.set(l.state, []); groups.get(l.state).push(l); }
+    form.elements.location.innerHTML = `<option value="">Оберіть локацію (${all.length})</option>`
       + [...groups].map(([st, ls]) => `<optgroup label="${esc(CFG.states[st]?.[0] || st)} (${st})">${ls.map(l => `<option value="${esc(l.name)}">${esc(l.name)}</option>`).join('')}</optgroup>`).join('');
-    if (selected && list.some(l => l.name === selected)) form.elements.location.value = selected;
+    if (selected && all.some(l => l.name === selected)) form.elements.location.value = selected;
   }
+  const locationByName = name => (CFG.shipping.locations || []).find(l => l.name === name);
 
   async function loadFx() {
     const fb = { usdUah: CFG.fx.fallbackUsdUah, eurUah: CFG.fx.fallbackEurUah, date: '', live: false };
@@ -104,7 +105,9 @@
   // events
   price.addEventListener('input', () => { range.value = Math.min(Number(range.max), Math.max(Number(range.min), Number(price.value) || 0)); render(); });
   range.addEventListener('input', () => { price.value = range.value; render(); });
-  form.elements.port.addEventListener('change', () => fillLocations());
+  // location → its port; a different port by hand → the location no longer applies
+  form.elements.location.addEventListener('change', () => { const l = locationByName(form.elements.location.value); if (l) form.elements.port.value = l.port; });
+  form.elements.port.addEventListener('change', () => { const l = locationByName(form.elements.location.value); if (l && l.port !== form.elements.port.value) form.elements.location.value = ''; });
   form.addEventListener('input', e => { if (e.target !== price && e.target !== range) render(); });
   form.addEventListener('change', render);
   form.addEventListener('submit', e => e.preventDefault());

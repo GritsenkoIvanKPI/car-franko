@@ -26,7 +26,7 @@ Values marked **confirmed** came from Car Franko. The rest are placeholders unti
 
 In the forwarder's price list each location has one coloured cell: the port that location ships through. That is the only route we use. It is not always the cheapest port (63 locations go elsewhere).
 
-On the page the customer picks a port first (Savannah GA, Elizabeth NJ, Houston TX, Los Angeles CA, Indianapolis IN). The location list then shows only that port's locations, grouped by state. The delivery line is one figure: the location's land price to its port + $50 + the port's container to Klaipėda. Example: Akron 44203 (OH) → Elizabeth NJ: $550 + $50 + $1,100 = $1,700.
+On the page the customer picks the car's location (all 555, grouped by state) and the port (Savannah GA, Elizabeth NJ, Houston TX, Los Angeles CA, Indianapolis IN) is set automatically. A customer who doesn't know the location can pick just a port; choosing a port that doesn't match the chosen location clears the location. The delivery line is one figure: the location's land price to its port + $50 + the port's container to Klaipėda. Example: Akron 44203 (OH) → Elizabeth NJ: $550 + $50 + $1,100 = $1,700.
 
 - `shipping.ports` holds the 5 ports, their container prices and `source`, the port's column header in the price list.
 - `shipping.locations` holds one row per location: `name` (as the forwarder writes it, e.g. "Atlanta East 30680"), `city`, `state`, `port` (the coloured one) and `landUsd`. The auction column is dropped, and locations named after an auction brand get their city name instead.
